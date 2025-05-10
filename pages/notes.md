@@ -2,7 +2,7 @@
 layout: Post
 permalink: /notes
 feedformat: card
-title: Digital Garden
+title: Welcome to the Garden
 ---
 
-The feed page shows all notes from `notes` folder. If you want to hide any notes from this feed, add `feed:hide` on note's Frontmatter. Eg:[[Hidden Note]]
+Welcome to my digital garden using Obsidian and Jekyll garden theme. Its job is to be documentation of the junior front end developer to a more experienced technical consultant and professional.

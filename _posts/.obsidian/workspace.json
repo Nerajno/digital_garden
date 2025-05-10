@@ -1,0 +1,154 @@
+{
+  "main": {
+    "id": "504afebaee07aefc",
+    "type": "split",
+    "children": [
+      {
+        "id": "7713b794f178adb1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d9537e13936032cd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2020-03-01-how-to.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "68980f251304044b",
+    "type": "split",
+    "children": [
+      {
+        "id": "bad0724f84b30dfc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4421d45d2bbe59cb",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "bf05571fb34e8958",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "00f89ab9df2ae61e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "bd92b8b8f07d47bd",
+    "type": "split",
+    "children": [
+      {
+        "id": "30adfc3c355c9c32",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b3aa9a22916a91ad",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2020-03-01-how-to.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b5be769839742952",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2020-03-01-how-to.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "0959e16f4f3d70a8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "8cf1a018ac230d48",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2020-03-01-how-to.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "d9537e13936032cd",
+  "lastOpenFiles": [
+    "2020-03-01-features.md",
+    "2020-03-01-how-to.md"
+  ]
+}
