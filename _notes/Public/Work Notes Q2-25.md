@@ -7,7 +7,6 @@ date: 09-05-2025
 
 ![](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExczY2ODY3ZG9pYXd2dXJsc2lmcmh2MHZiNGMxZmE1aDR1NjNueWRzdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TfJWecQXGocGBExLfX/giphy.gif)
 
-So at work, certain comments or things are pointed out for me to learn or look into. Here is my running list ( need to convert this into a table of some sort):
 ### Update
 
 Yeah no, I think I took on too much this quarter and I was tired. I completed it though [portfolio](https://developingdvlpr.com/).
