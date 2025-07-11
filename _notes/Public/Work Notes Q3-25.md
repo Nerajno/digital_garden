@@ -13,6 +13,10 @@ date: 06-07-2025
 - [ ] Holiday card app
 - [ ] TinyDesk project [ api, frontend and db]
 
+## Concepts Learnt or Reviewed ( && Applied)
+- [ ] Pagination && the componentization of pagination
+- [ ]
+
 ## Knowledge Management
 - [ ] Create a page to define notes/concepts (concept, official explanation, personal understanding, applications)
 
@@ -33,6 +37,7 @@ date: 06-07-2025
 - [React Docs](https://react.dev/)
 - [Vue Docs](https://vuejs.org/)
 - [Technical Blogging Guide](https://www.freecodecamp.org/news/how-to-start-a-technical-blog/)
+- [ VueUse](https://vueuse.org/)
 
 ## Retrospective (To be filled at end of Q3)
 - What went well?
