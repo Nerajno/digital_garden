@@ -19,11 +19,11 @@ Inspired by [Google's project cemetery](https://killedbygoogle.com/), this grave
 
 I have been brainstorming and continuous project maintenance can become counter-productive to learning as a tech professional. Here is is my perspective:
 
-- **Context Switching Overhead**: maintaining old projects fragments one's attention across outdated codebases.
-- **Technology Debt**: yesterday's learning experiments become today's legacy systems requiring updates and updating stuff never ends.
-- **Opportunity Cost**: time spent maintaining is time not spent exploring new technologies.
-- **Perfectionism Paralysis**: The pressure to "finish" everything prevents starting new explorations.
-- **Learning Dilution**: maintenance work teaches you less than building something new.
+**Context Switching Overhead**: maintaining old projects fragments one's attention across outdated codebases.
+**Technology Debt**: yesterday's learning experiments become today's legacy systems requiring updates and updating stuff never ends.
+**Opportunity Cost**: time spent maintaining is time not spent exploring new technologies.
+**Perfectionism Paralysis**: The pressure to "finish" everything prevents starting new explorations.
+**Learning Dilution**: maintenance work teaches you less than building something new.
 
 #### The Wisdom of Sunsetting Projects
 
@@ -35,11 +35,11 @@ Knowing when to sunset a learning project is as important as starting it. These 
 
 Each project in this graveyard represents or should:
 
-- **Valuable Lessons**: Core insights gained from hands-on exploration
-- **Failed Experiments**: What didn't work and why (often more valuable than what did)
-- **Wisdom Gained**: Understanding acquired through building, breaking, and rebuilding
-- **Completed Learning Objectives**: Specific skills or concepts that were mastered
-- **Natural Conclusions**: Projects that achieved their educational purpose
+**Valuable Lessons**: Core insights gained from hands-on exploration
+**Failed Experiments**: What didn't work and why (often more valuable than what did)
+**Wisdom Gained**: Understanding acquired through building, breaking, and rebuilding
+**Completed Learning Objectives**: Specific skills or concepts that were mastered
+**Natural Conclusions**: Projects that achieved their educational purpose
 
 #### The Proposed Lifecycle of a Learning Project || Going Forward 2025
 
@@ -52,11 +52,11 @@ Each project in this graveyard represents or should:
 
 #### Benefits of This Approach
 
-- **Mental Clarity**: No guilt about "unfinished" projects
-- **Learning Velocity**: Freedom to explore without maintenance burden
-- **Knowledge Preservation**: Lessons are documented before moving on
-- **Professional Growth**: Continuous exposure to new technologies and paradigms
-- **Sustainable Learning**: A maintainable approach to technical exploration
+**Mental Clarity**: No guilt about "unfinished" projects
+**Learning Velocity**: Freedom to explore without maintenance burden
+**Knowledge Preservation**: Lessons are documented before moving on
+**Professional Growth**: Continuous exposure to new technologies and paradigms
+**Sustainable Learning**: A maintainable approach to technical exploration
 
 ---
 
