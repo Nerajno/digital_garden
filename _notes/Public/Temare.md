@@ -34,7 +34,6 @@ Knowing when to sunset a learning project is as important as starting it. These 
 #### What Lives Here
 
 Each project in this graveyard represents or should:
-
 **Valuable Lessons**: Core insights gained from hands-on exploration
 **Failed Experiments**: What didn't work and why (often more valuable than what did)
 **Wisdom Gained**: Understanding acquired through building, breaking, and rebuilding
@@ -52,11 +51,11 @@ Each project in this graveyard represents or should:
 
 #### Benefits of This Approach
 
-**Mental Clarity**: No guilt about "unfinished" projects
-**Learning Velocity**: Freedom to explore without maintenance burden
-**Knowledge Preservation**: Lessons are documented before moving on
-**Professional Growth**: Continuous exposure to new technologies and paradigms
-**Sustainable Learning**: A maintainable approach to technical exploration
+1. **Mental Clarity**: No guilt about "unfinished" projects
+2. **Learning Velocity**: Freedom to explore without maintenance burden
+3. **Knowledge Preservation**: Lessons are documented before moving on
+4. **Professional Growth**: Continuous exposure to new technologies and paradigms
+5. **Sustainable Learning**: A maintainable approach to technical exploration
 
 ---
 
@@ -65,12 +64,8 @@ Each project in this graveyard represents or should:
 #### Proposed Tech Stack
 
 This is my current proposed tech and the maybe of my whys :
-
-
-- Vue 3: Reactive frontend framework with excellent TypeScript support and intuitive composition API.
-
-- TypeScript: Type safety for better developer experience and fewer runtime errors
-
-- Tailwind CSS: Utility-first CSS framework for rapid, consistent styling without maintenance overhead.
+Vue 3: Reactive frontend framework with excellent TypeScript support and intuitive composition API.
+TypeScript: Type safety for better developer experience and fewer runtime errors
+Tailwind CSS: Utility-first CSS framework for rapid, consistent styling without maintenance overhead.
 
 This stack balances learning value with practical implementation—modern enough to teach current best practices, mature enough to avoid constant breaking changes.

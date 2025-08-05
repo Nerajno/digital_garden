@@ -9,13 +9,20 @@ date: 06-07-2025
 # Things I want to work on
 
 ## Projects
-- [ ] Convert all basic projects (weather app, todo app, background color changer) to React, Vue, and Vanilla JS
-- [ ] Holiday card app
-- [ ] TinyDesk project [ api, frontend and db]
+- [ ] Convert all basic projects (weather app, todo app, background color changer) to React, Vue, and Vanilla JS.
+- [ ] Holiday card app.
+- [ ] TinyDesk project [ api, frontend and db].
 
 ## Concepts Learnt or Reviewed ( && Applied)
 - [ ] Pagination && the componentization of pagination
-- [ ]
+- [ ] toReversed() vs Reverse()
+- [ ] look into how the script setup acts as a compiler
+- [ ] the idea of the composable function and how it works
+- [ ] Conditional statements in Vue3 and how they work
+- [ ] @vueUse/router and how it works.
+- [ ] useRouterQuery and how it works.
+- [ ] Breakdown all the basic and intermediate git commands and application.
+- [ ] .doNothing() 
 
 ## Knowledge Management
 - [ ] Create a page to define notes/concepts (concept, official explanation, personal understanding, applications)
@@ -24,8 +31,7 @@ date: 06-07-2025
 - [ ] Research and write  2-3 technical blog posts.
 
 ## Next Steps
-- [ ] Prioritize which project to start first (by June 15)
-- [ ] Research best practices for technical blogging (by June 20)
+
 
 
 ## Learning Goals
