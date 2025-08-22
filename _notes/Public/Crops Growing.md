@@ -10,19 +10,11 @@ Welcome to my digital garden using Obsidian and Jekyll garden theme, how [its do
 
 ## Learning Progress Tracker
 
-| Learning/building | Current status | Notes location | Comments |
-|-------------------|----------------|----------------|-----|
-| Topic One | Status is statusing  | [Topic One notes in a location ](/notes/react/hooks.md) | Its an ongoing process |
-| TypeScript | Learning generics and utility types | [TS Advanced](/notes/typescript/advanced.md) | Found great resource on TS handbook |
-| CSS Grid | Implementing in portfolio project | [Grid Layouts](/notes/css/grid-layouts.md) | Compare with Flexbox use cases |
-| Next.js | Building simple blog application | [Next.js Blog](/projects/nextjs-blog/) | Struggling with SSR concepts |
-| GraphQL | Completed basic query structure | [GraphQL Basics](/notes/graphql/basics.md) | Need to set up Apollo client |
-| Jest Testing | Writing unit tests for components | [Jest Notes](/notes/testing/jest-basics.md) | Look into React Testing Library |
-| Tailwind CSS | Customizing configuration | [Tailwind Config](/notes/css/tailwind-config.md) | Create reusable component library |
-| Docker | Created first container | [Docker Intro](/notes/devops/docker-intro.md) | Need to learn docker-compose |
-| Webpack | Basic configuration completed | [Webpack Notes](/notes/tools/webpack.md) | Optimize for production builds |
-| Accessibility | Learning ARIA roles | [ARIA Notes](/notes/a11y/aria.md) | Conduct audit on portfolio site |
-| Git Workflows | Implementing GitFlow | [Git Workflows](/notes/git/workflows.md) | Create branch protection rules |
-| Performance Optimization | Learning about lazy loading | [Performance Notes](/notes/performance/lazy-loading.md) | Use Lighthouse for testing |
-| API Integration | Working with REST APIs | [API Dashboard](/projects/api-dashboard/) | Research JWT authentication |
-| State Management | Implementing Redux | [Redux Notes](/notes/state/redux.md) | Compare with Context API |
+| Learning/building | Current status | Notes location                   | Comments                                            |
+| ----------------- | -------------- | -------------------------------- | --------------------------------------------------- |
+| Vue3              | On-going       | [Vue3 notes](/notes/vue/vue3.md) | Chugging along, theoretically understand most of it |
+| Work Notes        | On-going       | [Work notes](/_notes/work.md)   |  Making notes of terms and concepts cited, researched, applied(?) and understood(?)          |
+| Eloquent JavaScript | On-going       | [Eloquent JS notes](/notes/eloquent-js.md) | Reading, doing the exercises and taking notes on the book |
+| Nuxt              | Not started    | [Nuxt notes](/notes/nuxt.md)   |  Casually Reading Docs as needed              |
+| FreeCodeCamp Fullstack Cert | On-going       | [FreeCodeCamp notes](/notes/freecodecamp.md) | Working through the curriculum and building projects |
+
