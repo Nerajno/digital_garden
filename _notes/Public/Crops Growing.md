@@ -12,8 +12,8 @@ Welcome to my digital garden using Obsidian and Jekyll garden theme, how [its do
 
 | Learning/building | Current status | Notes location                   | Comments                                            |
 | ----------------- | -------------- | -------------------------------- | --------------------------------------------------- |
-| Vue3              | On-going       | [Vue3 notes](/notes/vue/vue3.md) | Chugging along, theoretically understand most of it |
-| Work Notes        | On-going       | [Work notes](/_notes/work.md)   |  Making notes of terms and concepts cited, researched, applied(?) and understood(?)          |
+| Vue3              | On-going       | [Vue3 notes](/_notes/vue/vue3.md) | Chugging along, theoretically understand most of it |
+| Work Notes        | On-going       | [Work notes](/_notes/Work Notes Q2-25.md)   |  Making notes of terms and concepts cited, researched, applied(?) and understood(?)          |
 | Eloquent JavaScript | On-going       | [Eloquent JS notes](/notes/eloquent-js.md) | Reading, doing the exercises and taking notes on the book |
 | Nuxt              | Not started    | [Nuxt notes](/notes/nuxt.md)   |  Casually Reading Docs as needed              |
 | FreeCodeCamp Fullstack Cert | On-going       | [FreeCodeCamp notes](/notes/freecodecamp.md) | Working through the curriculum and building projects |
