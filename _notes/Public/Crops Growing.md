@@ -16,5 +16,15 @@ Welcome to my digital garden using Obsidian and Jekyll garden theme, how [its do
 | Work Notes        | On-going       | [Work notes](/_notes/Work Notes Q2-25.md)   |  Making notes of terms and concepts cited, researched, applied(?) and understood(?)          |
 | Eloquent JavaScript | On-going       | [Eloquent JS notes](/notes/eloquent-js.md) | Reading, doing the exercises and taking notes on the book |
 | Nuxt              | Not started    | [Nuxt notes](/notes/nuxt.md)   |  Casually Reading Docs as needed              |
-| FreeCodeCamp Fullstack Cert | On-going       | [FreeCodeCamp notes](/notes/freecodecamp.md) | Working through the curriculum and building projects |
+| FreeCodeCamp Fullstack Cert | On-going       | [FreeCodeCamp notes](/notes/freecodecamp.md) | Working through Relational Database concepts|
+| ADSP: Algorithms + Data Structures| Listening | No notes on this |  Listening to a podcast series on algorithms and data structures in C#|
+
+## Ongoing Projects Being Built
+
+| Project Name        | Current status | Notes location | Comments |
+| ------------------- | -------------- | -------------- | -------- |
+| This Digital Garden | On-going       |                |          |
+| Learnt              | On-going       |                |          |
+| Portfolio Website   | On-going       |                |          |
+| Holiday Card Project| On-going       |                |          |
 
