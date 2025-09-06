@@ -93,27 +93,10 @@ learnt-project || temare/
 │   └── images/                  
 │       ├── placeholder-project.png
 │       └── screenshots/         
-│           ├── todo-v1.png
-│           ├── ripley-scraper.png
-│           ├── blog-ssg.png
-│           ├── weather-dashboard.png
-│           ├── portfolio-v2.png
-│           ├── habit-tracker.png
-│           ├── recipe-api.png
-│           ├── css-art.png
-│           ├── markdown-notes.png
-│           ├── ecommerce-mock.png
-│           ├── chatbot-ui.png
-│           ├── stock-tracker.png
-│           ├── quiz-app.png
-│           ├── movie-explorer.png
-│           ├── kanban-board.png
-│           ├── image-compressor.png
-│           ├── expense-tracker.png
-│           ├── url-shortener.png
-│           ├── music-player.png
-│           └── blog-cms.png
-│
+│           ├── placeholder.png
+│           ├── placeholder.png
+│           ├── placeholder.png
+│           ├── ...
 ├── src/
 │   ├── components/              
 │   │   ├── ProjectCard.astro       # ✅ Individual project card
