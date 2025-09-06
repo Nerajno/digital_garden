@@ -18,13 +18,3 @@ Welcome to my digital garden using Obsidian and Jekyll garden theme, how [its do
 | Nuxt              | Not started    | [Nuxt notes](/notes/nuxt.md)   |  Casually Reading Docs as needed              |
 | FreeCodeCamp Fullstack Cert | On-going       | [FreeCodeCamp notes](/notes/freecodecamp.md) | Working through Relational Database concepts|
 | ADSP: Algorithms + Data Structures| Listening | No notes on this |  Listening to a podcast series on algorithms and data structures in C#|
-
-## Ongoing Projects Being Built
-
-| Project Name        | Current status | Notes location | Comments |
-| ------------------- | -------------- | -------------- | -------- |
-| This Digital Garden | On-going       |                |          |
-| Learnt              | On-going       |                |          |
-| Portfolio Website   | On-going       |                |          |
-| Holiday Card Project| On-going       |                |          |
-
