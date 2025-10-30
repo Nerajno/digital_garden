@@ -1,7 +1,7 @@
 ---
-title: Q3 2025 - Work Notes
-feed: Show
-date: 06-07-2025
+title: Q4 2025 - Work Notes
+feed: hide
+date: 06-09-2025
 ---
 
 ![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXQ0dTlocmQzeXcxZmM3am12cWdoY2I0d256NnZrd214OGZoNnVvciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LpkBAUDg53FI8xLmg1/giphy.gif)
@@ -14,25 +14,7 @@ date: 06-07-2025
 - [ ] TinyDesk project [ api, frontend and db].
 
 ## Concepts Learnt or Reviewed ( && Applied)
-- [ ] Pagination && the componentization of pagination
-- [ ] toReversed() vs Reverse()
-- [ ] look into how the script setup acts as a compiler
-- [ ] the idea of the composable function and how it works
-- [ ] Conditional statements in Vue3 and how they work
-- [ ] @vueUse/router and how it works.
-- [ ] useRouterQuery and how it works.
-- [ ] Breakdown all the basic and intermediate git commands and application.
-- [ ] .doNothing() 
-- [ ] conditionals in Vue3
-- [ ] Conditional rendering in Vue3
-- [ ] math.sign() function and its application
-- [ ] build time dependency vs runtime dependency
-- [ ] vite internals
-- [ ] what is nitro and how it works
-- [ ] server vs client side rendering
-- [ ] SSR in Vue3 and how it works
-- [ ] Router.push() method
-
+- [ ] Grid and subgrid layouts in CSS
 
 ## Knowledge Management
 - [ ] Create a page to define notes/concepts (concept, official explanation, personal understanding, applications)
@@ -41,7 +23,6 @@ date: 06-07-2025
 - [ ] Research and write  2-3 technical blog posts.
 
 ## Next Steps
-
 
 
 ## Learning Goals
