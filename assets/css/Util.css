@@ -220,7 +220,7 @@ layout: Stylesheet
 /* Margin Bottom Positive */
 
 .margin-bottom-5 {
-    margin-top: 5px  !important;
+    margin-bottom: 5px  !important;
 }
 
 .margin-bottom-10 {
@@ -246,7 +246,7 @@ layout: Stylesheet
 /* Margin Bottom Negative */
 
 .margin-bottom-5-neg {
-    margin-top: -5px  !important;
+    margin-bottom: -5px  !important;
 }
 
 .margin-bottom-10-neg {
