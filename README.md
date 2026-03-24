@@ -1,38 +1,81 @@
-# Jekyll Garden v 0.4!
-![Slide 4_3 - 1 (1)](https://user-images.githubusercontent.com/1788677/169704768-65c32d93-7884-47fa-b98c-bc8329acc6a7.png)
+# Nerando's Digital Garden
 
+A living notebook for things I'm building, breaking, and figuring out as a developer. Working notes, concept breakdowns, and project logs — published in public as I go.
 
-Jekyll Garden theme lets you publish your [Obsidian](https://obsidian.md/) vault (or a subset of it) as a Jekyll static website. The theme is markdown and Obsidian setup friendly. You can use your own server or Github page to set up your SSG. Check out the demo.
+> "It's not polished. That's the point."
 
-<a href="https://www.buymeacoffee.com/hiran" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height= "48" width="173"></a>
+**Live site:** [developingdvlpr.com](https://developingdvlpr.com/) &nbsp;·&nbsp; **Portfolio:** [developingdvlpr.com](https://developingdvlpr.com/)
 
-## Documents and links
--  [Demo website](https://jekyll-garden.github.io/)
--  [Personal Website](https://hiran.in/)
--  [Feature List](https://jekyll-garden.github.io/post/features)
--  [How to Setup](https://jekyll-garden.github.io/post/how-to)
+---
 
-## Credits & Thanks
--  See [Credits page](https://jekyll-garden.github.io/credits)
+## What's in here
 
-## Contribution
+- **Work Notes** — quarterly learning logs tracking concepts, projects, and goals (Q2 2025 → present)
+- **Notes** — atomic notes on Vue 3, JavaScript, CSS, build tooling, and general dev topics
+- **Posts** — longer-form write-ups when something is worth a full post
 
-To set up your environment to develop this theme, run `bundle install` after cloning this repository in your local machine.
+---
 
-Your theme is set up just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. `_notes` contain all atomic notes. If you want to use this for blog, add posts inside `_posts` folder, following standard Jekyll frontamtter.
+## Tech Stack
 
-### Hosting in a Docker Container
-For hosting on your local network, inside a docker container, install `docker` and `docker-compose` and run,
-```Terminal
-$ docker-compose up -d
+| Layer | Tool |
+|---|---|
+| Static site generator | [Jekyll](https://jekyllrb.com/) |
+| Theme | [Jekyll Garden v0.4](https://jekyll-garden.github.io/) |
+| Markdown engine | Kramdown + KaTeX (math support) |
+| Syntax highlighting | Rouge (Fruity theme) |
+| CSS framework | Bulma v0.8.2 |
+| Analytics | Google Analytics (GA4) |
+| Hosting | GitHub Pages |
+| CI/CD | GitHub Actions |
+| Local dev | Docker (Ruby 3.2.1 / Alpine 3.18) |
+| Note-taking source | [Obsidian](https://obsidian.md/) |
+
+### Key features
+
+- Wiki-style `[[links]]` auto-converted to hyperlinks (Obsidian-compatible)
+- Bidirectional backlinks on every note
+- Page previews on hover
+- Full-text search
+- Dark / light mode toggle
+- RSS feed
+
+---
+
+## Running locally
+
+**With Bundler:**
+```bash
+bundle install
+bundle exec jekyll serve
 ```
-> **Note**:-
-> 
-> This container is built upon on alpine based ruby image. There's an official Jekyll image available in docker hub which only support `amd64` images. You can opt to use that if you are running the container on an 64bit PC. If you want to run this on an ARM based system like Raspberry Pi, this would be a better option.
->
-> The directories which will be frequently modified, are mapped as local volumes so that any changes made to those will be immediately picked up by the server and built. If you fancy changing content in other folders regularly, feel free to add them to the `volumes` section in `docker-compose.yml` before deploying.
+Open `http://localhost:4000`
 
+**With Docker:**
+```bash
+docker-compose up -d
+```
 
-## License
+---
 
-The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+## Project structure
+
+```
+_notes/Public/   # published notes (synced from Obsidian)
+_posts/          # long-form blog posts
+_includes/       # reusable HTML components (Nav, Footer, Feed, etc.)
+_layouts/        # page templates (Post, Stylesheet)
+assets/          # CSS, images, JS
+pages/           # static pages (notes feed, posts feed, 404)
+_config.yml      # site configuration
+```
+
+Notes in `_notes/000 Inbox`, `_notes/200 Private`, and `_notes/300 Templates` are excluded from the build.
+
+---
+
+## Content license
+
+Contents under [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/) — feel free to read and reference, please don't republish commercially.
+
+Theme: [MIT License](http://opensource.org/licenses/MIT) © Jekyll Garden contributors.
