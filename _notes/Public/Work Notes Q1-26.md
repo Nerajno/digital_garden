@@ -9,13 +9,12 @@ date: 01-01-2026
 # Things I want to work on
 
 ## Projects
-- [ ] Update Portfolio to new vets-who-code standard
-- [ ] Convert basic projects (weather app, todo app, background color changer) to React, Vue, and Vanilla JS *(→ Q4-25)*
+- [ ] Update Portfolio to new vets-who-code standard, see this [version.](https://vetswhocode.io/portfolio-checklist#first-impression)
+- [ ] Convert basic projects (weather app, todo app, background color changer) to Vue, and Vanilla JS *(→ Q4-25)*
 - [ ] TinyDesk project [api, frontend and db] *(→ Q4-25)*
 - [ ] Holiday card app *(→ Q4-25)*
 
 ## Concepts Learnt or Reviewed ( && Applied)
-
 ### Vue 3
 - [ ] Conditional Rendering in Vue3 *(→ Q2-25, Q3-25)*
 - [ ] Slots *(→ Q2-25)*
@@ -47,18 +46,18 @@ date: 01-01-2026
 - [ ] Breakdown basic and intermediate git commands and application *(→ Q3-25)*
 
 ## Knowledge Management
-- [ ] Create a page to define notes/concepts (concept, official explanation, personal understanding, applications)
+- [x] Create a page to define notes/concepts (concept, official explanation, personal understanding, applications) 
 
 ## Content Creation
-- [ ] Write 1 technical blog post. *(goal carried from Q2–Q4 2025 — scoped down from 2-3)*
-- [ ] Remove stale Jekyll Garden template posts from 2020 (`features` and `how-to`) that are still live on the site.
+- [x] Write 1 technical blog post ~ A Clearer Vue Series - V1/V2
+- [x] Remove stale Jekyll Garden template posts from 2020 (`features` and `how-to`) that are still live on the site. ~
 
 ## Next Steps
 
 
 ## Learning Goals
-- Work through the Vue 3 + Build & Architecture clusters as a group — they share a lot of context
-- Ship at least one project rather than carrying the same list into Q2-26
+- Work through the Vue 3 + Build & Architecture clusters as a group — they share a lot of context.
+- Ship at least one project rather than carrying the same list into Q4-26.
 
 ## Resources
 - [React Docs](https://react.dev/)
@@ -73,3 +72,4 @@ date: 01-01-2026
 
 ## Wins
 - [ ] (To be filled as you complete tasks!)
+
