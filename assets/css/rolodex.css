@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Rolodex — 3D cylindrical card carousel
+   BEM: .rolodex__*
+   CSS custom properties for easy theming
+   ========================================================================== */
+
+:root {
+  --rolodex-card-bg: var(--color-bg, #fff);
+  --rolodex-card-border: var(--color-border-light, #e0e0e0);
+  --rolodex-card-text: var(--color-text, #222);
+  --rolodex-card-subtext: var(--color-text-light, #666);
+  --rolodex-card-accent: var(--color-link, #333);
+  --rolodex-card-width: 220px;
+  --rolodex-card-height: 140px;
+  --rolodex-radius: 160px;   /* translateZ depth — increase for more spacing */
+  --rolodex-scene-height: 340px;
+}
+
+/* ── Outer wrapper ─────────────────────────────────────────────────────── */
+.rolodex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
+.rolodex__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rolodex-card-subtext);
+}
+
+/* ── 3D scene (perspective container) ─────────────────────────────────── */
+.rolodex__scene {
+  width: var(--rolodex-card-width);
+  height: var(--rolodex-scene-height);
+  perspective: 900px;
+  position: relative;
+}
+
+/* ── Stage (the rotating cylinder) ────────────────────────────────────── */
+.rolodex__stage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  /* JS sets --active-index on this element to rotate the cylinder */
+  transform: rotateY(
+    calc(var(--active-index, 0) * -1 * (360deg / var(--total-cards, 6)))
+  );
+}
+
+/* ── Individual card ───────────────────────────────────────────────────── */
+.rolodex__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--rolodex-card-width);
+  height: var(--rolodex-card-height);
+  margin-top: calc(var(--rolodex-card-height) / -2);
+  margin-left: calc(var(--rolodex-card-width) / -2);
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  /* Each card rotates to its position in the cylinder.
+     --card-index and --total-cards are set inline by the Liquid template. */
+  transform:
+    rotateY(calc(var(--card-index) * (360deg / var(--total-cards))))
+    translateZ(var(--rolodex-radius));
+
+  background: var(--rolodex-card-bg);
+  border: 1px solid var(--rolodex-card-border);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.rolodex__card:hover,
+.rolodex__card:focus-visible {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+  outline: 2px solid var(--rolodex-card-accent);
+  outline-offset: 2px;
+}
+
+.rolodex__card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--rolodex-card-text);
+  margin: 0 0 0.35rem;
+  line-height: 1.3;
+}
+
+.rolodex__card-subtitle {
+  font-size: 0.78rem;
+  color: var(--rolodex-card-subtext);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.rolodex__card-arrow {
+  font-size: 0.75rem;
+  color: var(--rolodex-card-accent);
+  align-self: flex-end;
+}
+
+/* ── Navigation buttons ────────────────────────────────────────────────── */
+.rolodex__nav {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.rolodex__btn {
+  background: none;
+  border: 1px solid var(--rolodex-card-border);
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--rolodex-card-text);
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rolodex__btn:hover,
+.rolodex__btn:focus-visible {
+  background: var(--rolodex-card-accent);
+  color: var(--rolodex-card-bg);
+  border-color: var(--rolodex-card-accent);
+  outline: none;
+}
+
+.rolodex__counter {
+  font-size: 0.75rem;
+  color: var(--rolodex-card-subtext);
+  min-width: 3rem;
+  text-align: center;
+}
+
+/* ── Visually-hidden live region for screen readers ───────────────────── */
+.rolodex__sr-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Firefox fix
+   Firefox has a known rendering bug with transform-style: preserve-3d when
+   backface-visibility is involved — cards can appear in the wrong z-order.
+   The .is-firefox class is applied by JS on page load (navigator.userAgent
+   check). We fall back to a flat stack with opacity-based depth cues.
+   Reference: https://bugzilla.mozilla.org/show_bug.cgi?id=1165037
+   ========================================================================== */
+.is-firefox .rolodex__stage {
+  /* preserve-3d still works in Firefox but z-ordering is unreliable.
+     We compensate by making non-active cards more transparent via JS-toggled
+     .rolodex__card--active, so the visual hierarchy is clear without relying
+     on correct 3D z-sort. */
+  transform-style: preserve-3d;
+}
+
+.is-firefox .rolodex__card {
+  /* Reduce opacity on non-active cards in Firefox to restore visual depth */
+  opacity: 0.5;
+  transition: opacity 0.4s ease, box-shadow 0.3s ease;
+}
+
+.is-firefox .rolodex__card--active {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Reduced-motion: flat accessible list fallback
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .rolodex__scene,
+  .rolodex__stage {
+    perspective: none;
+    transform-style: flat;
+    height: auto;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .rolodex__stage {
+    transform: none !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rolodex__card {
+    position: static;
+    transform: none !important;
+    width: 100%;
+    margin: 0;
+    opacity: 1 !important;
+  }
+
+  /* Hide the nav buttons — all cards are visible in the flat list */
+  .rolodex__nav {
+    display: none;
+  }
+}

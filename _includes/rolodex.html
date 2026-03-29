@@ -1,0 +1,46 @@
+{%- assign cards = include.cards | default: site.data.rolodex -%}
+{%- assign total = cards | size -%}
+
+<section class="rolodex" aria-label="Featured notes rolodex">
+
+  <span class="rolodex__label">Highlights</span>
+
+  <div class="rolodex__scene">
+    <div
+      class="rolodex__stage"
+      id="rolodex-stage"
+      style="--total-cards: {{ total }};"
+    >
+      {%- for card in cards -%}
+      <a
+        class="rolodex__card"
+        href="{{ card.url }}"
+        style="--card-index: {{ forloop.index0 }}; --total-cards: {{ total }};"
+        aria-label="{{ card.title }}: {{ card.subtitle }}"
+        {%- if forloop.first %} data-first="true"{% endif %}
+      >
+        <div>
+          <p class="rolodex__card-title">{{ card.title }}</p>
+          <p class="rolodex__card-subtitle">{{ card.subtitle }}</p>
+        </div>
+        <span class="rolodex__card-arrow" aria-hidden="true">→</span>
+      </a>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <nav class="rolodex__nav" aria-label="Rolodex navigation">
+    <button class="rolodex__btn" id="rolodex-prev" aria-label="Previous card">&#8592;</button>
+    <span class="rolodex__counter" id="rolodex-counter" aria-hidden="true">1 / {{ total }}</span>
+    <button class="rolodex__btn" id="rolodex-next" aria-label="Next card">&#8594;</button>
+  </nav>
+
+  <!-- Live region: announces the active card title to screen readers on navigation -->
+  <div
+    class="rolodex__sr-live"
+    id="rolodex-live"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+</section>
