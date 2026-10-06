@@ -5,12 +5,15 @@ conventions from the whole repo. If something here is wrong, fix this file in th
 
 ## Stack
 
-- **Jekyll 4** (static site), **Kramdown** (GFM input, Rouge highlighting, KaTeX math — removal in #21)
+- **Jekyll 4.4** on **Ruby 4.0.7** (static site), **Kramdown** (GFM input, Rouge highlighting, KaTeX math — removal in #21)
 - **Bulma 0.8.2** CSS (being replaced by the learning-garden restyle, #17)
 - Plugins: `jekyll-feed`, `jekyll-sitemap`, `jekyll-tidy`
 - Theme base: Jekyll Garden v0.4 (MIT) — wikilinks, backlinks, page previews, search, dark mode
 - Notes are written in **Obsidian**; `_notes/Public/` is what gets published
-- Ruby version lives in `.ruby-version` (also pinned in `Dockerfile` and `.github/workflows/jekyll.yml`)
+- Ruby version lives in `.ruby-version` only: CI (`setup-ruby`) and Netlify read it; the `Dockerfile`
+  tag must match it. `logger` and `bigdecimal` are in the Gemfile because Ruby 4 no longer ships
+  them as default gems. Local Ruby must be built with OpenSSL linked
+  (`RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)" asdf install ruby 4.0.7`).
 - Hosting: GitHub Pages via Actions today; Netlify deploy previews on PRs. Move to Netlify is #23.
 
 ## Build and run

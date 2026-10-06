@@ -20,7 +20,7 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 
 | Layer | Tool |
 |---|---|
-| Static site generator | [Jekyll](https://jekyllrb.com/) |
+| Static site generator | [Jekyll](https://jekyllrb.com/) 4.4 |
 | Theme | [Jekyll Garden v0.4](https://jekyll-garden.github.io/) |
 | Markdown engine | Kramdown + KaTeX (math support) |
 | Syntax highlighting | Rouge (Fruity theme) |
@@ -28,7 +28,8 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 | Analytics | Google Analytics (GA4) |
 | Hosting | GitHub Pages |
 | CI/CD | GitHub Actions |
-| Local dev | Docker (Ruby 3.2.1 / Alpine 3.18) |
+| Runtime | Ruby 4.0.7 (`.ruby-version`) |
+| Local dev | Docker (`ruby:4.0.7-alpine`) |
 | Note-taking source | [Obsidian](https://obsidian.md/) |
 
 ### Key features

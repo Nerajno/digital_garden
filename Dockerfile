@@ -1,4 +1,4 @@
-FROM ruby:3.2-alpine
+FROM ruby:4.0.7-alpine
 
 RUN apk add --no-cache build-base nodejs-current
 
