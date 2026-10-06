@@ -4,7 +4,7 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 
 > "It's not polished. That's the point."
 
-**Live site:** [developingdvlpr.com](https://developingdvlpr.com/) &nbsp;·&nbsp; **Portfolio:** [developingdvlpr.com](https://developingdvlpr.com/)
+**Live site:** [garden.developingdvlpr.com](https://garden.developingdvlpr.com/) &nbsp;·&nbsp; **Portfolio:** [developingdvlpr.com](https://developingdvlpr.com/)
 
 ---
 
@@ -26,8 +26,8 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 | Syntax highlighting | Rouge (Fruity theme) |
 | CSS framework | Bulma v0.8.2 |
 | Analytics | Google Analytics (GA4) |
-| Hosting | GitHub Pages |
-| CI/CD | GitHub Actions |
+| Hosting | [Netlify](https://www.netlify.com/) (deploy previews on every PR) |
+| CI/CD | Netlify builds and deploys; GitHub Actions runs a build check |
 | Runtime | Ruby 4.0.7 (`.ruby-version`) |
 | Local dev | Docker (`ruby:4.0.7-alpine`) |
 | Note-taking source | [Obsidian](https://obsidian.md/) |

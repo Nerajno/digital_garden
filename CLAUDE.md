@@ -14,7 +14,10 @@ conventions from the whole repo. If something here is wrong, fix this file in th
   tag must match it. `logger` and `bigdecimal` are in the Gemfile because Ruby 4 no longer ships
   them as default gems. Local Ruby must be built with OpenSSL linked
   (`RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)" asdf install ruby 4.0.7`).
-- Hosting: GitHub Pages via Actions today; Netlify deploy previews on PRs. Move to Netlify is #23.
+- Hosting: **Netlify** builds `main` and serves garden.developingdvlpr.com; every PR gets a deploy
+  preview link. Build settings and headers live in `netlify.toml`; GitHub Actions only checks the
+  build. Redirects go in `_redirects` (published via `include:` in `_config.yml`) — every renamed
+  or moved note gets a `301` line there.
 
 ## Build and run
 
