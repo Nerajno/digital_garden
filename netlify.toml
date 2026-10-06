@@ -1,0 +1,23 @@
+# Netlify builds and hosts the site; GitHub Actions only checks the build.
+# Ruby comes from .ruby-version — keep it accurate.
+
+[build]
+  command = "bundle exec jekyll build"
+  publish = "_site"
+
+[build.environment]
+  JEKYLL_ENV = "production"
+
+# Site-wide security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Asset filenames aren't fingerprinted, so cache for a week rather than
+# "immutable" — CSS/JS changes still reach returning visitors.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

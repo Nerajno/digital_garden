@@ -1,0 +1,133 @@
+# CLAUDE.md — Nerando's Learning Garden
+
+Read this first. It is the shared source of truth for every ticket; don't re-derive
+conventions from the whole repo. If something here is wrong, fix this file in the same PR.
+
+## Stack
+
+- **Jekyll 4.4** on **Ruby 4.0.7** (static site), **Kramdown** (GFM input, Rouge highlighting, KaTeX math — removal in #21)
+- **Bulma 0.8.2** CSS (being replaced by the learning-garden restyle, #17)
+- Plugins: `jekyll-feed`, `jekyll-sitemap`, `jekyll-tidy`
+- Theme base: Jekyll Garden v0.4 (MIT) — wikilinks, backlinks, page previews, search, dark mode
+- Notes are written in **Obsidian**; `_notes/Public/` is what gets published
+- Ruby version lives in `.ruby-version` only: CI (`setup-ruby`) and Netlify read it; the `Dockerfile`
+  tag must match it. `logger` and `bigdecimal` are in the Gemfile because Ruby 4 no longer ships
+  them as default gems. Local Ruby must be built with OpenSSL linked
+  (`RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)" asdf install ruby 4.0.7`).
+- Hosting: **Netlify** builds `main` and serves garden.developingdvlpr.com; every PR gets a deploy
+  preview link. Build settings and headers live in `netlify.toml`; GitHub Actions only checks the
+  build. Redirects go in `_redirects` (published via `include:` in `_config.yml`) — every renamed
+  or moved note gets a `301` line there.
+
+## Build and run
+
+```bash
+bundle install
+bundle exec jekyll serve          # http://localhost:4000
+bundle exec jekyll build          # output in _site/
+```
+
+**Build check (run before every commit):**
+
+```bash
+bundle exec jekyll build > /tmp/jekyll.log 2>&1 && ! grep -iE 'error|warn' /tmp/jekyll.log && echo "BUILD CLEAN"
+```
+
+## Design language (learning garden)
+
+Mockups: `docs/mockup-home.png`, `docs/mockup-note.png` (not published). Use the values
+below — don't re-derive them from the images.
+
+**Palette**
+
+| Token | Hex | Use |
+|---|---|---|
+| ground | `#F3F5F0` | page background (sage) |
+| surface | `#FFFFFF` | cards, panels |
+| ink | `#17231C` | body text |
+| muted | `#4F5E54` | secondary text, meta |
+| line | `#D6DDD2` | borders, dividers |
+| accent | `#24573F` | links, primary buttons, brand green |
+
+Core pairing: green `#24573F` on sage `#F3F5F0`.
+
+**Fonts** (Google Fonts, `display=swap`, always with fallbacks)
+
+- Headings: **Space Grotesk**
+- Body: **IBM Plex Sans**
+- Meta, dates, code: **IBM Plex Mono**
+
+Every text/background pair must pass **4.5:1** contrast.
+
+## Growth stages
+
+The only allowed values, in order: **seedling → budding → evergreen**.
+
+| Stage | Meaning | Chip (bg / text) |
+|---|---|---|
+| `seedling` | Rough idea or first notes. Probably wrong in places. | `#E3EFC4` / `#3B5212` |
+| `budding` | It clicked. Written in my own words, with an example I've used. | `#F7DFBC` / `#7A3D08` |
+| `evergreen` | Applied in real work. I'd teach it from this note. | `#24573F` / `#FFFFFF` |
+
+Layouts read the stage from front matter; never hardcode per-note values.
+
+## Dates
+
+**`YYYY-MM-DD`** everywhere (front matter, data files, filenames). Older notes still use
+`DD-MM-YYYY` until #15 converts them — don't copy that format.
+
+## Front matter
+
+Notes live in `_notes/Public/*.md` and get `layout: Post` and `/note/:title` permalinks
+from `_config.yml` defaults, so don't set those per note.
+
+```yaml
+---
+title: "Concept: Vue 3 Composables"   # quote titles containing a colon
+feed: show                            # show | hide — lowercase only
+date: 2026-03-26                      # planted date, YYYY-MM-DD
+stage: budding                        # optional: seedling | budding | evergreen (#16)
+tended: 2026-03-28                    # optional: last meaningful edit, YYYY-MM-DD (#16)
+format: list                          # optional: list-style note layout
+---
+```
+
+- Link between notes with Obsidian `[[wikilinks]]`, not file paths — they survive
+  permalink changes and feed backlinks.
+- Filenames: no leading/trailing spaces. Renaming a published note needs a `_redirects`
+  line (see #15).
+
+## Repo map
+
+```
+_notes/Public/    published notes (from Obsidian)
+_notes/000 Inbox, 200 Private, 300 Templates   excluded from the build — never publish
+_posts/           long-form posts (/post/:title)
+_includes/        Nav, Footer, Homepage, Feed, Backlinks, Content, Related, rolodex
+_layouts/         Post.html (all page types), Stylesheet.html
+assets/css/       style.css, main.css, Util.css, fruity.css, rolodex.css, vendor/
+assets/js/        Search, modeswitcher, Hamburger, rolodex
+pages/            index, notes feed, posts feed, lists, 404
+docs/             design references — excluded from the build
+```
+
+## Do not touch
+
+- `assets/css/vendor/` — until #21 (KaTeX removal)
+- `Gemfile.lock` — unless the ticket says so
+- `_notes/000 Inbox/`, `_notes/200 Private/` — private, never commit or publish
+- Note body content — unless the ticket is a content ticket
+
+## Public-content rule
+
+Everything in `_notes/Public/` and this repo is public and read by recruiters.
+**Never name employer systems, clients, colleagues, ticket numbers or internal code** in
+notes. Rewrite as a generic example ("a reporting dashboard at work") that keeps the
+learning point. If unsure, flag it for the owner instead of publishing it.
+
+## Workflow
+
+- One ticket per branch (`feature/`, `fix/`, `docs/`, `chore/`…), from up-to-date `main`.
+- Stay inside the ticket's **Scope guard**; note anything else as a follow-up.
+- Run the build check before committing; PRs show a Netlify deploy preview.
+- Tickets are GitHub issues #10–#23 ("Ticket N" in the title).

@@ -4,7 +4,7 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 
 > "It's not polished. That's the point."
 
-**Live site:** [developingdvlpr.com](https://developingdvlpr.com/) &nbsp;·&nbsp; **Portfolio:** [developingdvlpr.com](https://developingdvlpr.com/)
+**Live site:** [garden.developingdvlpr.com](https://garden.developingdvlpr.com/) &nbsp;·&nbsp; **Portfolio:** [developingdvlpr.com](https://developingdvlpr.com/)
 
 ---
 
@@ -20,15 +20,16 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 
 | Layer | Tool |
 |---|---|
-| Static site generator | [Jekyll](https://jekyllrb.com/) |
+| Static site generator | [Jekyll](https://jekyllrb.com/) 4.4 |
 | Theme | [Jekyll Garden v0.4](https://jekyll-garden.github.io/) |
 | Markdown engine | Kramdown + KaTeX (math support) |
 | Syntax highlighting | Rouge (Fruity theme) |
 | CSS framework | Bulma v0.8.2 |
 | Analytics | Google Analytics (GA4) |
-| Hosting | GitHub Pages |
-| CI/CD | GitHub Actions |
-| Local dev | Docker (Ruby 3.2.1 / Alpine 3.18) |
+| Hosting | [Netlify](https://www.netlify.com/) (deploy previews on every PR) |
+| CI/CD | Netlify builds and deploys; GitHub Actions runs a build check |
+| Runtime | Ruby 4.0.7 (`.ruby-version`) |
+| Local dev | Docker (`ruby:4.0.7-alpine`) |
 | Note-taking source | [Obsidian](https://obsidian.md/) |
 
 ### Key features
