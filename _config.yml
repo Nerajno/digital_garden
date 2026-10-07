@@ -115,6 +115,13 @@ exclude:
   - _notes/300 Templates
   - docs/
   - CLAUDE.md
+  - Dockerfile
+  - docker-compose.yml
+  - LICENSE
+  - README.md
+  - debug.yml
+  - blog.code-workspace
+  - netlify.toml
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
