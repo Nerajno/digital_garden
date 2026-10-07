@@ -1596,3 +1596,29 @@ a[href^="http"] {
 
 
 
+/* Growth-stage chip + last-tended date on note pages (#16).
+   Chip colours come from CLAUDE.md; each chip sets its own background,
+   so contrast holds in light and dark mode. */
+.note-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin: -0.5rem 0 1.5rem;
+}
+.stage-chip {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+.stage-chip--seedling { background: #E3EFC4; color: #3B5212; }
+.stage-chip--budding { background: #F7DFBC; color: #7A3D08; }
+.stage-chip--evergreen { background: #24573F; color: #FFFFFF; }
+.note-tended {
+    font-family: Consolas, 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    color: var(--color-text-sub);
+}

@@ -2,6 +2,8 @@
 title: Projects Building
 feed: show
 date: 2025-07-14
+stage: seedling
+tended: 2025-08-22
 ---
 
 # My Developer Journey as a Builder
