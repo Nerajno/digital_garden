@@ -27,10 +27,13 @@
 * This file contains the markup for the copyright notice.
 *
 {%- endcomment -%}
-
-{%- if site.copyright.msg != nil and site.copyright.msg != empty and site.copyright.msg != null -%}
-<div id="copyright">
-    <p id="copyright-notice"> © {{ site.time | date: '%Y' }} • {{site.copyright.msg}} •
-        <a href="{{ site.baseurl }}/credits">Credits</a> </p>
-</div> 
-{%- endif -%}
+<footer class="garden-footer">
+  <div class="garden-footer__inner">
+    <p>© {{ site.time | date: '%Y' }} Nerando Johnson · {{ site.copyright.msg }} · Progress over perfection</p>
+    <nav class="garden-footer__links" aria-label="Footer">
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+      <a href="https://developingdvlpr.com/">Portfolio</a>
+      <a href="{{ '/credits' | relative_url }}">Credits</a>
+    </nav>
+  </div>
+</footer>

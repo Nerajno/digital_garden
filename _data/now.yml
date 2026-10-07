@@ -1,0 +1,31 @@
+# Homepage "Now tending" card and Rolodex teaser.
+# Edit this file to update the homepage — no HTML changes needed.
+# Dates: YYYY-MM-DD. Stages: seedling | budding | evergreen.
+
+quarter: Q4 2026
+updated: 2026-10-06
+work_notes:
+  title: Q1 2026 work notes
+  url: /note/Work-Notes-Q1-26
+
+items:
+  - title: Portfolio v3 → VWC checklist
+    url: /note/Stuff-Building-2025
+    stage: budding
+  - title: Tiny Desk API rebuild
+    url: /note/Work-Notes-Q1-26
+    stage: seedling
+  - title: Rolodex → atomic concept notes
+    url: /note/Learnt
+    stage: seedling
+
+# Two terms shown in "From the Rolodex" on the homepage.
+rolodex:
+  url: /note/Learnt
+  terms:
+    - term: Async Functions
+      tags: JavaScript · Vue 3
+      my_version: A cleaner way to write code that has to wait, like fetching data, without nesting .then() callbacks.
+    - term: Build-time vs Runtime Dependency
+      tags: Build & Architecture
+      my_version: Build-time tools help make the thing; runtime dependencies ship with it and must be there when it runs.
