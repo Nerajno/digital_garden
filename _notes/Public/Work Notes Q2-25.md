@@ -2,6 +2,8 @@
 title: Q2 2025 - Work Notes
 feed: show
 date: 2025-05-09
+stage: budding
+tended: 2026-03-24
 ---
 
 ### Update #2 - Reviewed my notes and planner; here are the terms that I either have learnt for application or need look into. [ Each term should have : explanation || my explanation || application ]

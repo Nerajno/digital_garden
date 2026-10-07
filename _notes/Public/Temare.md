@@ -2,6 +2,8 @@
 title: Temare - Learning Showcase
 feed: show
 date: 2025-07-22
+stage: seedling
+tended: 2025-09-06
 ---
 
 ### Ideation - July 22, 2025

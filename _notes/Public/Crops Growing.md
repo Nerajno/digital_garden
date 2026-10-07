@@ -2,6 +2,8 @@
 title: Crops Growing
 feed: show
 date: 2025-05-08
+stage: seedling
+tended: 2025-09-06
 ---
 
 # My Developer Journey

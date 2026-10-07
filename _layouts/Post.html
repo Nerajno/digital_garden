@@ -126,6 +126,21 @@
                     </style>                    
                     {%- endif -%}
                     <h1>{{page.title}}</h1>
+                    {%- comment -%} Growth stage + last tended (stage vocabulary lives in CLAUDE.md) {%- endcomment -%}
+                    {%- assign valid_stage = false -%}
+                    {%- if page.stage == "seedling" or page.stage == "budding" or page.stage == "evergreen" -%}
+                        {%- assign valid_stage = true -%}
+                    {%- endif -%}
+                    {%- if valid_stage or page.tended -%}
+                    <p class="note-meta">
+                        {%- if valid_stage -%}
+                        <span class="stage-chip stage-chip--{{ page.stage }}">{{ page.stage | capitalize }}</span>
+                        {%- endif -%}
+                        {%- if page.tended -%}
+                        <span class="note-tended">Last tended <time datetime="{{ page.tended | date: '%Y-%m-%d' }}">{{ page.tended | date: '%-d %b %Y' }}</time></span>
+                        {%- endif -%}
+                    </p>
+                    {%- endif -%}
                     {%- include Content.html -%}
                     {%- include Backlinks.html -%}
                     </div>
