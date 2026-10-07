@@ -26,3 +26,72 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+
+  # Lighthouse CI (#20): audits the built site on pull requests and writes the
+  # scores to the job summary. Warn only: a separate job with
+  # continue-on-error, so a low score never blocks a merge or Netlify deploy.
+  lighthouse:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run Lighthouse (mobile, 3 runs per page)
+        run: >
+          npx --yes @lhci/cli@0.15.1 collect
+          --staticDistDir=./_site
+          --url=http://localhost/
+          --url=http://localhost/note/Concept-Vue-3-Composables.html
+          --url=http://localhost/notes.html
+          --numberOfRuns=3
+          --settings.chromeFlags="--no-sandbox"
+
+      - name: Post scores to the job summary
+        if: always()
+        run: |
+          node - <<'JS'
+          const fs = require('fs');
+          const dir = '.lighthouseci';
+          const min = { performance: 90, accessibility: 95, 'best-practices': 95, seo: 95 };
+          // Keep the median run (by performance) for each page.
+          const runs = {};
+          for (const f of fs.readdirSync(dir).filter(f => /^lhr-.*\.json$/.test(f))) {
+            const lhr = JSON.parse(fs.readFileSync(`${dir}/${f}`, 'utf8'));
+            const path = new URL(lhr.finalDisplayedUrl || lhr.finalUrl).pathname;
+            (runs[path] = runs[path] || []).push(lhr);
+          }
+          let md = '## Lighthouse (mobile, median of 3)\n\n| Page | Performance | Accessibility | Best practices | SEO |\n|---|---|---|---|---|\n';
+          for (const [path, list] of Object.entries(runs)) {
+            list.sort((a, b) => a.categories.performance.score - b.categories.performance.score);
+            const lhr = list[Math.floor(list.length / 2)];
+            const cells = Object.keys(min).map(k => {
+              const s = Math.round(lhr.categories[k].score * 100);
+              return s < min[k] ? `⚠️ ${s}` : `${s}`;
+            });
+            md += `| \`${path}\` | ${cells.join(' | ')} |\n`;
+          }
+          md += '\nTargets: Performance ≥ 90, others ≥ 95. ⚠️ = below target (warning only). Full reports are in the `lighthouse-reports` artifact.\n';
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, md);
+          JS
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/
+          retention-days: 14

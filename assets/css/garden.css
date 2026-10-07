@@ -99,6 +99,29 @@ h1, h2, h3, h4 {
     outline-offset: 2px;
     border-radius: 4px;
 }
+/* Bulma removes the outline on inputs; put the ring back. */
+.input:focus-visible,
+.textarea:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+/* The skip link's target; focus moves here but needs no ring. */
+main:focus { outline: none; }
+
+/* Skip link (#20): first focusable element, hidden until focused. */
+.skip-link {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 100;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-small);
+    background: var(--accent);
+    color: var(--surface);
+    font-weight: 600;
+    transform: translateY(calc(-100% - 1rem));
+}
+.skip-link:focus { transform: none; color: var(--surface); }
 
 /* 03. Shared pieces ------------------------------------------------------ */
 .g-button {
@@ -188,6 +211,9 @@ h1, h2, h3, h4 {
 }
 .garden-nav .navbar-burger {
     color: var(--ink);
+    background: transparent;
+    border: 0;
+    padding: 0;
     width: 44px;
     height: 44px;
     margin-left: 0;
@@ -562,6 +588,22 @@ pre.highlight {
     .note-grid { grid-template-columns: 1fr; gap: 2rem; }
     .note-sidebar { position: static; }
 }
+
+/* Older page types (/notes, posts, static pages) — headings promoted from
+   div/h6 for a correct outline (#20); keep their previous look. */
+h1.jumbo { padding: 0; }
+p.meta-title { margin: 0; }
+.notelist-feed .notelist-feed__title {
+    font-family: var(--font-body);
+    font-size: var(--text-m);
+    font-weight: var(--text-weight-bold);
+    line-height: var(--text-leading-normal);
+    letter-spacing: normal;
+    padding: 0.4rem 0;
+}
+
+/* Page previews open on keyboard focus as well as hover (WCAG 1.4.13). */
+.tooltip:focus-within .right { display: block; }
 
 /* 07. Footer --------------------------------------------------------------- */
 .garden-footer {
