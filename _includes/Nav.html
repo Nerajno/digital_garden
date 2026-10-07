@@ -28,49 +28,39 @@
 * click on the post titles on the home page.
 *
 {%- endcomment -%}
-
-<nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+<nav class="navbar garden-nav" role="navigation" aria-label="Main">
+  <div class="garden-nav__inner">
     <div class="navbar-brand">
-      <a class="navbar-item" style="padding-left: 0;"; href="{{ site.baseurl }}/index.html">
-          <h6> {{site.heading}}</h6></a>
-          <script src="{{ site.baseurl }}/assets/js/modeswitcher.js"></script>
-          <script src="{{ site.baseurl }}/assets/js/Hamburger.js"></script>
+      <a class="garden-nav__brand" href="{{ '/' | relative_url }}">
+        <svg class="garden-nav__sprout" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 21v-9m0 0c0-4 3-7 8-7 0 5-3 7-8 7Zm0 0c0-3-2.5-5.5-7-5.5 0 4 2.5 5.5 7 5.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>{{ site.heading }}</span>
+      </a>
       <div class="navbar-item navbar-dark-mode__mobile is-hidden-tablet" onclick="modeSwitcher()">
-        <div class="buttons">
-          <a class="button is-text">
-            <span class="icon is-small">
-              <img src="{{ '/assets/img/sun.svg' | relative_url }}" id="theme-toggle-img--mobile">
-            </span>
-          </a>
-        </div>
+        <a class="button is-text garden-nav__toggle">
+          <img src="{{ '/assets/img/sun.svg' | relative_url }}" id="theme-toggle-img--mobile" alt="">
+        </a>
       </div>
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <a role="button" class="navbar-burger" aria-label="Menu" aria-expanded="false" data-target="garden-nav-menu">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a href="{{'/notes' | relative_url}}" class="navbar-item">
-          Current Notes
-        </a>
-        <a href="https://developingdvlpr.com/" target="_blank" class="navbar-item">
-          Back to Portfolio
-        </a>
-      </div>
-      <br />
-      <div class="navbar-end is-hidden-mobile" onclick="modeSwitcher()" >
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-text">
-              <span class="icon is-small">
-                <img src="{{ '/assets/img/sun.svg' | relative_url }}" id="theme-toggle-img">
-              </span>
-            </a>
-          </div>
+    <div id="garden-nav-menu" class="navbar-menu">
+      <div class="navbar-end">
+        <a href="{{ '/notes' | relative_url }}" class="navbar-item">Garden</a>
+        <a href="{{ '/note/Learnt' | relative_url }}" class="navbar-item">Rolodex</a>
+        <a href="{{ '/#now' | relative_url }}" class="navbar-item">Now</a>
+        <a href="https://learnt.developingdvlpr.com/" class="navbar-item" target="_blank" rel="noopener">Past projects <span aria-hidden="true">↗</span><span class="is-sr-only"> (opens in a new tab)</span></a>
+        <a href="https://developingdvlpr.com/" class="navbar-item" target="_blank" rel="noopener">Portfolio <span aria-hidden="true">↗</span><span class="is-sr-only"> (opens in a new tab)</span></a>
+        <div class="navbar-item is-hidden-mobile" onclick="modeSwitcher()">
+          <a class="button is-text garden-nav__toggle">
+            <img src="{{ '/assets/img/sun.svg' | relative_url }}" id="theme-toggle-img" alt="">
+          </a>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+<script src="{{ site.baseurl }}/assets/js/modeswitcher.js"></script>
+<script src="{{ site.baseurl }}/assets/js/Hamburger.js"></script>

@@ -1,35 +1,106 @@
-<div class="home-intro">
-    <div class="home-wrapper">
+{%- comment -%}
+  Learning-garden homepage (#17, 7a).
+  "Now tending" and the Rolodex teaser read from _data/now.yml.
+  "Recently tended" lists the 5 most recently tended feed notes
+  (sorted by `tended`, falling back to `date`).
+{%- endcomment -%}
+{%- assign now = site.data.now -%}
 
-        <div class="jumbo">{{site.heading}}</div>
+<div class="garden-home">
 
-        <div class="home-sub-text">
-            <h3>A living notebook for the things I'm building, breaking, and figuring out.</h3>
-            <p>
-                I'm Nerando — a developer documenting the journey in public. This space holds my
-                working notes, concept breakdowns, and project logs as I go deeper into Vue 3,
-                modern frontend architecture, and full-stack development.
-            </p>
-            <p>
-                It's not polished. That's the point.
-            </p>
-            <p>
-                <a href="/note/Work-Notes-Q1-26">→ See what I'm currently learning (Q1 2026)</a>
-                &nbsp;&nbsp;·&nbsp;&nbsp;
-                <a href="/notes">Browse all notes</a>
-                &nbsp;&nbsp;·&nbsp;&nbsp;
-                <a href="https://developingdvlpr.com/" target="_blank">Portfolio</a>
-            </p>
-        </div>
-
-        <div class="home-image">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYPqu7cC5sLeVri23AfNk9tEW7vlbDsht8Jg&s" alt="Digital Garden banner" style="border-radius: 8px; width: 100%;" />
-            <div class="home-image-meta">
-                <span class="home-image-meta-text"></span>
-            </div>
-        </div>
-
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero__text">
+      <p class="home-hero__eyebrow">A learning garden · Nerando Johnson</p>
+      <h1 id="home-title" class="home-hero__title">The things I’m building, breaking, and figuring out, planted in public.</h1>
+      <p class="home-hero__intro">Working notes, concept breakdowns, and project logs that grow as I do. Every note shows how far along it is. It’s not polished. That’s the point.</p>
+      <div class="home-hero__actions">
+        <a class="g-button g-button--primary" href="#now">See what I’m tending now</a>
+        <a class="g-button g-button--secondary" href="{{ '/notes' | relative_url }}">Wander the garden</a>
+      </div>
     </div>
-</div>
 
-{%- include rolodex.html -%}
+    <div class="now-card" id="now">
+      <div class="now-card__head">
+        <h2 id="now-title" class="now-card__title">Now tending</h2>
+        <span class="now-card__quarter">{{ now.quarter }}</span>
+      </div>
+      <ul class="now-card__list">
+        {%- for item in now.items -%}
+        <li class="now-card__item">
+          <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+          <span class="stage-chip stage-chip--{{ item.stage }}">{{ item.stage | capitalize }}</span>
+        </li>
+        {%- endfor -%}
+      </ul>
+      <p class="now-card__meta">Updated <time datetime="{{ now.updated | date: '%Y-%m-%d' }}">{{ now.updated | date: '%-d %b %Y' }}</time> · <a href="{{ now.work_notes.url | relative_url }}">{{ now.work_notes.title }}</a></p>
+    </div>
+  </section>
+
+  <section class="stage-legend" aria-label="Growth stages">
+    <div class="stage-legend__item">
+      <span class="stage-chip stage-chip--seedling">Seedling</span>
+      <p>Rough idea or first notes. Probably wrong in places.</p>
+    </div>
+    <div class="stage-legend__item">
+      <span class="stage-chip stage-chip--budding">Budding</span>
+      <p>It clicked. Written in my own words, with an example I’ve used.</p>
+    </div>
+    <div class="stage-legend__item">
+      <span class="stage-chip stage-chip--evergreen">Evergreen</span>
+      <p>Applied in real work. I’d teach it from this note.</p>
+    </div>
+  </section>
+
+  <section class="recent" aria-labelledby="recent-title">
+    <h2 id="recent-title" class="home-section-title">Recently tended</h2>
+    {%- assign keyed = "" | split: "" -%}
+    {%- for n in site.notes -%}
+      {%- if n.feed == "show" -%}
+        {%- capture key -%}{{ n.tended | default: n.date | date: "%Y-%m-%d" }}|{{ n.url }}{%- endcapture -%}
+        {%- assign keyed = keyed | push: key -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- assign keyed = keyed | sort | reverse -%}
+    <ol class="recent__list">
+      {%- for key in keyed limit: 5 -%}
+        {%- assign parts = key | split: "|" -%}
+        {%- assign note = site.notes | where: "url", parts[1] | first -%}
+        {%- if note.title contains "Work Notes" -%}{%- assign kind = "Work notes" -%}
+        {%- elsif note.title contains "Concept" -%}{%- assign kind = "Concept" -%}
+        {%- elsif note.url contains "Learnt" -%}{%- assign kind = "Index" -%}
+        {%- else -%}{%- assign kind = "Note" -%}{%- endif -%}
+      <li class="recent__item">
+        <span class="recent__stage">
+          {%- if note.stage -%}<span class="stage-chip stage-chip--{{ note.stage }}">{{ note.stage | capitalize }}</span>{%- endif -%}
+        </span>
+        <div class="recent__body">
+          <a class="recent__title" href="{{ note.url | relative_url }}">{{ note.title }}</a>
+          <p class="recent__excerpt">{{ note.content | markdownify | replace: "</h", " </h" | replace: "</p>", " </p>" | replace: "</li>", " </li>" | strip_html | remove: "[[" | remove: "]]" | normalize_whitespace | truncatewords: 16 }}</p>
+        </div>
+        <p class="recent__meta">{{ kind }} · {% if note.tended %}tended{% else %}planted{% endif %} <time datetime="{{ parts[0] }}">{{ parts[0] | date: '%-d %b %Y' }}</time></p>
+      </li>
+      {%- endfor -%}
+    </ol>
+    <a class="g-link" href="{{ '/notes' | relative_url }}">Browse all notes</a>
+  </section>
+
+  <section class="rolodex-teaser" aria-labelledby="rolodex-title">
+    <div class="rolodex-teaser__head">
+      <h2 id="rolodex-title" class="home-section-title">From the Rolodex</h2>
+      <a class="g-link" href="{{ now.rolodex.url | relative_url }}">Open the Rolodex</a>
+    </div>
+    <div class="rolodex-teaser__grid">
+      {%- for t in now.rolodex.terms -%}
+      <a class="rolodex-teaser__card" href="{{ now.rolodex.url | relative_url }}">
+        <span class="rolodex-teaser__top">
+          <span class="rolodex-teaser__term">{{ t.term }}</span>
+          <span class="rolodex-teaser__tags">{{ t.tags }}</span>
+        </span>
+        <span class="rolodex-teaser__label">My version</span>
+        <span class="rolodex-teaser__text">{{ t.my_version }}</span>
+      </a>
+      {%- endfor -%}
+    </div>
+  </section>
+
+</div>
