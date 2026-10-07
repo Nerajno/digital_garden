@@ -1,7 +1,7 @@
 ---
 title: Q3 2025 - Work Notes
-feed: Show
-date: 06-07-2025
+feed: show
+date: 2025-07-06
 ---
 
 ![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXQ0dTlocmQzeXcxZmM3am12cWdoY2I0d256NnZrd214OGZoNnVvciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LpkBAUDg53FI8xLmg1/giphy.gif)
