@@ -30,6 +30,16 @@
 <html lang="en">
 
 <head>
+    <script>
+        /* Apply a saved theme before any CSS loads (no flash). With no saved
+           choice, CSS prefers-color-scheme follows the OS. See modeswitcher.js. */
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2QD8GSX7S"></script>
         <script>
             window.dataLayer = window.dataLayer || [];

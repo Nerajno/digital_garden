@@ -23,28 +23,64 @@
     --content-width: 1120px;
 }
 
-/* Interim dark bridge: map tokens onto the theme's existing dark variables
-   so dark mode stays readable. The real dark palette is Ticket 11. */
+/* Stage chips (light). Dark values below; all >= 8.8:1. */
+:root {
+    --chip-seedling-bg: #E3EFC4;   --chip-seedling-ink: #3B5212;
+    --chip-budding-bg: #F7DFBC;    --chip-budding-ink: #7A3D08;
+    --chip-evergreen-bg: #24573F;  --chip-evergreen-ink: #FFFFFF;
+}
+
+/* Dark palette (#38). Applies when the visitor picked dark, or when no
+   choice is saved and the OS is dark. The theme lives only on
+   <html data-theme>; components never check it themselves. */
 html[data-theme="dark"] {
-    --ground: var(--color-bg-sub);
-    --surface: var(--color-bg-main);
-    --ink: var(--color-text-main);
-    --muted: #B9C2BC;
-    --line: var(--color-border-light);
+    color-scheme: dark;
+    --ground: #111813;
+    --surface: #18211B;
+    --ink: #E6EBE2;
+    --muted: #A9B5AC;
+    --line: #2C3A31;
     --accent: #7FC4A0;
     --accent-ink: #111813;
+    --chip-seedling-bg: #263318;   --chip-seedling-ink: #D4E8A6;
+    --chip-budding-bg: #3A2810;    --chip-budding-ink: #F5C98F;
+    --chip-evergreen-bg: #7FC4A0;  --chip-evergreen-ink: #111813;
 }
 @media (prefers-color-scheme: dark) {
-    html:not([data-theme="light"]) {
-        --ground: var(--color-bg-sub);
-        --surface: var(--color-bg-main);
-        --ink: var(--color-text-main);
-        --muted: #B9C2BC;
-        --line: var(--color-border-light);
+    html:not([data-theme]) {
+        color-scheme: dark;
+        --ground: #111813;
+        --surface: #18211B;
+        --ink: #E6EBE2;
+        --muted: #A9B5AC;
+        --line: #2C3A31;
         --accent: #7FC4A0;
         --accent-ink: #111813;
+        --chip-seedling-bg: #263318;   --chip-seedling-ink: #D4E8A6;
+        --chip-budding-bg: #3A2810;    --chip-budding-ink: #F5C98F;
+        --chip-evergreen-bg: #7FC4A0;  --chip-evergreen-ink: #111813;
     }
 }
+
+/* Point the theme's older variables at the tokens so pages and components
+   not yet restyled (/notes, posts, tooltips) follow the same palette.
+   style.css keeps its definitions; these win because this file loads last. */
+html,
+html[data-theme="light"],
+html[data-theme="dark"] {
+    --color-bg-main: var(--surface);
+    --color-bg-sub: var(--ground);
+    --color-text-main: var(--ink);
+    --color-text-sub: var(--muted);
+    --color-text-link: var(--accent);
+    --color-border-dark: var(--ink);
+    --color-border: var(--muted);
+    --color-border-light: var(--line);
+}
+
+.stage-chip--seedling { background: var(--chip-seedling-bg); color: var(--chip-seedling-ink); }
+.stage-chip--budding { background: var(--chip-budding-bg); color: var(--chip-budding-ink); }
+.stage-chip--evergreen { background: var(--chip-evergreen-bg); color: var(--chip-evergreen-ink); }
 
 /* 02. Base ----------------------------------------------------------------- */
 html {
@@ -156,17 +192,44 @@ h1, h2, h3, h4 {
     height: 44px;
     margin-left: 0;
 }
-.garden-nav__toggle.button.is-text {
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--radius-small);
     background: transparent;
-    min-width: 44px;
-    min-height: 44px;
-    text-decoration: none;
+    color: var(--ink);
+    cursor: pointer;
 }
-.garden-nav__toggle img { width: 20px; height: 20px; }
+.theme-toggle:hover { border-color: var(--line); color: var(--accent); }
+.theme-toggle__sun { display: none; }
+html[data-theme="dark"] .theme-toggle__sun { display: block; }
+html[data-theme="dark"] .theme-toggle__moon { display: none; }
+@media (prefers-color-scheme: dark) {
+    html:not([data-theme]) .theme-toggle__sun { display: block; }
+    html:not([data-theme]) .theme-toggle__moon { display: none; }
+}
+/* DOM order = brand, links, toggle, burger (matches desktop focus order).
+   Below 1024px: brand + toggle + burger share the top row, menu drops below. */
+.garden-nav .navbar-burger { display: none; }
+@media screen and (max-width: 1023px) {
+    .garden-nav .navbar-brand { order: 0; flex: 1 1 0; min-width: 0; width: auto; }
+    .garden-nav .theme-toggle { order: 1; margin-left: 0; }
+    .garden-nav .navbar-burger { display: block; order: 2; }
+    .garden-nav .navbar-menu { order: 3; flex-basis: 100%; }
+}
+@media screen and (min-width: 1024px) {
+    .garden-nav .navbar-brand { margin-right: auto; }
+    .garden-nav .theme-toggle { margin-left: 0.5rem; }
+}
 
 @media screen and (max-width: 1023px) {
     .garden-nav__inner { flex-wrap: wrap; padding: 0 1rem; }
-    .garden-nav .navbar-brand { width: 100%; }
     .garden-nav .navbar-menu.is-active {
         width: 100%;
         padding: 0.5rem 0 1rem;
@@ -407,9 +470,9 @@ h1, h2, h3, h4 {
 }
 .note-article .content > h2,
 .note-article .content > h3 { color: var(--ink); scroll-margin-top: 1.5rem; }
-/* Code blocks: dark panel per the mockup. fruity.css is a dark-background
+/* Code blocks (all pages): dark panel per the mockup, readable in both themes. fruity.css is a dark-background
    theme driven by CSS variables, so re-point them here (all >= 5.4:1 on ink). */
-.note-article .highlight {
+.highlight {
     --color-border-light: #17231C;
     --color-text: #E6EBE2;
     --color-text-main: #E6EBE2;
@@ -421,7 +484,7 @@ h1, h2, h3, h4 {
     --highlight-color-khaki: #D4C76A;
     --highlight-color-grey: #A9B5AC;
 }
-.note-article pre.highlight {
+pre.highlight {
     background: #17231C;
     color: #E6EBE2;
     border-radius: var(--radius);
