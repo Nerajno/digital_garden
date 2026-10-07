@@ -16,6 +16,13 @@ $navbarBurgers.forEach( el => {
     // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
     el.classList.toggle('is-active');
     $target.classList.toggle('is-active');
+    const isOpen = el.classList.contains('is-active');
+    el.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+    // The menu sits before the burger in the DOM, so Tab would skip it:
+    // move focus to its first link when it opens.
+    const firstLink = $target.querySelector('a');
+    if (isOpen && firstLink) firstLink.focus();
 
     });
 });

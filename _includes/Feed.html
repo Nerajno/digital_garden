@@ -36,7 +36,8 @@
     {%- if site.preferences.search.enabled -%}
         <!-- search bar -->
         <div class="block">
-            <input class="input is-medium" type="text" placeholder="Search notes.." id="search-input" autocomplete="off">
+            <label for="search-input" class="is-sr-only">Search notes</label>
+            <input class="input is-medium" type="search" placeholder="Search notes…" id="search-input" autocomplete="off">
             <div id="search-results" class="search-results"></div>
         </div>
         <script type="text/javascript" src="{{ site.baseurl }}/assets/js/vendor/lunr.min.js"></script>
@@ -49,7 +50,7 @@
         {%- if note_items.feed == "show" -%}
                 <div class="notelist-feed">
                     <a href="{{ site.baseurl }}{{note_items.url}}">
-                        <h6>{{ note_items.title }}</h6>
+                        <h2 class="notelist-feed__title">{{ note_items.title }}</h2>
                         <p class="excerpt">
                             {{ note_items.content | strip_html | strip | remove: "[[" | remove: "]]" | remove: "-" | escape | truncate: 200 }}
                         </p>
@@ -57,13 +58,6 @@
                 </div>
         {%- endif -%}
     {%- endfor -%}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2QD8GSX7S"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-S2QD8GSX7S');
-        </script>
     </div>
 {%-endif -%}
 

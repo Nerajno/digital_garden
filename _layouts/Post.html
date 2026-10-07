@@ -48,6 +48,7 @@
             gtag('config', 'G-S2QD8GSX7S');
         </script>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="{{ page.description | default: site.content | strip_html | strip }}">
     <meta content="{{ site.heading }}" property="og:site_name" />
     <meta content="{{ site.content }}" property="og:description">
     <meta content="{{ site.url }}/" property="article:author">
@@ -71,8 +72,8 @@
 
     <title>{{page.title}} - {{site.heading}}</title>
     <link rel="canonical" href="{{site.url}}{{page.url}}" />
-    <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/img/profile.png">
-    <link rel="icon" href="{{ site.baseurl }}/assets/img/favicon.png" type="image/png" sizes="16x16" />
+    {%- comment -%} Inline sprout icon (same mark as the nav brand); the old favicon.png and profile.png files no longer exist. {%- endcomment -%}
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2324573F'/%3E%3Cpath d='M12 20v-8m0 0c0-3.5 2.6-6 7-6 0 4.4-2.6 6-7 6Zm0 0c0-2.6-2.2-4.8-6-4.8 0 3.5 2.2 4.8 6 4.8Z' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
     <link href="{{ site.baseurl }}/assets/css/style.css" rel="stylesheet" media="all" class="default" />
     <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet" media="all" class="default" />
     <link href="{{ site.baseurl }}/assets/css/Util.css" rel="stylesheet" media="all" class="default" />
@@ -87,8 +88,9 @@
 </head>
 
 <body>
-    <main>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     {%- include Nav.html -%}
+    <main id="main-content" tabindex="-1">
     <section class="section">
         <div class="columns is-centered">
 
@@ -101,8 +103,8 @@
                     {%- else -%}
                             <!--- Show Feed Part -->
                 <div class="column is-6-widescreen  is-8-desktop is-8-tablet is-12-mobile">
-                            <h5 class="meta-title"><a href="/">← Home</a></h5>
-                            <div class="jumbo">{{page.title}}</div>
+                            <p class="meta-title"><a href="/">← Home</a></p>
+                            <h1 class="jumbo">{{page.title}}</h1>
                             {%- include Content.html -%}
                             {%- include Feed.html -%}
                 </div>
@@ -113,8 +115,8 @@
             <!--- Notes Feed Layout-->
             {%- if page.feedformat -%}
             <div class="column is-6-widescreen  is-8-desktop is-8-tablet is-12-mobile">
-                <h5 class="meta-title"><a href="/">← Home</a></h5>
-                    <div class="jumbo">{{page.title}}</div>
+                <p class="meta-title"><a href="/">← Home</a></p>
+                    <h1 class="jumbo">{{page.title}}</h1>
                     {%- include Content.html -%}
                     {%- include Feed.html -%}
             {%- endif -%}
@@ -218,8 +220,8 @@
             <!--- Post Feed Layout-->
             {%- if page.permalink == "/posts" -%}
             <div class="column is-6-widescreen  is-8-desktop is-8-tablet is-12-mobile">
-                <h5 class="meta-title"><a href="/">← Home</a></h5>
-                <div class="jumbo">{{page.title}}</div>
+                <p class="meta-title"><a href="/">← Home</a></p>
+                <h1 class="jumbo">{{page.title}}</h1>
                     {%- include Content.html -%}
                     {% for post in site.posts %}
                         <div class="list-feed"> 
@@ -228,25 +230,17 @@
                         </a>
                         </div>
                     {%- endfor -%}
-            </div> 
-
-            <ul>
-                
+            </div>
             {%- endif -%}
 
              <!--- Post Layout-->
              {%- if page.content-type == "post"  -%}
              <div class="column is-5-widescreen  is-6-desktop is-8-tablet is-12-mobile">
                      <div class="note-page-section">
-                         <div>
-                             {%- if site.preferences.homepage.enabled -%}
-                             <a onclick="window.history.back();">
-                             {%- else -%}
-                             <a onclick="window.location.assign('/');">
-                             {%- endif -%}
-                                     <h5 class="meta-title">← BACK</h5>
-                             </a>
-                         </div>
+                         <p class="meta-title">
+                             {%- comment -%} A real href keeps the link focusable; history.back() only when there is history to go back to {%- endcomment -%}
+                             <a href="{{ '/' | relative_url }}"{% if site.preferences.homepage.enabled %} onclick="if (history.length > 1) { history.back(); return false; }"{% endif %}>← Back</a>
+                         </p>
                      <h1>{{page.title}}</h1>
                      {%- include Content.html -%}
                      {%- include Backlinks.html -%}
@@ -257,14 +251,14 @@
             <!--- Static Page Layout-->
             {%- if page.content-type == "static" -%}
             <div class="column is-5-widescreen  is-6-desktop is-8-tablet is-12-mobile">
-                        <div class="jumbo">{{page.title}}</div>                        
+                        <h1 class="jumbo">{{page.title}}</h1>
                         {%- include Content.html -%}
                 </div>
             {%- endif -%}
         </div>
-    </section>   
-    {%- include Footer.html -%}             
-</main>
+    </section>
+    </main>
+    {%- include Footer.html -%}
     <script src="{{ site.baseurl | relative_url }}/assets/js/rolodex.js" defer></script>
 </body>
 </html>
