@@ -4,7 +4,7 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 
 > "It's not polished. That's the point."
 
-**Live site:** [garden.developingdvlpr.com](https://garden.developingdvlpr.com/) &nbsp;·&nbsp; **Portfolio:** [developingdvlpr.com](https://developingdvlpr.com/)
+**Live site:** [garden.developingdvlpr.com](https://garden.developingdvlpr.com/) &nbsp;·&nbsp; **Portfolio:** [developingdvlpr.com](https://developingdvlpr.com/) &nbsp;·&nbsp; **Design decisions:** [why it looks the way it does](https://garden.developingdvlpr.com/note/Garden-Design-Decisions)
 
 ---
 
@@ -23,8 +23,9 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 | Static site generator | [Jekyll](https://jekyllrb.com/) 4.4 |
 | Theme | [Jekyll Garden v0.4](https://jekyll-garden.github.io/) |
 | Markdown engine | Kramdown (GFM) |
-| Syntax highlighting | Rouge (Fruity theme) |
-| CSS framework | Bulma v0.8.2 |
+| Syntax highlighting | Rouge (Fruity theme on a dark panel) |
+| Design system | `assets/css/garden.css` tokens: light and dark palette, Space Grotesk / IBM Plex Sans / IBM Plex Mono |
+| CSS framework | Bulma v0.8.2 (legacy; being replaced by the garden components) |
 | Analytics | Google Analytics (GA4) |
 | Hosting | [Netlify](https://www.netlify.com/) (deploy previews on every PR) |
 | CI/CD | Netlify builds and deploys; GitHub Actions runs a build check |
