@@ -647,6 +647,279 @@ p.meta-title { margin: 0; }
     .rolodex-teaser__top { flex-direction: column; gap: 0.25rem; }
 }
 
+/* 08b. Rolodex page (/note/Rolodex) -------------------------------------- */
+/* Data: _data/terms.yml. Card: _includes/term-card.html. Filters: assets/js/terms.js.
+   The theme's .content list/heading styles are reset inside .rolodex-page. */
+.rolodex-page { margin-top: 1.75rem; width: 100%; }
+.rolodex-page ul { list-style: none; margin: 0; padding: 0; }
+.rolodex-page li + li { margin-top: 0; }
+.rolodex-page p { margin: 0; }
+
+.rolodex-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: 100%;
+    margin: 0 0 1.5rem;
+}
+.rolodex-stats__item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+}
+.rolodex-stats dt {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.rolodex-stats dd {
+    margin: 0.2rem 0 0;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+}
+.rolodex-stats time { display: inline; }
+
+/* Filter bar: text filter + topics (JS only) and the A–Z bar (always). */
+.rolodex-bar {
+    z-index: 5;
+    display: grid;
+    gap: 0.75rem;
+    margin: 0 -0.75rem 0.5rem;
+    padding: 0.75rem;
+    background: var(--ground);
+    border-bottom: 1px solid var(--line);
+}
+.rolodex-bar__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.75rem 1rem;
+}
+.rolodex-bar__controls[hidden] { display: none; }
+.rolodex-bar__search { display: grid; gap: 0.3rem; flex: 1 1 14rem; }
+.rolodex-bar__search label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+.rolodex-bar__input {
+    min-height: 44px;
+    width: 100%;
+    padding: 0.5rem 0.85rem;
+    border: 1px solid var(--muted);
+    border-radius: var(--radius-small);
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+}
+.rolodex-bar__input::placeholder { color: var(--muted); opacity: 1; }
+.rolodex-bar__topics { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.topic-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 44px;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+.topic-button:hover { border-color: var(--accent); }
+.topic-button__count { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+.topic-button[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+}
+.topic-button[aria-pressed="true"] .topic-button__count { color: var(--accent-ink); }
+.rolodex-bar__status {
+    flex-basis: 100%;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+.rolodex-bar__status:empty { display: none; }
+
+.az__list { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.rolodex-page .az__list li { display: flex; margin: 0; padding: 0; }
+.az__letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+.rolodex-page .az a.az__letter {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+.rolodex-page .az a.az__letter:hover { border-color: var(--accent); text-decoration: underline; }
+.az__letter--empty { color: var(--muted); font-weight: 400; }
+
+/* Letter groups read as rolodex dividers: a green tab on a green rule. */
+.letter-group {
+    position: relative;
+    margin-top: 3.25rem;
+    padding-top: 1.25rem;
+    border-top: 2px solid var(--accent);
+}
+.letter-group[hidden] { display: none; }
+.rolodex-page .letter-group__letter {
+    position: absolute;
+    top: calc(-2.25rem - 2px);
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3rem;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0 0.9rem;
+    border-radius: var(--radius-small) var(--radius-small) 0 0;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+    scroll-margin-top: 1rem;
+}
+
+.term-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: 1rem;
+}
+.term-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    min-width: 0;
+    padding: 1.25rem 1.3rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    scroll-margin-top: 1rem;
+}
+.term-card[hidden] { display: none; }
+.term-card:hover { border-color: var(--accent); }
+.term-card__head { display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 0.75rem; }
+.rolodex-page .term-card__term {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+}
+.term-card__head .stage-chip { flex: none; }
+.term-card__topics { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.term-card__topics li {
+    padding: 0.05rem 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+.term-card__label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.25rem !important;
+}
+.term-card__mine .term-card__label { color: var(--accent); }
+.term-card p code { font-size: 0.85em; padding: 0.05em 0.3em; }
+.term-card__mine p:last-child { font-size: 1.08rem; line-height: 1.55; color: var(--ink); }
+.term-card__official p:last-child { font-size: 0.875rem; line-height: 1.55; color: var(--muted); }
+.term-card__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1.25rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--line);
+}
+.term-card__example[open] { flex: 1 0 100%; }
+.term-card__example summary,
+.rolodex-page a.term-card__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+.term-card__example summary { cursor: pointer; gap: 0.4rem; list-style: none; }
+.term-card__example summary::-webkit-details-marker { display: none; }
+.term-card__example summary::before {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform 0.15s ease;
+}
+.term-card__example[open] summary::before { transform: rotate(45deg); }
+.term-card__example summary:hover { text-decoration: underline; }
+.rolodex-page a.term-card__link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background-image: none; /* theme's external-link icon; ↗ marks it instead */
+    padding-right: 0;
+}
+.rolodex-page a.term-card__link:hover { text-decoration-thickness: 2px; }
+.term-card__example pre {
+    margin: 0 0 0.75rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-small);
+    background: #17231C;
+    color: #E6EBE2;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+.term-card__example pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+
+.rolodex-empty { margin-top: 2rem !important; color: var(--muted); }
+.rolodex-empty[hidden] { display: none; }
+
+@media screen and (min-width: 768px) {
+    .rolodex-bar { position: sticky; top: 0; }
+    .rolodex-page .letter-group__letter,
+    .term-card { scroll-margin-top: calc(var(--rolodex-bar-h, 5rem) + 3rem); }
+}
+@media screen and (max-width: 600px) {
+    .rolodex-stats { gap: 0.5rem; }
+    .rolodex-stats__item { padding: 0.75rem; }
+    .rolodex-stats dd { font-size: 1.25rem; }
+}
+
 /* 09. Motion --------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }

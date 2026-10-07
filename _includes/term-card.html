@@ -1,0 +1,43 @@
+{%- comment -%}
+  One Rolodex term card. Usage: {% include term-card.html term=t %}
+  Data: _data/terms.yml. Filtering: assets/js/terms.js reads data-search and data-topics.
+  Example code is escaped, not Liquid-parsed, so Vue's {{ }} prints literally.
+{%- endcomment -%}
+{%- assign t = include.term -%}
+{%- capture topic_slugs -%}{%- for topic in t.topics -%}{{ topic | slugify }} {% endfor -%}{%- endcapture -%}
+{%- capture search_text -%}{{ t.term }} {{ t.topics | join: " " }} {{ t.my_version | strip_html }} {{ t.definition | strip_html }}{%- endcapture -%}
+<article class="term-card" id="term-{{ t.term | slugify }}" data-topics="{{ topic_slugs | strip }}" data-search="{{ search_text | downcase | normalize_whitespace | escape }}">
+  <header class="term-card__head">
+    <h3 class="term-card__term">{{ t.term }}</h3>
+    <span class="stage-chip stage-chip--{{ t.stage }}">{{ t.stage | capitalize }}</span>
+  </header>
+  <ul class="term-card__topics" aria-label="Topics">
+    {%- for topic in t.topics %}
+    <li>{{ topic }}</li>
+    {%- endfor %}
+  </ul>
+  <div class="term-card__mine">
+    <p class="term-card__label">My version</p>
+    <p>{{ t.my_version }}</p>
+  </div>
+  <div class="term-card__official">
+    <p class="term-card__label">Definition</p>
+    <p>{{ t.definition }}</p>
+  </div>
+  {%- if t.example or t.docs or t.note %}
+  <footer class="term-card__foot">
+    {%- if t.example %}
+    <details class="term-card__example">
+      <summary>Example<span class="is-sr-only">: {{ t.term }}</span></summary>
+      <pre tabindex="0"><code{% if t.example_lang %} class="language-{{ t.example_lang }}"{% endif %}>{{ t.example | escape }}</code></pre>
+    </details>
+    {%- endif %}
+    {%- if t.docs %}
+    <a class="term-card__link" href="{{ t.docs.url }}" target="_blank" rel="noopener">{{ t.docs.label }} <span aria-hidden="true">↗</span><span class="is-sr-only"> (opens in a new tab)</span></a>
+    {%- endif %}
+    {%- if t.note %}
+    <a class="term-card__link term-card__link--note" href="{{ t.note | relative_url }}">Full note<span class="is-sr-only">: {{ t.term }}</span> <span aria-hidden="true">→</span></a>
+    {%- endif %}
+  </footer>
+  {%- endif %}
+</article>

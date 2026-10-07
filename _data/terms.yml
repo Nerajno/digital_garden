@@ -1,0 +1,245 @@
+# The Rolodex (/note/Rolodex). One entry per term; the page, letter groups,
+# topic filters and stats are all built from this file.
+#
+#   term:         display name; its first letter (ignoring case and leading
+#                 punctuation) picks the A–Z group
+#   topics:       list; each becomes a filter button
+#   stage:        seedling | budding | evergreen
+#   added:        YYYY-MM-DD
+#   my_version:   how it clicked, in my own words (inline HTML allowed)
+#   definition:   the official explanation (inline HTML allowed)
+#   example:      optional code, written as plain source (no &lt; escaping)
+#   example_lang: optional language label for the example
+#   docs:         optional { url, label }
+#   note:         optional URL of a full garden note ("Full note →")
+#
+# Data values are printed as-is and never run through Liquid, so Vue's {{ }}
+# needs no {% raw %} here (see CLAUDE.md).
+
+- term: Async Functions
+  topics: [JavaScript, Vue 3]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    It's a cleaner way to write code that has to wait — like fetching data — without nesting <code>.then()</code> callbacks. You write it like normal top-to-bottom code but it still runs asynchronously under the hood.
+  definition: >-
+    Functions declared with the <code>async</code> keyword that always return a Promise. Inside them, <code>await</code> pauses execution until a Promise resolves, without blocking the main thread.
+  example_lang: js
+  example: |-
+    async function getUser(id) {
+      const res = await fetch(`/api/users/${id}`)
+      return res.json()
+    }
+
+- term: Build-time vs Runtime Dependency
+  topics: [Build & Architecture]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    Build-time = tools that help make the thing (Vite, TypeScript, ESLint). Runtime = stuff the thing actually needs to work in a browser or server (Vue, Pinia, a date library). Getting this wrong bloats your bundle with things users never needed.
+  definition: >-
+    A build-time dependency is only required during compilation or bundling and is not included in the final output. A runtime dependency ships with the app and must be present when it runs.
+
+- term: Composable
+  topics: [Vue 3]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    Like a React custom hook but for Vue. Instead of copying the same <code>ref</code> + <code>watch</code> logic into every component, you pull it into a <code>useXxx()</code> function and call it wherever you need it.
+  definition: >-
+    A function that uses Vue's Composition API to encapsulate and reuse stateful logic — refs, watchers, lifecycle hooks — across components. Conventionally prefixed with <code>use</code>.
+  example_lang: js
+  example: |-
+    // useFetch.js
+    import { ref } from 'vue'
+
+    export function useFetch(url) {
+      const data = ref(null)
+      const error = ref(null)
+      fetch(url)
+        .then(r => r.json())
+        .then(json => (data.value = json))
+        .catch(err => (error.value = err))
+      return { data, error }
+    }
+  docs:
+    url: https://vuejs.org/guide/reusability/composables
+    label: Vue 3 Docs — Composables
+  note: /note/Concept-Vue-3-Composables
+
+- term: Conditional Rendering
+  topics: [Vue 3]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    Use <code>v-if</code> when you want the element gone from the DOM entirely. Use <code>v-show</code> when the element needs to toggle often — it's cheaper because it doesn't re-create the DOM node each time, just hides it.
+  definition: >-
+    Using <code>v-if</code>, <code>v-else-if</code>, and <code>v-else</code> directives to add or remove elements from the DOM based on a condition. <code>v-show</code> is a related directive that toggles visibility via CSS instead.
+  example_lang: vue
+  example: |-
+    <p v-if="isLoggedIn">Welcome back!</p>
+    <p v-else>Please log in.</p>
+
+- term: Git (core commands)
+  topics: [General Dev]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    Git is a save system for code. <code>add</code> stages changes, <code>commit</code> saves them locally with a message, <code>push</code> sends them to the shared remote. Branches are cheap — make one whenever you're trying something new.
+  definition: >-
+    A distributed version control system. Changes move through three stages: working tree → staging area → local repository → remote repository.
+  example_lang: bash
+  example: |-
+    git add src/components/Card.vue
+    git commit -m "add rolodex card component"
+    git push origin main
+
+- term: Math.sign()
+  topics: [JavaScript]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    Useful any time you care about direction, not magnitude — e.g. which way the user is scrolling or dragging. Replaces a conditional like <code>n &gt; 0 ? 1 : -1</code> with a single call.
+  definition: >-
+    A built-in method that returns <code>1</code> if the number is positive, <code>-1</code> if negative, and <code>0</code> if zero.
+  example_lang: js
+  example: |-
+    const direction = Math.sign(deltaY) // 1 = down, -1 = up
+
+- term: Nitro
+  topics: [Build & Architecture]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    Nitro is what makes Nuxt backend code "just work" wherever you deploy. You write one API route, Nitro figures out how to run it on whatever platform you're targeting. It abstracts the runtime so you don't have to think about it.
+  definition: >-
+    The server engine behind Nuxt 3. It compiles server routes and API handlers into a universal output that can run across different runtimes — Node.js, Deno, Cloudflare Workers, and more.
+  docs:
+    url: https://nitro.unjs.io
+    label: Nitro Docs
+
+- term: Pagination
+  topics: [Vue 3, JavaScript]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    The three numbers you always need: current page, items per page, total count. Everything else — the prev/next buttons, the page list — is derived from those. Componentize the controls early; they always get reused.
+  definition: >-
+    A technique for splitting a dataset into discrete pages, loading or displaying only a subset at a time. Can be implemented server-side (fetch per page) or client-side (slice an array).
+  example_lang: js
+  example: |-
+    const page = ref(1)
+    const perPage = 10
+    const paginated = computed(() =>
+      items.value.slice((page.value - 1) * perPage, page.value * perPage)
+    )
+
+- term: router.push()
+  topics: [Vue 3]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    It's the code equivalent of clicking a <code>&lt;RouterLink&gt;</code>. Use it when navigation needs to happen as a result of logic — after a form submits, after login succeeds, after an action completes.
+  definition: >-
+    A Vue Router method for programmatic navigation. Pushes a new entry onto the history stack, navigating to the specified route.
+  example_lang: js
+  example: |-
+    const router = useRouter()
+
+    async function handleLogin() {
+      await login(credentials)
+      router.push({ name: 'dashboard' })
+    }
+
+- term: Script Setup
+  topics: [Vue 3]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    It removes boilerplate. No <code>setup() { return { ... } }</code> — you just write your logic and the compiler wires it to the template. It's processed at build time, so there's no runtime cost.
+  definition: >-
+    A compile-time syntax sugar for the Composition API in Vue 3 SFCs. Top-level bindings declared inside <code>&lt;script setup&gt;</code> are automatically exposed to the template.
+  example_lang: vue
+  example: |-
+    <script setup>
+    import { ref } from 'vue'
+    const count = ref(0)
+    </script>
+
+    <template>
+      <button @click="count++">{{ count }}</button>
+    </template>
+
+- term: Slots
+  topics: [Vue 3]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    Slots are how you make components that wrap other content — like a card, modal, or layout shell. The child says "put content here" with <code>&lt;slot&gt;</code>, the parent fills it in. Named slots let you fill multiple different spots.
+  definition: >-
+    A Vue mechanism for passing template content from a parent component into a child's designated placeholder. Named slots allow multiple injection points in a single component.
+  example_lang: vue
+  example: |-
+    <!-- Card.vue -->
+    <template>
+      <div class="card">
+        <slot name="header" />
+        <slot />
+      </div>
+    </template>
+
+    <!-- Parent -->
+    <Card>
+      <template #header><h2>Title</h2></template>
+      <p>Card body content.</p>
+    </Card>
+
+- term: SSR (Server-Side Rendering)
+  topics: [Build & Architecture, Vue 3]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    The browser gets real content on the first response — faster first paint, better SEO. The trade-off is that your components run on both server and client, so you have to be careful about browser-only APIs like <code>window</code> or <code>localStorage</code>.
+  definition: >-
+    Rendering a page's HTML on the server before sending it to the browser. The client receives a fully-formed HTML document rather than an empty shell that JavaScript must populate.
+  docs:
+    url: https://vuejs.org/guide/scaling-up/ssr
+    label: Vue 3 Docs — SSR
+
+- term: toReversed()
+  topics: [JavaScript]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    Use this instead of <code>.reverse()</code> whenever you're working with reactive state — Vue's refs included. <code>.reverse()</code> mutates the array in place, which can cause silent bugs when the same array is referenced elsewhere.
+  definition: >-
+    An ES2023 array method that returns a new array with the elements in reverse order, without mutating the original.
+  example_lang: js
+  example: |-
+    const original = [1, 2, 3]
+    const flipped = original.toReversed() // [3, 2, 1]
+    // original is still [1, 2, 3]
+
+- term: useRouterQuery
+  topics: [Vue 3]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    Instead of managing a <code>ref</code> for a filter and then separately syncing it to the URL, this pattern makes the URL the source of truth. The query param IS the state — refreshing the page or sharing the link preserves everything.
+  definition: >-
+    A composable pattern built on Vue Router's <code>useRoute</code> and <code>useRouter</code> that makes URL query parameters readable and writable as reactive state.
+  docs:
+    url: https://vueuse.org/router/useRouteQuery/
+    label: VueUse — useRouteQuery
+
+- term: Vite
+  topics: [Build & Architecture]
+  stage: budding
+  added: 2026-03-28
+  my_version: >-
+    The reason modern Vue/React dev feels fast. In development, Vite serves files directly as ES modules — no bundling step, so hot reload is nearly instant. Production still gets a proper bundle via Rollup.
+  definition: >-
+    A frontend build tool that uses native ES modules for near-instant dev server startup and Rollup for optimised production builds.
+  docs:
+    url: https://vitejs.dev
+    label: Vite Docs
