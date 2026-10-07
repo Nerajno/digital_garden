@@ -1,7 +1,7 @@
 ---
 title: Temare - Learning Showcase
 feed: show
-date : 22-07-2025
+date: 2025-07-22
 ---
 
 ### Ideation - July 22, 2025

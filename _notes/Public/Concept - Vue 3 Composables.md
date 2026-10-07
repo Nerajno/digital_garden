@@ -1,7 +1,7 @@
 ---
 title: "Concept: Vue 3 Composables"
 feed: show
-date: 26-03-2026
+date: 2026-03-26
 ---
 
 ## Concept

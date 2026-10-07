@@ -1,7 +1,7 @@
 ---
 title: Projects Building
 feed: show
-date: 14-07-2025
+date: 2025-07-14
 ---
 
 # My Developer Journey as a Builder
