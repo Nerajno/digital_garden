@@ -47,6 +47,10 @@
                 {%- if external_link[1] == nil -%}
                     {%- assign result_posts = site.posts | where: 'title',itemparts[0] -%}  
                     {%- assign result_posts = site.notes | where: 'title',itemparts[0] -%}
+                    {%- comment -%} Obsidian links by filename: fall back to the note's slug (its filename) {%- endcomment -%}
+                    {%- if result_posts.size == 0 -%}
+                        {%- assign result_posts = site.notes | where: 'slug',itemparts[0] -%}
+                    {%- endif -%}
                     {%- assign result_pages = site.pages | where: 'title',itemparts[0] -%}
                     {%- assign internal_links = internal_links | append: link_joiner_delimiter | append: internal_link -%}
                     {%- assign internal_urls = internal_urls | append: link_joiner_delimiter | append: result_posts[0].url | append: result_pages[0].url -%}
@@ -73,6 +77,9 @@
                 {%- assign link_text = '<span class="tooltip"><a class="stale-link" href="' | append: 'javascript:void(0)' | append: '">' | append: title | append: '</a> <span class="right bottom"> <span class="tooltip-title">' | append: {{site.privatelinks.title}} | append: '</span><br/><span class="tooltip-excerpt">' | append: {{site.privatelinks.msg}} | append : ' <br/></span> </span></span>' -%}
             {%- else -%}
                     {%- assign post = site.notes | where: 'title',title -%}
+                    {%- if post[0].title == nil -%}
+                    {%- assign post = site.notes | where: 'slug',title -%}
+                    {%- endif -%}
                     {%- if post[0].title == nil -%}
                     {%- assign post = site.posts | where: 'title',title -%}
                     {%- endif -%}
