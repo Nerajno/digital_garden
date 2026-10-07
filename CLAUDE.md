@@ -5,7 +5,7 @@ conventions from the whole repo. If something here is wrong, fix this file in th
 
 ## Stack
 
-- **Jekyll 4.4** on **Ruby 4.0.7** (static site), **Kramdown** (GFM input, Rouge highlighting, KaTeX math — removal in #21)
+- **Jekyll 4.4** on **Ruby 4.0.7** (static site), **Kramdown** (GFM input, Rouge highlighting)
 - **Bulma 0.8.2** CSS (being replaced by the learning-garden restyle, #17)
 - Plugins: `jekyll-feed`, `jekyll-sitemap`, `jekyll-tidy`
 - Theme base: Jekyll Garden v0.4 (MIT) — wikilinks, backlinks, page previews, search, dark mode
@@ -113,7 +113,6 @@ docs/             design references — excluded from the build
 
 ## Do not touch
 
-- `assets/css/vendor/` — until #21 (KaTeX removal)
 - `Gemfile.lock` — unless the ticket says so
 - `_notes/000 Inbox/`, `_notes/200 Private/` — private, never commit or publish
 - Note body content — unless the ticket is a content ticket
