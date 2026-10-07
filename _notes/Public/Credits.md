@@ -6,16 +6,10 @@ permalink: /credits
 format: list
 ---
 
--   [Raghuveer](https://github.com/rgvr), who created [Simply Jekyll theme](https://github.com/rgvr/simply-jekyll)
--   [Santosh Thottingal](https://github.com/santhoshtr) who introduced me to Digital Garden
--   [Puttalu](https://github.com/aashiks) for OrgMode classes!
--   Team [Obsidian](https://obsidian.md/) for making obsidian a [markdown](https://daringfireball.net/projects/markdown/) based product
--   Dark Mode Switch by [Derek Kedziora](https://github.com/derekkedziora) - [Source link](https://github.com/derekkedziora/jekyll-demo/blob/master/scripts/mode-switcher.js)
--   Highlight theme from [Jekyll Pygment Themes](https://github.com/jwarby/jekyll-pygments-themes)
+This garden runs on other people's open-source work. Thank you.
 
-
-- [Asim K T](https://github.com/asimkt), who coded the base HTML using Bulma. 
-- [Ershad](https://github.com/ershad) for helping me understand Jekyll and Ruby. 
-- [Anish](https://github.com/anishsheela), for JS corrections
-- [Binny](https://github.com/binnyva) for making [Gatsby version](https://github.com/binnyva/gatsby-garden) of the same theme
-- [Gnuanu](https://github.com/gnuanu) for beta testing and private bug reporting
+- **[Jekyll Garden](https://jekyll-garden.github.io/)** theme by Raghuveer S, Hiran Venugopalan and Asim K T — [MIT License](http://opensource.org/licenses/MIT). Based on [Simply Jekyll](https://github.com/rgvr/simply-jekyll) by [Raghuveer](https://github.com/rgvr).
+- **[Jekyll](https://jekyllrb.com/)** builds the site; **[Obsidian](https://obsidian.md/)** is where the notes are written.
+- **[Bulma](https://bulma.io/)** CSS framework.
+- Dark mode switch by [Derek Kedziora](https://github.com/derekkedziora) ([source](https://github.com/derekkedziora/jekyll-demo/blob/master/scripts/mode-switcher.js)).
+- Syntax highlighting theme from [Jekyll Pygments Themes](https://github.com/jwarby/jekyll-pygments-themes).
