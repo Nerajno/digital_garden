@@ -338,7 +338,169 @@ h1, h2, h3, h4 {
 .rolodex-teaser__label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
 .rolodex-teaser__text { line-height: 1.55; }
 
-/* 06. Footer --------------------------------------------------------------- */
+/* 06. Note page (#17, 7b) ------------------------------------------------ */
+.note-page {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 0.75rem 3rem;
+}
+.breadcrumb-trail ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+.breadcrumb-trail li + li::before { content: "/"; margin-right: 0.5rem; color: var(--muted); }
+.breadcrumb-trail a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin: -0.75rem 0;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.note-header {
+    max-width: 46rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+}
+.note-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1rem;
+}
+.note-header .note-meta { margin: 0; gap: 0.5rem 1.25rem; }
+.note-date {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+.note-tag {
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    background: var(--surface);
+}
+.note-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 46rem) minmax(0, 20rem);
+    justify-content: space-between;
+    gap: 3rem;
+    align-items: start;
+}
+.note-article { min-width: 0; }
+.note-article .content { color: var(--ink); line-height: 1.7; }
+.note-article .content a:not(.stale-link) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.note-article .content > h2,
+.note-article .content > h3 { color: var(--ink); scroll-margin-top: 1.5rem; }
+/* Code blocks: dark panel per the mockup. fruity.css is a dark-background
+   theme driven by CSS variables, so re-point them here (all >= 5.4:1 on ink). */
+.note-article .highlight {
+    --color-border-light: #17231C;
+    --color-text: #E6EBE2;
+    --color-text-main: #E6EBE2;
+    --color-text-link: #8CB4F2;
+    --highlight-color-green: #8FB89A;
+    --highlight-color-comment-bg: transparent;
+    --highlight-color-pink: #FF8FC0;
+    --highlight-color-red: #FF7B72;
+    --highlight-color-khaki: #D4C76A;
+    --highlight-color-grey: #A9B5AC;
+}
+.note-article pre.highlight {
+    background: #17231C;
+    color: #E6EBE2;
+    border-radius: var(--radius);
+    padding: 1.25rem 1.4rem;
+    overflow-x: auto;
+}
+.note-article--list .content ul { padding-left: 0; }
+.note-article--list .content li {
+    list-style: none;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.note-sidebar { display: grid; gap: 1rem; position: sticky; top: 1.5rem; }
+.note-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.4rem;
+}
+.note-card__title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+}
+.note-card__sub { margin: -0.5rem 0 0.75rem; font-size: 0.85rem; color: var(--muted); }
+
+.growth { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.growth__step { display: flex; align-items: center; gap: 0.6rem; color: var(--muted); }
+.growth__dot {
+    flex: none;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: transparent;
+}
+.growth__step--done .growth__dot,
+.growth__step--current .growth__dot { border-color: transparent; }
+.growth__step--seedling .growth__dot { background: #7A9A3A; }
+.growth__step--budding .growth__dot { background: #C27A2C; }
+.growth__step--evergreen .growth__dot { background: var(--accent); }
+.growth__step--future .growth__dot { background: transparent; border-color: var(--muted); }
+.growth__step--current { color: var(--ink); font-weight: 600; }
+.growth__step--current .growth__dot { box-shadow: 0 0 0 3px var(--line); }
+
+.toc { list-style: none; margin: 0; padding: 0; }
+.toc__item a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--accent);
+    text-decoration: none;
+}
+.toc__item a:hover { text-decoration: underline; }
+.toc__item--h3 a { padding-left: 1rem; font-size: 0.95rem; }
+
+.backlinks.hide { display: none; }
+.backlinks__list { list-style: none; margin: 0; padding: 0; }
+.backlinks__item a {
+    display: block;
+    padding: 0.6rem 0;
+    min-height: 44px;
+    color: var(--ink);
+    text-decoration: none;
+    border-top: 1px solid var(--line);
+}
+.backlinks__item:first-child a { border-top: 0; }
+.backlinks__item a:hover .backlinks__title { color: var(--accent); text-decoration: underline; }
+.backlinks__title { display: block; font-weight: 600; }
+.backlinks__excerpt { display: block; font-size: 0.8rem; color: var(--muted); }
+
+@media screen and (max-width: 900px) {
+    .note-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .note-sidebar { position: static; }
+}
+
+/* 07. Footer --------------------------------------------------------------- */
 .garden-footer {
     border-top: 1px solid var(--line);
     margin-top: 2rem;
@@ -367,7 +529,7 @@ h1, h2, h3, h4 {
     text-underline-offset: 3px;
 }
 
-/* 07. Responsive ----------------------------------------------------------- */
+/* 08. Responsive ----------------------------------------------------------- */
 @media screen and (max-width: 900px) {
     .home-hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 1.5rem; }
     .stage-legend { grid-template-columns: 1fr; }
@@ -380,7 +542,7 @@ h1, h2, h3, h4 {
     .rolodex-teaser__top { flex-direction: column; gap: 0.25rem; }
 }
 
-/* 08. Motion --------------------------------------------------------------- */
+/* 09. Motion --------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }

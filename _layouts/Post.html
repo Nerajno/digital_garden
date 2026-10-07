@@ -107,44 +107,96 @@
 
             <!--- Notes Layout-->
             {%- if page.content-type == "notes" -%}
-            <div class="column is-5-widescreen  is-6-desktop is-8-tablet is-12-mobile">
-                    <div class="note-page-section">
-                        <div>
-                            {%- if site.preferences.homepage.enabled -%}
-                            <a onclick="window.history.back();">
-                            {%- else -%}
-                            <a onclick="window.location.assign('/');">
-                            {%- endif -%}
-                                    <h5 class="meta-title">← BACK</h5>
-                            </a>
-                        </div>
-                    <!--- List type Note Layout-->
-                    {%- if page.format == "list" -%}
-                    <style>
-                        li {border-bottom: 1px solid var(--color-border-light); list-style: none; padding: 0.4rem 0 0.4rem 0;}
-                        .content ul { padding-left: 0px;}
-                        h3 {padding-top: 1rem; padding-bottom: 0rem;}
-                    </style>                    
+            <div class="column is-12">
+            {%- comment -%} Note layout (#17, 7b): breadcrumb, meta row, article + sidebar {%- endcomment -%}
+            {%- if page.title contains "Work Notes" -%}{%- assign note_kind = "Work notes" -%}
+            {%- elsif page.title contains "Concept" -%}{%- assign note_kind = "Concept" -%}
+            {%- elsif page.url contains "Learnt" -%}{%- assign note_kind = "Index" -%}
+            {%- else -%}{%- assign note_kind = "Note" -%}{%- endif -%}
+            {%- assign valid_stage = false -%}
+            {%- if page.stage == "seedling" or page.stage == "budding" or page.stage == "evergreen" -%}
+                {%- assign valid_stage = true -%}
+            {%- endif -%}
+            {%- comment -%} On-this-page links from the rendered h2/h3 headings {%- endcomment -%}
+            {%- assign toc_count = 0 -%}
+            {%- capture toc_items -%}
+                {%- assign hparts = content | split: '<h' -%}
+                {%- for part in hparts offset: 1 -%}
+                    {%- assign lead = part | slice: 0, 6 -%}
+                    {%- if lead == '2 id="' or lead == '3 id="' -%}
+                        {%- assign lvl = part | slice: 0 -%}
+                        {%- assign hid = part | split: 'id="' | slice: 1 | first | split: '"' | first -%}
+                        {%- assign htext = part | split: '</h' | first | split: '">' | shift | join: '">' | strip_html | strip -%}
+                        {%- assign toc_count = toc_count | plus: 1 -%}
+                        <li class="toc__item toc__item--h{{ lvl }}"><a href="#{{ hid }}">{{ htext }}</a></li>
                     {%- endif -%}
-                    <h1>{{page.title}}</h1>
-                    {%- comment -%} Growth stage + last tended (stage vocabulary lives in CLAUDE.md) {%- endcomment -%}
-                    {%- assign valid_stage = false -%}
-                    {%- if page.stage == "seedling" or page.stage == "budding" or page.stage == "evergreen" -%}
-                        {%- assign valid_stage = true -%}
-                    {%- endif -%}
-                    {%- if valid_stage or page.tended -%}
+                {%- endfor -%}
+            {%- endcapture -%}
+            <div class="note-page">
+                <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+                    <ol>
+                        <li><a href="{{ '/notes' | relative_url }}">Garden</a></li>
+                        <li>{{ note_kind }}</li>
+                        <li aria-current="page">{{ page.title }}</li>
+                    </ol>
+                </nav>
+                <header class="note-header">
+                    <h1 class="note-title">{{ page.title }}</h1>
+                    {%- if valid_stage or page.date or page.tended -%}
                     <p class="note-meta">
                         {%- if valid_stage -%}
                         <span class="stage-chip stage-chip--{{ page.stage }}">{{ page.stage | capitalize }}</span>
                         {%- endif -%}
-                        {%- if page.tended -%}
-                        <span class="note-tended">Last tended <time datetime="{{ page.tended | date: '%Y-%m-%d' }}">{{ page.tended | date: '%-d %b %Y' }}</time></span>
+                        {%- if page.date -%}
+                        <span class="note-date">Planted <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-d %b %Y' }}</time></span>
                         {%- endif -%}
+                        {%- if page.tended -%}
+                        <span class="note-date">Last tended <time datetime="{{ page.tended | date: '%Y-%m-%d' }}">{{ page.tended | date: '%-d %b %Y' }}</time></span>
+                        {%- endif -%}
+                        {%- for tag in page.tags -%}
+                        <span class="note-tag">{{ tag }}</span>
+                        {%- endfor -%}
                     </p>
                     {%- endif -%}
-                    {%- include Content.html -%}
-                    {%- include Backlinks.html -%}
-                    </div>
+                </header>
+                <div class="note-grid">
+                    <article class="note-article note-page-section{% if page.format == 'list' %} note-article--list{% endif %}">
+                        {%- include Content.html -%}
+                    </article>
+                    <aside class="note-sidebar" aria-label="About this note">
+                        {%- if valid_stage -%}
+                        {%- assign stages = "seedling,budding,evergreen" | split: "," -%}
+                        {%- assign current_index = 0 -%}
+                        {%- for s in stages -%}{%- if s == page.stage -%}{%- assign current_index = forloop.index -%}{%- endif -%}{%- endfor -%}
+                        <section class="note-card" aria-labelledby="growth-title">
+                            <h2 id="growth-title" class="note-card__title">Growth</h2>
+                            <ol class="growth">
+                                {%- for s in stages -%}
+                                {%- if forloop.index < current_index -%}{%- assign state = "done" -%}
+                                {%- elsif forloop.index == current_index -%}{%- assign state = "current" -%}
+                                {%- else -%}{%- assign state = "future" -%}{%- endif -%}
+                                <li class="growth__step growth__step--{{ s }} growth__step--{{ state }}"{% if state == "current" %} aria-current="step"{% endif %}>
+                                    <span class="growth__dot" aria-hidden="true"></span>
+                                    <span>{{ s | capitalize }}
+                                    {%- if state == "future" -%}&nbsp;· not yet
+                                    {%- elsif s == "seedling" and page.date -%}&nbsp;· <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-d %b %Y' }}</time>
+                                    {%- elsif state == "current" and page.tended -%}&nbsp;· <time datetime="{{ page.tended | date: '%Y-%m-%d' }}">{{ page.tended | date: '%-d %b %Y' }}</time>
+                                    {%- endif -%}</span>
+                                </li>
+                                {%- endfor -%}
+                            </ol>
+                        </section>
+                        {%- endif -%}
+                        {%- if toc_count >= 2 -%}
+                        <nav class="note-card" aria-labelledby="toc-title">
+                            <h2 id="toc-title" class="note-card__title">On this page</h2>
+                            <ul class="toc">{{ toc_items }}</ul>
+                        </nav>
+                        {%- endif -%}
+                        {%- include Backlinks.html -%}
+                    </aside>
+                </div>
+            </div>
             </div>
             {%- endif -%}
 
