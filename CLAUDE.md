@@ -113,6 +113,20 @@ format: list                          # optional: list-style note layout
   permalink changes and feed backlinks.
 - Filenames: no leading/trailing spaces. Renaming a published note needs a `_redirects`
   line (see #15).
+- **Liquid and `{{`:** any note containing `{{` (Vue templates, Handlebars…) wraps that
+  code in `{% raw %}…{% endraw %}`, or Liquid eats it (`{{ count }}` renders as nothing or
+  a number). Data files are never Liquid-parsed, so `_data/*.yml` values print literally —
+  don't add `{% raw %}` there (it would show as text); an include that outputs code from
+  data escapes it with `| escape` instead (see `_includes/term-card.html`).
+
+## Rolodex
+
+`/note/Rolodex` (`_notes/Public/Rolodex.md`) is built from `_data/terms.yml`: one entry per
+term, rendered by `_includes/term-card.html`, filtered by `assets/js/terms.js`, styled in
+section 08b of `assets/css/garden.css`. Adding a term means editing only `terms.yml`.
+When a term outgrows its card, write it up as a note and set the term's `note:` to its URL.
+The homepage Highlights carousel (`_includes/rolodex.html`, `rolodex.css`/`rolodex.js`,
+data in `_data/rolodex.yml`) is a separate component that owns the `.rolodex` class.
 
 ## Repo map
 
@@ -120,10 +134,11 @@ format: list                          # optional: list-style note layout
 _notes/Public/    published notes (from Obsidian)
 _notes/000 Inbox, 200 Private, 300 Templates   excluded from the build — never publish
 _posts/           long-form posts (/post/:title)
-_includes/        Nav, Footer, Homepage, Feed, Backlinks, Content, Related, rolodex
+_data/            now.yml (homepage), rolodex.yml (Highlights), terms.yml (Rolodex page)
+_includes/        Nav, Footer, Homepage, Feed, Backlinks, Content, Related, rolodex, term-card
 _layouts/         Post.html (all page types), Stylesheet.html
-assets/css/       style.css, main.css, Util.css, fruity.css, rolodex.css, vendor/
-assets/js/        Search, modeswitcher, Hamburger, rolodex
+assets/css/       style.css, main.css, Util.css, fruity.css, rolodex.css, garden.css, vendor/
+assets/js/        Search, modeswitcher, Hamburger, rolodex, terms
 pages/            index, notes feed, posts feed, lists, 404
 docs/             design references — excluded from the build
 ```

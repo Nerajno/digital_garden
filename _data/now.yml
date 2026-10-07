@@ -16,12 +16,12 @@ items:
     url: /note/Work-Notes-Q1-26
     stage: seedling
   - title: Rolodex → atomic concept notes
-    url: /note/Learnt
+    url: /note/Rolodex
     stage: seedling
 
 # Two terms shown in "From the Rolodex" on the homepage.
 rolodex:
-  url: /note/Learnt
+  url: /note/Rolodex
   terms:
     - term: Async Functions
       tags: JavaScript · Vue 3
