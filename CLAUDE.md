@@ -51,6 +51,21 @@ below — don't re-derive them from the images.
 
 Core pairing: green `#24573F` on sage `#F3F5F0`.
 
+**Dark theme** (same token names; `assets/css/garden.css`)
+
+| Token | Dark |
+|---|---|
+| ground | `#111813` |
+| surface | `#18211B` |
+| ink | `#E6EBE2` |
+| muted | `#A9B5AC` |
+| line | `#2C3A31` |
+| accent | `#7FC4A0` |
+
+Theme lives only on `<html data-theme="light|dark">` (saved in `localStorage`, applied by the
+inline script at the top of the layout `<head>`); with no saved choice, `prefers-color-scheme`
+follows the OS. Components use the tokens and never check the theme themselves.
+
 **Fonts** (Google Fonts, `display=swap`, always with fallbacks)
 
 - Headings: **Space Grotesk**
@@ -68,6 +83,8 @@ The only allowed values, in order: **seedling → budding → evergreen**.
 | `seedling` | Rough idea or first notes. Probably wrong in places. | `#E3EFC4` / `#3B5212` |
 | `budding` | It clicked. Written in my own words, with an example I've used. | `#F7DFBC` / `#7A3D08` |
 | `evergreen` | Applied in real work. I'd teach it from this note. | `#24573F` / `#FFFFFF` |
+
+Dark chips (bg / text): seedling `#263318` / `#D4E8A6`, budding `#3A2810` / `#F5C98F`, evergreen `#7FC4A0` / `#111813`.
 
 Layouts read the stage from front matter; never hardcode per-note values.
 

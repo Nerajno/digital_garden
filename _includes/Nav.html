@@ -35,16 +35,6 @@
         <svg class="garden-nav__sprout" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 21v-9m0 0c0-4 3-7 8-7 0 5-3 7-8 7Zm0 0c0-3-2.5-5.5-7-5.5 0 4 2.5 5.5 7 5.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>{{ site.heading }}</span>
       </a>
-      <div class="navbar-item navbar-dark-mode__mobile is-hidden-tablet" onclick="modeSwitcher()">
-        <a class="button is-text garden-nav__toggle">
-          <img src="{{ '/assets/img/sun.svg' | relative_url }}" id="theme-toggle-img--mobile" alt="">
-        </a>
-      </div>
-      <a role="button" class="navbar-burger" aria-label="Menu" aria-expanded="false" data-target="garden-nav-menu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
     </div>
     <div id="garden-nav-menu" class="navbar-menu">
       <div class="navbar-end">
@@ -53,13 +43,17 @@
         <a href="{{ '/#now' | relative_url }}" class="navbar-item">Now</a>
         <a href="https://learnt.developingdvlpr.com/" class="navbar-item" target="_blank" rel="noopener">Past projects <span aria-hidden="true">↗</span><span class="is-sr-only"> (opens in a new tab)</span></a>
         <a href="https://developingdvlpr.com/" class="navbar-item" target="_blank" rel="noopener">Portfolio <span aria-hidden="true">↗</span><span class="is-sr-only"> (opens in a new tab)</span></a>
-        <div class="navbar-item is-hidden-mobile" onclick="modeSwitcher()">
-          <a class="button is-text garden-nav__toggle">
-            <img src="{{ '/assets/img/sun.svg' | relative_url }}" id="theme-toggle-img" alt="">
-          </a>
-        </div>
       </div>
     </div>
+    <button type="button" class="theme-toggle" aria-label="Switch to dark mode">
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <a role="button" class="navbar-burger" aria-label="Menu" aria-expanded="false" data-target="garden-nav-menu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
   </div>
 </nav>
 <script src="{{ site.baseurl }}/assets/js/modeswitcher.js"></script>

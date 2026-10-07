@@ -1,71 +1,73 @@
----
----
+/*
+  Theme toggle (#38). Based on Derek Kedziora's mode switcher
+  (https://github.com/derekkedziora/jekyll-demo, CC BY 4.0), rewritten.
 
-/* 
-Copied from https://github.com/derekkedziora/jekyll-demo/blob/master/scripts/mode-switcher.js
-https://github.com/derekkedziora/jekyll-demo
-Creative Commons Attribution 4.0 International License
+  - The visitor's choice is saved in localStorage and applied before CSS
+    loads by the inline script at the top of the layout <head>.
+  - With no saved choice, CSS prefers-color-scheme follows the OS live;
+    this script only keeps the button's label in sync.
+  - The theme lives on <html data-theme>; components never check it.
 */
+(function () {
+  var root = document.documentElement;
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-let systemInitiatedDark = window.matchMedia("(prefers-color-scheme: dark)"); 
-let theme = sessionStorage.getItem('theme');
-
-const iconSun = "{{ site.baseurl }}/assets/img/sun.svg";
-const iconMoon = "{{ site.baseurl }}/assets/img/moon.svg";
-
-
-function changeIconImgSrc(src) {
-	document.getElementById("theme-toggle-img").src = src;
-	document.getElementById("theme-toggle-img--mobile").src = src;
-}
-
-if (systemInitiatedDark.matches) {
-	changeIconImgSrc(iconMoon);
-} else {
-	changeIconImgSrc(iconSun);
-}
-
-function prefersColorTest(systemInitiatedDark) {
-  if (systemInitiatedDark.matches) {
-  	document.documentElement.setAttribute('data-theme', 'dark');		
-   	changeIconImgSrc(iconMoon);
-   	sessionStorage.setItem('theme', '');
-  } else {
-  	document.documentElement.setAttribute('data-theme', 'light');
-    changeIconImgSrc(iconSun);
-    sessionStorage.setItem('theme', '');
+  function savedTheme() {
+    try {
+      var t = localStorage.getItem('theme');
+      return t === 'dark' || t === 'light' ? t : null;
+    } catch (e) {
+      return null;
+    }
   }
-}
-systemInitiatedDark.addListener(prefersColorTest);
 
+  function currentTheme() {
+    return root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
+  }
 
-function modeSwitcher() {
-	let theme = sessionStorage.getItem('theme');
-	if (theme === "dark") {
-		document.documentElement.setAttribute('data-theme', 'light');
-		sessionStorage.setItem('theme', 'light');
-		changeIconImgSrc(iconSun);
-	}	else if (theme === "light") {
-		document.documentElement.setAttribute('data-theme', 'dark');
-		sessionStorage.setItem('theme', 'dark');
-		changeIconImgSrc(iconMoon);
-	} else if (systemInitiatedDark.matches) {	
-		document.documentElement.setAttribute('data-theme', 'light');
-		sessionStorage.setItem('theme', 'light');
-		changeIconImgSrc(iconSun);
-	} else {
-		document.documentElement.setAttribute('data-theme', 'dark');
-		sessionStorage.setItem('theme', 'dark');
-		changeIconImgSrc(iconMoon);
-	}
-}
+  function updateButtons() {
+    var isDark = currentTheme() === 'dark';
+    var buttons = document.querySelectorAll('.theme-toggle');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      buttons[i].setAttribute('data-current', isDark ? 'dark' : 'light');
+    }
+  }
 
-if (theme === "dark") {
-	document.documentElement.setAttribute('data-theme', 'dark');
-	sessionStorage.setItem('theme', 'dark');
-	changeIconImgSrc(iconMoon);
-} else if (theme === "light") {
-	document.documentElement.setAttribute('data-theme', 'light');
-	sessionStorage.setItem('theme', 'light');
-	changeIconImgSrc(iconSun);
-}
+  function toggleTheme() {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch (e) {}
+    updateButtons();
+  }
+
+  // Follow OS changes while no choice is saved.
+  systemDark.addEventListener('change', function () {
+    if (!savedTheme()) updateButtons();
+  });
+
+  // Keep other open tabs in sync with a choice made here.
+  window.addEventListener('storage', function (event) {
+    if (event.key !== 'theme') return;
+    var t = savedTheme();
+    if (t) root.setAttribute('data-theme', t);
+    else root.removeAttribute('data-theme');
+    updateButtons();
+  });
+
+  function init() {
+    var buttons = document.querySelectorAll('.theme-toggle');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', toggleTheme);
+    }
+    updateButtons();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
