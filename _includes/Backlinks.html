@@ -60,36 +60,20 @@
 {%- if site.preferences.backlinks.enabled -%}
 {%- assign display_class = 'show' -%}
 {%- endif -%}
-<div class="related {{display_class}}" id="jekyll-seamless-backlinks">
-    <h5 class="meta-title centre-title">Links to this note</h5>
-    <div class="related-wrapper">
+<section class="note-card backlinks {{display_class}}" id="jekyll-seamless-backlinks" aria-labelledby="backlinks-title">
+    <h2 id="backlinks-title" class="note-card__title">Linked from</h2>
+    <p class="note-card__sub">Notes that point here</p>
+    <ul class="backlinks__list">
         {%- for note in site.notes -%}
         {%- if note.url != page.url -%}
             {%- if note.content contains wiki_link_title or note.content contains wiki_link_slug -%}
-            <div class="related-group"><a href="{{ site.baseurl }}{{note.url}}">
-                <h6>{{ note.title }}</h6>
-                <p class="excerpt" style="margin: 0px; color: var(--color-text-main) !important;">{{ note.content | strip_html | strip | remove: "[[" | remove: "]]" | remove: "-" | escape | truncate: 100 }}</p>
-            </a></div>
+            <li class="backlinks__item"><a href="{{ site.baseurl }}{{ note.url }}">
+                <span class="backlinks__title">{{ note.title }}</span>
+                <span class="backlinks__excerpt">{{ note.content | markdownify | strip_html | remove: "[[" | remove: "]]" | normalize_whitespace | truncate: 70 }}</span>
+            </a></li>
             {%- endif -%}
         {%- endif -%}
         {%- endfor -%}
-        <!--
-        This code is to show other pages (note under collection) as Backlink. 
-        Disabled as I don't see a need for this right now. 
-
-        {%- for note in site.pages -%}
-        {%- if note.url != page.url -%}
-            {%- if note.content contains wiki_link_title or note.content contains wiki_link_slug -%}
-            <div class="related-group"><a href="{{note.url}}">
-                <h6>{{ note.title }}</h6>
-                <p class="excerpt" style="margin: 0px;">{{ note.content | strip_html | strip | remove: "[[" | remove: "]]" | escape | truncate: 100 }}</p>
-            </a></div>
-            {%- endif -%}
-        {%- endif -%}
-        {%- endfor -%}
-
-        -->
-    </div>
-    <br/>
-</div>
+    </ul>
+</section>
 {%- endif -%}
