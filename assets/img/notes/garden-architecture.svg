@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" width="880" height="300" role="img" aria-labelledby="arch-title arch-desc" font-family="'IBM Plex Sans', system-ui, sans-serif">
+  <title id="arch-title">How the garden gets published</title>
+  <desc id="arch-desc">Notes are written in Obsidian and saved to _notes/Public. They are pushed to the GitHub repo. Netlify builds the main branch with Jekyll and serves garden.developingdvlpr.com. On pull requests, GitHub Actions runs a build check and Netlify publishes a deploy preview.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10z" fill="#24573F"/>
+    </marker>
+  </defs>
+  <rect width="880" height="300" rx="16" fill="#F3F5F0"/>
+
+  <!-- Main flow -->
+  <g font-size="15" fill="#17231C">
+    <rect x="24" y="40" width="150" height="72" rx="10" fill="#FFFFFF" stroke="#D6DDD2"/>
+    <text x="99" y="71" text-anchor="middle" font-weight="600">Obsidian</text>
+    <text x="99" y="93" text-anchor="middle" font-size="13" fill="#4F5E54">write notes</text>
+
+    <rect x="200" y="40" width="150" height="72" rx="10" fill="#FFFFFF" stroke="#D6DDD2"/>
+    <text x="275" y="71" text-anchor="middle" font-weight="600" font-family="'IBM Plex Mono', monospace" font-size="14">_notes/Public</text>
+    <text x="275" y="93" text-anchor="middle" font-size="13" fill="#4F5E54">published folder</text>
+
+    <rect x="376" y="40" width="150" height="72" rx="10" fill="#FFFFFF" stroke="#D6DDD2"/>
+    <text x="451" y="71" text-anchor="middle" font-weight="600">GitHub</text>
+    <text x="451" y="93" text-anchor="middle" font-size="13" fill="#4F5E54">push to main</text>
+
+    <rect x="552" y="40" width="150" height="72" rx="10" fill="#FFFFFF" stroke="#D6DDD2"/>
+    <text x="627" y="71" text-anchor="middle" font-weight="600">Netlify</text>
+    <text x="627" y="93" text-anchor="middle" font-size="13" fill="#4F5E54">Jekyll build</text>
+
+    <rect x="728" y="40" width="128" height="72" rx="10" fill="#24573F"/>
+    <text x="792" y="71" text-anchor="middle" font-weight="600" fill="#FFFFFF">Live site</text>
+    <text x="792" y="93" text-anchor="middle" font-size="12" fill="#FFFFFF" font-family="'IBM Plex Mono', monospace">garden.…</text>
+  </g>
+  <g stroke="#24573F" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M174 76h22"/>
+    <path d="M350 76h22"/>
+    <path d="M526 76h22"/>
+    <path d="M702 76h22"/>
+  </g>
+
+  <!-- Pull request branch -->
+  <g font-size="15" fill="#17231C">
+    <rect x="376" y="186" width="150" height="72" rx="10" fill="#FFFFFF" stroke="#D6DDD2" stroke-dasharray="5 4"/>
+    <text x="451" y="217" text-anchor="middle" font-weight="600">Pull request</text>
+    <text x="451" y="239" text-anchor="middle" font-size="13" fill="#4F5E54">one ticket, one branch</text>
+
+    <rect x="552" y="156" width="190" height="56" rx="10" fill="#FFFFFF" stroke="#D6DDD2" stroke-dasharray="5 4"/>
+    <text x="647" y="181" text-anchor="middle" font-weight="600">GitHub Actions</text>
+    <text x="647" y="200" text-anchor="middle" font-size="13" fill="#4F5E54">build check only</text>
+
+    <rect x="552" y="228" width="190" height="56" rx="10" fill="#FFFFFF" stroke="#D6DDD2" stroke-dasharray="5 4"/>
+    <text x="647" y="253" text-anchor="middle" font-weight="600">Netlify</text>
+    <text x="647" y="272" text-anchor="middle" font-size="13" fill="#4F5E54">deploy preview</text>
+  </g>
+  <g stroke="#4F5E54" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M451 112v70"/>
+    <path d="M526 210l22-22"/>
+    <path d="M526 234l22 20"/>
+  </g>
+  <text x="24" y="282" font-size="13" fill="#4F5E54">Solid: publishing path. Dashed: what every pull request gets before merge.</text>
+</svg>
