@@ -16,7 +16,8 @@ conventions from the whole repo. If something here is wrong, fix this file in th
   (`RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)" asdf install ruby 4.0.7`).
 - Hosting: **Netlify** builds `main` and serves garden.developingdvlpr.com; every PR gets a deploy
   preview link. Build settings and headers live in `netlify.toml`; GitHub Actions only checks the
-  build. Redirects go in `_redirects` (published via `include:` in `_config.yml`) — every renamed
+  build. CSS/JS are served `max-age=0, must-revalidate` (filenames aren't hashed) — never give
+  them a long cache. Redirects go in `_redirects` (published via `include:` in `_config.yml`) — every renamed
   or moved note gets a `301` line there.
 
 ## Build and run
