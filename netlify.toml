@@ -15,9 +15,20 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Asset filenames aren't fingerprinted, so cache for a week rather than
-# "immutable" — CSS/JS changes still reach returning visitors.
+# Asset filenames aren't fingerprinted. CSS/JS revalidate on every load
+# (cheap 304s; Netlify swaps its CDN cache on each deploy), so a deploy never
+# serves stale styles. Images rarely change, so they keep a week.
 [[headers]]
-  for = "/assets/*"
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/img/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
