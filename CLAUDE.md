@@ -123,8 +123,10 @@ format: list                          # optional: list-style note layout
 ## Rolodex
 
 `/note/Rolodex` (`_notes/Public/Rolodex.md`) is built from `_data/terms.yml`: one entry per
-term, rendered by `_includes/term-card.html`, filtered by `assets/js/terms.js`, styled in
-section 08b of `assets/css/garden.css`. Adding a term means editing only `terms.yml`.
+term. `_includes/rolodex-spindle.html` lays out the "spindle" (A–Z tabs, one card, Prev/Next,
+topic select, grid) and renders every card with `_includes/term-card.html`; `assets/js/spindle.js`
+shows one card at a time with the URL hash (`#term-slug`) as state. Without JS every card shows as
+a list. Styled in section 08b of `assets/css/garden.css`. Adding a term means editing only `terms.yml`.
 When a term outgrows its card, write it up as a note and set the term's `note:` to its URL.
 The homepage Highlights carousel (`_includes/rolodex.html`, `rolodex.css`/`rolodex.js`,
 data in `_data/rolodex.yml`) is a separate component that owns the `.rolodex` class.
@@ -136,7 +138,7 @@ _notes/Public/    published notes (from Obsidian)
 _notes/000 Inbox, 200 Private, 300 Templates   excluded from the build — never publish
 _posts/           long-form posts (/post/:title)
 _data/            now.yml (homepage), rolodex.yml (Highlights), terms.yml (Rolodex page)
-_includes/        Nav, Footer, Homepage, Feed, Backlinks, Content, Related, rolodex, term-card
+_includes/        Nav, Footer, Homepage, Feed, Backlinks, Content, Related, rolodex, rolodex-spindle, term-card
 _layouts/         Post.html (all page types), Stylesheet.html
 assets/css/       style.css, main.css, Util.css, fruity.css, rolodex.css, garden.css, vendor/
 assets/js/        Search, modeswitcher, Hamburger, rolodex, terms
