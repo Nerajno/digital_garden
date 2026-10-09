@@ -37,18 +37,12 @@
   </section>
 
   <section class="stage-legend" aria-label="Growth stages">
+    {%- for stage in site.data.stages %}
     <div class="stage-legend__item">
-      <span class="stage-chip stage-chip--seedling">Seedling</span>
-      <p>Rough idea or first notes. Probably wrong in places.</p>
+      <span class="stage-chip stage-chip--{{ stage.id }}">{{ stage.label }}</span>
+      <p>{{ stage.meaning }}</p>
     </div>
-    <div class="stage-legend__item">
-      <span class="stage-chip stage-chip--budding">Budding</span>
-      <p>It clicked. Written in my own words, with an example I’ve used.</p>
-    </div>
-    <div class="stage-legend__item">
-      <span class="stage-chip stage-chip--evergreen">Evergreen</span>
-      <p>Applied in real work. I’d teach it from this note.</p>
-    </div>
+    {%- endfor %}
   </section>
 
   <section class="recent" aria-labelledby="recent-title">

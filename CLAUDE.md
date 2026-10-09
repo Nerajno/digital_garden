@@ -107,6 +107,8 @@ date: 2026-03-26                      # planted date, YYYY-MM-DD
 stage: budding                        # optional: seedling | budding | evergreen (#16)
 tended: 2026-03-28                    # optional: last meaningful edit, YYYY-MM-DD (#16)
 format: list                          # optional: list-style note layout
+type: concept                         # concept | index | meta | projects | work-notes (shelf on /notes; _data/note_types.yml)
+start_here: 1                         # optional: 1–3, order in the /notes "Start here" row
 ---
 ```
 
@@ -131,14 +133,25 @@ When a term outgrows its card, write it up as a note and set the term's `note:` 
 The homepage Highlights carousel (`_includes/rolodex.html`, `rolodex.css`/`rolodex.js`,
 data in `_data/rolodex.yml`) is a separate component that owns the `.rolodex` class.
 
+## Notes index
+
+`/notes` (`pages/notes.md`, `notes_index: true`) is built from note front matter only: shelves
+by `type` (`_includes/notes-by-type.html`, labels/order in `_data/note_types.yml`) and plots by
+`stage` (`_includes/notes-by-stage.html`, meanings in `_data/stages.yml`, shared with the homepage
+legend). `assets/js/notes-view.js` toggles `?view=type|stage` and searches. A shown note without a
+known `type` lands in "Other" and `_plugins/notes_type_check.rb` logs a build warning.
+
 ## Repo map
 
 ```
 _notes/Public/    published notes (from Obsidian)
 _notes/000 Inbox, 200 Private, 300 Templates   excluded from the build — never publish
 _posts/           long-form posts (/post/:title)
-_data/            now.yml (homepage), rolodex.yml (Highlights), terms.yml (Rolodex page)
-_includes/        Nav, Footer, Homepage, Feed, Backlinks, Content, Related, rolodex, rolodex-spindle, term-card
+_data/            now.yml (homepage), rolodex.yml (Highlights), terms.yml (Rolodex page),
+                  stages.yml (stage meanings), note_types.yml (/notes shelves)
+_plugins/         notes_type_check.rb (build warning for notes without a type)
+_includes/        Nav, Footer, Homepage, Feed, Backlinks, Content, Related, rolodex, rolodex-spindle, term-card,
+                  notes-by-type, notes-by-stage
 _layouts/         Post.html (all page types), Stylesheet.html
 assets/css/       style.css, main.css, Util.css, fruity.css, rolodex.css, garden.css, vendor/
 assets/js/        Search, modeswitcher, Hamburger, rolodex, terms

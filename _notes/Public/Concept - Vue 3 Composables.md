@@ -4,6 +4,7 @@ feed: show
 date: 2026-03-26
 stage: budding
 tended: 2026-03-26
+type: concept
 ---
 
 ## Concept

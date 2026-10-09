@@ -1,0 +1,13 @@
+# Note types for the /notes shelves, in shelf order. Values must match note
+# front matter `type:`. A shown note without a type lands in "Other" and the
+# build warns (_plugins/notes_type_check.rb).
+- id: concept
+  label: Concepts
+- id: index
+  label: Indexes
+- id: projects
+  label: Projects & ideas
+- id: meta
+  label: About the garden
+- id: work-notes
+  label: Work notes

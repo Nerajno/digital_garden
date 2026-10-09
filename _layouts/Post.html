@@ -113,12 +113,12 @@
             {%- endif -%}
 
             <!--- Notes Feed Layout-->
-            {%- if page.feedformat -%}
-            <div class="column is-6-widescreen  is-8-desktop is-8-tablet is-12-mobile">
+            {%- if page.feedformat or page.notes_index -%}
+            <div class="column {% if page.notes_index %}is-12{% else %}is-6-widescreen  is-8-desktop is-8-tablet is-12-mobile{% endif %}">
                 <p class="meta-title"><a href="/">← Home</a></p>
                     <h1 class="jumbo">{{page.title}}</h1>
                     {%- include Content.html -%}
-                    {%- include Feed.html -%}
+                    {%- unless page.notes_index -%}{%- include Feed.html -%}{%- endunless -%}
             {%- endif -%}
 
             <!--- Notes Layout-->

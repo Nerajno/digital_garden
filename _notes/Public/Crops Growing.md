@@ -4,6 +4,8 @@ feed: show
 date: 2025-05-08
 stage: seedling
 tended: 2025-09-06
+type: index
+start_here: 1
 ---
 
 # My Developer Journey
