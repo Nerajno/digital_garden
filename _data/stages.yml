@@ -1,16 +1,24 @@
 # Growth stages, in order. Shared by the homepage legend (_includes/Homepage.html)
 # and the notes index (/notes). Values must match note front matter `stage:`.
 #   key:     short label for the stage key ("Seedling = learning")
-#   meaning: one-line description
+#   meaning: one-line description (homepage legend)
+#   plot:    shorter line under each plot in the /notes "By stage" view
+#   empty:   shown in that plot when no note has this stage yet
 - id: seedling
   label: Seedling
   key: learning
   meaning: Rough idea or first notes. Probably wrong in places.
+  plot: Learning. Rough, probably wrong in places.
+  empty: Nothing seedling right now. New ideas get planted here.
 - id: budding
   label: Budding
   key: built with it
   meaning: It clicked. Written in my own words, with an example I’ve used.
+  plot: Built with it. In my own words, with an example.
+  empty: Nothing budding yet. Notes land here once I’ve built with the idea.
 - id: evergreen
   label: Evergreen
   key: could teach it
   meaning: Applied in real work. I’d teach it from this note.
+  plot: Applied in real work. I could teach from it.
+  empty: Nothing evergreen yet. The first note I could teach from lands here.

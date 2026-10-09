@@ -5,6 +5,7 @@ date: 2026-01-01
 stage: seedling
 tended: 2026-03-26
 type: work-notes
+summary: "Portfolio to the new standard; projects to Vue and vanilla JS."
 ---
 
 ![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXQ0dTlocmQzeXcxZmM3am12cWdoY2I0d256NnZrd214OGZoNnVvciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LpkBAUDg53FI8xLmg1/giphy.gif)

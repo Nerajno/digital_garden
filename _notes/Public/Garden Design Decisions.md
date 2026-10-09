@@ -6,6 +6,9 @@ stage: budding
 tended: 2026-10-08
 type: meta
 start_here: 3
+summary: "How the garden shows how far along each idea is."
+start_here_label: the how
+start_here_blurb: "Palette, stages, tradeoffs, and where AI got it wrong."
 ---
 
 ## Goal

@@ -115,8 +115,11 @@
             <!--- Notes Feed Layout-->
             {%- if page.feedformat or page.notes_index -%}
             <div class="column {% if page.notes_index %}is-12{% else %}is-6-widescreen  is-8-desktop is-8-tablet is-12-mobile{% endif %}">
+                {%- comment -%} /notes renders its own meta line + <h1> (pages/notes.md) {%- endcomment -%}
+                {%- unless page.notes_index -%}
                 <p class="meta-title"><a href="/">← Home</a></p>
                     <h1 class="jumbo">{{page.title}}</h1>
+                {%- endunless -%}
                     {%- include Content.html -%}
                     {%- unless page.notes_index -%}{%- include Feed.html -%}{%- endunless -%}
             {%- endif -%}

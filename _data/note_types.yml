@@ -1,13 +1,29 @@
 # Note types for the /notes shelves, in shelf order. Values must match note
 # front matter `type:`. A shown note without a type lands in "Other" and the
 # build warns (_plugins/notes_type_check.rb).
+#   label: shelf heading (By type view)
+#   item:  singular label on a note card (By stage view, Start here)
+#   blurb: short line beside the shelf heading
+# Notes in the "Start here" row are left off the shelves, and a shelf with no
+# notes is not shown, so Indexes and About the garden only appear when a note
+# of that type is not featured.
 - id: concept
   label: Concepts
+  item: Concept
+  blurb: one idea per note
 - id: index
   label: Indexes
+  item: Index
+  blurb: lists that point elsewhere
 - id: projects
   label: Projects & ideas
+  item: Projects & ideas
+  blurb: things in the ground
 - id: meta
   label: About the garden
+  item: Meta
+  blurb: how and why this exists
 - id: work-notes
   label: Work notes
+  item: Work notes
+  blurb: quarterly, newest first

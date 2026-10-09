@@ -4,8 +4,11 @@ feed: show
 date: 2025-05-08
 stage: seedling
 tended: 2025-09-06
-type: index
+type: meta
 start_here: 1
+summary: "Where the journey started and how the garden is built."
+start_here_label: the why
+start_here_blurb: "Where the journey started and how this garden is built."
 ---
 
 # My Developer Journey

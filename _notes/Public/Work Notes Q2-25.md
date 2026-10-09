@@ -5,6 +5,7 @@ date: 2025-05-09
 stage: budding
 tended: 2026-03-24
 type: work-notes
+summary: "Terms learned and still to study."
 ---
 
 ### Update #2 - Reviewed my notes and planner; here are the terms that I either have learnt for application or need look into. [ Each term should have : explanation || my explanation || application ]
