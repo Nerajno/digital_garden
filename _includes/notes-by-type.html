@@ -1,30 +1,38 @@
 {%- comment -%}
   /notes "By type" view: one shelf (table) per type in _data/note_types.yml, then "Other" for
   notes with a missing or unknown type. Expects `notes` (feed: show) from pages/notes.md.
+  Notes featured in "Start here" are left off the shelves; empty shelves are not shown.
   Work notes run newest first; other shelves A–Z. Tended falls back to date.
 {%- endcomment -%}
 {%- assign shelf_ids = site.data.note_types | map: "id" -%}
+{%- assign shelved = "" | split: "" -%}
+{%- for n in notes -%}{%- unless n.start_here -%}{%- assign shelved = shelved | push: n -%}{%- endunless -%}{%- endfor -%}
 {%- assign other_notes = "" | split: "" -%}
-{%- for n in notes -%}{%- unless shelf_ids contains n.type -%}{%- assign other_notes = other_notes | push: n -%}{%- endunless -%}{%- endfor -%}
+{%- for n in shelved -%}{%- unless shelf_ids contains n.type -%}{%- assign other_notes = other_notes | push: n -%}{%- endunless -%}{%- endfor -%}
 {%- assign shelves = shelf_ids | push: "other" -%}
 <section class="notes-view" id="by-type" data-view="type" aria-labelledby="by-type-title">
   <h2 class="is-sr-only" id="by-type-title">Notes by type</h2>
   {%- for shelf_id in shelves %}
   {%- if shelf_id == "other" -%}
     {%- assign shelf_label = "Other" -%}
+    {%- assign shelf_blurb = "" -%}
     {%- assign shelf_notes = other_notes | sort_natural: "title" -%}
   {%- else -%}
     {%- assign shelf = site.data.note_types | where: "id", shelf_id | first -%}
     {%- assign shelf_label = shelf.label -%}
+    {%- assign shelf_blurb = shelf.blurb -%}
     {%- if shelf_id == "work-notes" -%}
-      {%- assign shelf_notes = notes | where: "type", shelf_id | sort: "date" | reverse -%}
+      {%- assign shelf_notes = shelved | where: "type", shelf_id | sort: "date" | reverse -%}
     {%- else -%}
-      {%- assign shelf_notes = notes | where: "type", shelf_id | sort_natural: "title" -%}
+      {%- assign shelf_notes = shelved | where: "type", shelf_id | sort_natural: "title" -%}
     {%- endif -%}
   {%- endif -%}
   {%- if shelf_notes.size > 0 %}
   <section class="notes-shelf" aria-labelledby="shelf-{{ shelf_id }}" data-group>
-    <h3 class="notes-shelf__title" id="shelf-{{ shelf_id }}">{{ shelf_label }} <span class="notes-count">{{ shelf_notes.size }}</span></h3>
+    <div class="notes-shelf__head">
+      <h3 class="notes-shelf__title" id="shelf-{{ shelf_id }}">{{ shelf_label }}</h3>
+      {%- if shelf_blurb != "" %}<p class="notes-shelf__blurb">{{ shelf_blurb }}</p>{% endif %}
+    </div>
     <div class="notes-table-wrap" role="region" aria-labelledby="shelf-{{ shelf_id }}" tabindex="0">
       <table class="notes-table">
         <thead>
@@ -33,11 +41,11 @@
         <tbody>
           {%- for n in shelf_notes %}
           {%- assign tended = n.tended | default: n.date -%}
-          {%- assign excerpt = n.excerpt | strip_html | normalize_whitespace | truncatewords: 24 %}
-          <tr data-item data-search="{{ n.title | append: ' ' | append: excerpt | downcase | escape }}">
+          {%- assign gist = n.summary | default: n.excerpt | strip_html | normalize_whitespace | truncatewords: 24 %}
+          <tr data-item data-search="{{ n.title | append: ' ' | append: gist | downcase | escape }}">
             <td>
               <a class="notes-table__title" href="{{ n.url | relative_url }}">{{ n.title }}</a>
-              <p class="notes-table__excerpt">{{ excerpt }}</p>
+              <p class="notes-table__excerpt">{{ gist }}</p>
             </td>
             <td>{% if n.stage %}<span class="stage-chip stage-chip--{{ n.stage }}">{{ n.stage | capitalize }}</span>{% else %}<span class="notes-muted">Unstaged</span>{% endif %}</td>
             <td><time datetime="{{ tended | date: '%Y-%m-%d' }}">{{ tended | date: '%-d %b %Y' }}</time></td>

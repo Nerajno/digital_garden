@@ -109,6 +109,9 @@ tended: 2026-03-28                    # optional: last meaningful edit, YYYY-MM-
 format: list                          # optional: list-style note layout
 type: concept                         # concept | index | meta | projects | work-notes (shelf on /notes; _data/note_types.yml)
 start_here: 1                         # optional: 1–3, order in the /notes "Start here" row
+start_here_label: the why             # optional: label after the number on that card ("01 · the why")
+start_here_blurb: "One line for the card"  # optional; "{terms}" becomes the Rolodex term count
+summary: "One line used on /notes"    # shown in the shelf tables and stage cards (falls back to the excerpt)
 ---
 ```
 
@@ -138,8 +141,11 @@ data in `_data/rolodex.yml`) is a separate component that owns the `.rolodex` cl
 `/notes` (`pages/notes.md`, `notes_index: true`) is built from note front matter only: shelves
 by `type` (`_includes/notes-by-type.html`, labels/order in `_data/note_types.yml`) and plots by
 `stage` (`_includes/notes-by-stage.html`, meanings in `_data/stages.yml`, shared with the homepage
-legend). `assets/js/notes-view.js` toggles `?view=type|stage` and searches. A shown note without a
-known `type` lands in "Other" and `_plugins/notes_type_check.rb` logs a build warning.
+legend; `plot` and `empty` are the /notes-only lines). `assets/js/notes-view.js` toggles
+`?view=type|stage` and searches. A shown note without a known `type` lands in "Other" and
+`_plugins/notes_type_check.rb` logs a build warning. Notes with `start_here` show only in the
+"Start here" row and the stage view, not on the shelves, and empty shelves are hidden. The page
+renders its own meta line and `<h1>` (the layout skips them when `notes_index` is set).
 
 ## Repo map
 

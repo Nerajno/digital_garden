@@ -5,6 +5,7 @@ date: 2026-03-26
 stage: budding
 tended: 2026-03-26
 type: concept
+summary: "Reusable stateful logic with the Composition API."
 ---
 
 ## Concept

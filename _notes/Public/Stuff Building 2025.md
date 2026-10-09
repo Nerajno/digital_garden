@@ -5,6 +5,7 @@ date: 2025-07-14
 stage: seedling
 tended: 2025-08-22
 type: projects
+summary: "Building progress and what is still growing."
 ---
 
 # My Developer Journey as a Builder

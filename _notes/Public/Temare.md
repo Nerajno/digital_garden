@@ -5,6 +5,7 @@ date: 2025-07-22
 stage: seedling
 tended: 2025-09-06
 type: projects
+summary: "Completed-ish learning journeys."
 ---
 
 ### Ideation - July 22, 2025

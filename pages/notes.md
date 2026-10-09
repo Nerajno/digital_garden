@@ -6,8 +6,10 @@ title: Welcome to the Garden
 ---
 
 {% comment %}
-  Notes index. Everything below comes from note front matter (feed, stage, tended, date,
-  type, start_here) and _data/stages.yml + _data/note_types.yml: never hardcode a note here.
+  Notes index. Everything below comes from note front matter (feed, stage, tended, date, type,
+  summary, start_here, start_here_label, start_here_blurb) and _data/stages.yml +
+  _data/note_types.yml: never hardcode a note here. The layout skips its own "← Home" and <h1>
+  for this page (notes_index) so the meta line can sit above the title.
   Views: _includes/notes-by-type.html, _includes/notes-by-stage.html. Toggle + search:
   assets/js/notes-view.js. Without JS both views render, type first.
 {% endcomment %}
@@ -20,21 +22,31 @@ title: Welcome to the Garden
 {%- assign start_here = notes | where_exp: "n", "n.start_here" | sort: "start_here" %}
 
 <div class="notes-page" data-notes>
-  <p class="notes-meta">{{ notes.size }} notes · last tended <time datetime="{{ last_tended }}">{{ last_tended | date: '%-d %b %Y' }}</time></p>
-
-  <p class="notes-intro">Welcome to my digital garden, it uses Obsidian and the Jekyll garden theme. Its job is to be documentation of the junior front end developer to a more experienced technical consultant and professional.</p>
+  <script>
+    /* Hide the view that isn't selected before first paint (no flash). notes-view.js takes over. */
+    (function (r) {
+      var v = new URLSearchParams(location.search).get('view') === 'stage' ? 'stage' : 'type';
+      r.setAttribute('data-js-view', v);
+    })(document.currentScript.parentNode);
+  </script>
+  <header class="notes-head">
+    <p class="notes-meta">{{ notes.size }} notes · last tended <time datetime="{{ last_tended }}">{{ last_tended | date: '%-d %b %Y' }}</time></p>
+    <h1 class="notes-title">{{ page.title }}</h1>
+    <p class="notes-intro">Notes from a junior front-end developer growing into a technical consultant. Start with the three below, then browse by type — or see how far along everything is.</p>
+  </header>
 
   {%- if start_here.size > 0 %}
   <section class="start-here" aria-labelledby="start-here-title">
     <h2 class="start-here__title" id="start-here-title">Start here</h2>
     <ol class="start-here__list">
       {%- for n in start_here %}
-      {%- assign type = site.data.note_types | where: "id", n.type | first %}
+      {%- assign blurb = n.start_here_blurb | default: n.summary | default: n.excerpt | strip_html | normalize_whitespace | truncatewords: 18 | replace: "{terms}", site.data.terms.size %}
       <li class="start-here__card{% if forloop.first %} start-here__card--lead{% endif %}">
-        <p class="start-here__type">{{ type.label | default: "Other" }}</p>
-        <a class="start-here__link" href="{{ n.url | relative_url }}">{{ n.title }}</a>
-        <p class="start-here__excerpt">{{ n.excerpt | strip_html | normalize_whitespace | truncatewords: 18 }}</p>
-        {%- if n.stage %}<span class="stage-chip stage-chip--{{ n.stage }}">{{ n.stage | capitalize }}</span>{% endif %}
+        <a class="start-here__link" href="{{ n.url | relative_url }}">
+          <span class="start-here__label">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}{% if n.start_here_label %} · {{ n.start_here_label }}{% endif %}</span>
+          <span class="start-here__name">{{ n.title }}</span>
+          <span class="start-here__blurb">{{ blurb }}</span>
+        </a>
       </li>
       {%- endfor %}
     </ol>
@@ -42,14 +54,14 @@ title: Welcome to the Garden
   {%- endif %}
 
   <div class="notes-bar">
-    <div class="notes-bar__toggle" role="group" aria-label="View notes" data-js-only hidden>
+    <div class="notes-bar__toggle" role="group" aria-label="Arrange notes" data-js-only hidden>
       <button type="button" class="notes-bar__button" data-view-btn="type" aria-pressed="true">By type</button>
       <button type="button" class="notes-bar__button" data-view-btn="stage" aria-pressed="false">By stage</button>
     </div>
     <a class="notes-bar__link" href="?view=stage#by-stage" data-no-js>View by stage</a>
     <div class="notes-bar__search" data-js-only hidden>
-      <label for="notes-search">Search notes</label>
-      <input id="notes-search" class="notes-bar__input" type="search" autocomplete="off" spellcheck="false" placeholder="Title or excerpt">
+      <label for="notes-search">Search</label>
+      <input id="notes-search" class="notes-bar__input" type="search" autocomplete="off" spellcheck="false" placeholder="composables, Q3…">
     </div>
   </div>
   <p class="notes-empty" role="status" data-empty></p>
@@ -59,7 +71,7 @@ title: Welcome to the Garden
 
   <p class="notes-key">
     {%- for stage in site.data.stages -%}
-    <span class="stage-chip stage-chip--{{ stage.id }}">{{ stage.label }}</span> = {{ stage.key }}{% unless forloop.last %}<span aria-hidden="true"> · </span>{% endunless %}
+    <span>{{ stage.label }} = {{ stage.key }}</span>
     {%- endfor -%}
   </p>
 </div>
