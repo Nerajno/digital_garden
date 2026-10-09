@@ -1,0 +1,45 @@
+{%- comment -%}
+  /notes "By stage" view: one plot per stage in _data/stages.yml (meaning, count, cards), then
+  "Unstaged" if any note has no stage. Expects `notes` (feed: show) from pages/notes.md.
+{%- endcomment -%}
+{%- assign stage_ids = site.data.stages | map: "id" -%}
+{%- assign unstaged = "" | split: "" -%}
+{%- for n in notes -%}{%- unless stage_ids contains n.stage -%}{%- assign unstaged = unstaged | push: n -%}{%- endunless -%}{%- endfor -%}
+<section class="notes-view" id="by-stage" data-view="stage" aria-labelledby="by-stage-title">
+  <h2 class="notes-view__title" id="by-stage-title">Notes by stage</h2>
+  <div class="notes-plots">
+    {%- for stage in site.data.stages %}
+    {%- assign plot_notes = notes | where: "stage", stage.id | sort: "date" | reverse %}
+    <section class="notes-plot notes-plot--{{ stage.id }}" aria-labelledby="plot-{{ stage.id }}" data-group>
+      <h3 class="notes-plot__title" id="plot-{{ stage.id }}"><span class="stage-chip stage-chip--{{ stage.id }}">{{ stage.label }}</span> <span class="notes-count">{{ plot_notes.size }}</span></h3>
+      <p class="notes-plot__meaning">{{ stage.meaning }}</p>
+      {%- if plot_notes.size > 0 %}
+      <ul class="notes-plot__list">
+        {%- for n in plot_notes %}
+        {%- assign tended = n.tended | default: n.date -%}
+        {%- assign type = site.data.note_types | where: "id", n.type | first -%}
+        {%- assign excerpt = n.excerpt | strip_html | normalize_whitespace | truncatewords: 24 %}
+        <li class="notes-card" data-item data-search="{{ n.title | append: ' ' | append: excerpt | downcase | escape }}">
+          <a class="notes-card__title" href="{{ n.url | relative_url }}">{{ n.title }}</a>
+          <p class="notes-card__meta">{{ type.label | default: "Other" }} · tended <time datetime="{{ tended | date: '%Y-%m-%d' }}">{{ tended | date: '%-d %b %Y' }}</time></p>
+        </li>
+        {%- endfor %}
+      </ul>
+      {%- else %}
+      <p class="notes-plot__empty">Nothing {{ stage.id }} yet…</p>
+      {%- endif %}
+    </section>
+    {%- endfor %}
+    {%- if unstaged.size > 0 %}
+    <section class="notes-plot" aria-labelledby="plot-unstaged" data-group>
+      <h3 class="notes-plot__title" id="plot-unstaged">Unstaged <span class="notes-count">{{ unstaged.size }}</span></h3>
+      <ul class="notes-plot__list">
+        {%- for n in unstaged %}
+        {%- assign excerpt = n.excerpt | strip_html | normalize_whitespace | truncatewords: 24 %}
+        <li class="notes-card" data-item data-search="{{ n.title | append: ' ' | append: excerpt | downcase | escape }}"><a class="notes-card__title" href="{{ n.url | relative_url }}">{{ n.title }}</a></li>
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endif %}
+  </div>
+</section>

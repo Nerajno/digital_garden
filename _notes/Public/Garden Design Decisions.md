@@ -4,6 +4,8 @@ feed: show
 date: 2026-10-07
 stage: budding
 tended: 2026-10-08
+type: meta
+start_here: 3
 ---
 
 ## Goal

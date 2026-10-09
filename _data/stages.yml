@@ -1,0 +1,16 @@
+# Growth stages, in order. Shared by the homepage legend (_includes/Homepage.html)
+# and the notes index (/notes). Values must match note front matter `stage:`.
+#   key:     short label for the stage key ("Seedling = learning")
+#   meaning: one-line description
+- id: seedling
+  label: Seedling
+  key: learning
+  meaning: Rough idea or first notes. Probably wrong in places.
+- id: budding
+  label: Budding
+  key: built with it
+  meaning: It clicked. Written in my own words, with an example I’ve used.
+- id: evergreen
+  label: Evergreen
+  key: could teach it
+  meaning: Applied in real work. I’d teach it from this note.

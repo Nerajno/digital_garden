@@ -1,0 +1,52 @@
+{%- comment -%}
+  /notes "By type" view: one shelf (table) per type in _data/note_types.yml, then "Other" for
+  notes with a missing or unknown type. Expects `notes` (feed: show) from pages/notes.md.
+  Work notes run newest first; other shelves A–Z. Tended falls back to date.
+{%- endcomment -%}
+{%- assign shelf_ids = site.data.note_types | map: "id" -%}
+{%- assign other_notes = "" | split: "" -%}
+{%- for n in notes -%}{%- unless shelf_ids contains n.type -%}{%- assign other_notes = other_notes | push: n -%}{%- endunless -%}{%- endfor -%}
+{%- assign shelves = shelf_ids | push: "other" -%}
+<section class="notes-view" id="by-type" data-view="type" aria-labelledby="by-type-title">
+  <h2 class="is-sr-only" id="by-type-title">Notes by type</h2>
+  {%- for shelf_id in shelves %}
+  {%- if shelf_id == "other" -%}
+    {%- assign shelf_label = "Other" -%}
+    {%- assign shelf_notes = other_notes | sort_natural: "title" -%}
+  {%- else -%}
+    {%- assign shelf = site.data.note_types | where: "id", shelf_id | first -%}
+    {%- assign shelf_label = shelf.label -%}
+    {%- if shelf_id == "work-notes" -%}
+      {%- assign shelf_notes = notes | where: "type", shelf_id | sort: "date" | reverse -%}
+    {%- else -%}
+      {%- assign shelf_notes = notes | where: "type", shelf_id | sort_natural: "title" -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- if shelf_notes.size > 0 %}
+  <section class="notes-shelf" aria-labelledby="shelf-{{ shelf_id }}" data-group>
+    <h3 class="notes-shelf__title" id="shelf-{{ shelf_id }}">{{ shelf_label }} <span class="notes-count">{{ shelf_notes.size }}</span></h3>
+    <div class="notes-table-wrap" role="region" aria-labelledby="shelf-{{ shelf_id }}" tabindex="0">
+      <table class="notes-table">
+        <thead>
+          <tr><th scope="col">Note</th><th scope="col">Stage</th><th scope="col">Tended</th></tr>
+        </thead>
+        <tbody>
+          {%- for n in shelf_notes %}
+          {%- assign tended = n.tended | default: n.date -%}
+          {%- assign excerpt = n.excerpt | strip_html | normalize_whitespace | truncatewords: 24 %}
+          <tr data-item data-search="{{ n.title | append: ' ' | append: excerpt | downcase | escape }}">
+            <td>
+              <a class="notes-table__title" href="{{ n.url | relative_url }}">{{ n.title }}</a>
+              <p class="notes-table__excerpt">{{ excerpt }}</p>
+            </td>
+            <td>{% if n.stage %}<span class="stage-chip stage-chip--{{ n.stage }}">{{ n.stage | capitalize }}</span>{% else %}<span class="notes-muted">Unstaged</span>{% endif %}</td>
+            <td><time datetime="{{ tended | date: '%Y-%m-%d' }}">{{ tended | date: '%-d %b %Y' }}</time></td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {%- endif %}
+  {%- endfor %}
+</section>

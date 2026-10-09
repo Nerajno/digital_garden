@@ -4,6 +4,7 @@ feed: hide
 date: 2022-05-11
 permalink: /credits
 format: list
+type: meta
 ---
 
 This garden runs on other people's open-source work. Thank you.
