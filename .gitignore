@@ -7,3 +7,6 @@ _notes/.obsidian
 _notes/Public/.obsidian
 _notes/000 Inbox/
 _notes/200 Private/
+
+# graphify knowledge-graph output (local only)
+graphify-out/
