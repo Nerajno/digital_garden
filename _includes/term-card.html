@@ -8,7 +8,7 @@
 {%- capture topic_slugs -%}{%- for topic in t.topics -%}{{ topic | slugify }} {% endfor -%}{%- endcapture -%}
 <article class="term-card" id="{{ t.term | slugify }}" data-letter="{{ include.letter }}" data-topics="{{ topic_slugs | strip }}">
   <header class="term-card__head">
-    <h3 class="term-card__term">{{ t.term }}</h3>
+    <h2 class="term-card__term">{{ t.term }}</h2>
     <span class="stage-chip stage-chip--{{ t.stage }}">{{ t.stage | capitalize }}</span>
   </header>
   <ul class="term-card__topics" aria-label="Topics">
