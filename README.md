@@ -1,6 +1,6 @@
 # Nerando's Learning Garden
 
-A living notebook for things I'm building, breaking, and figuring out as a developer. Working notes, concept breakdowns, and project logs — published in public as I go.
+A living notebook for things I'm building, breaking, and figuring out as a developer. Working notes, concept breakdowns, and project logs, published in public as I go.
 
 > "It's not polished. That's the point."
 
@@ -10,9 +10,9 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 
 ## What's in here
 
-- **Work Notes** — quarterly learning logs tracking concepts, projects, and goals (Q2 2025 → present)
-- **Notes** — atomic notes on Vue 3, JavaScript, CSS, build tooling, and general dev topics
-- **Posts** — longer-form write-ups when something is worth a full post
+- **Work Notes**: quarterly learning logs tracking concepts, projects, and goals (Q2 2025 → present)
+- **Notes**: atomic notes on Vue 3, JavaScript, CSS, build tooling, and general dev topics
+- **Posts**: longer-form write-ups when something is worth a full post
 
 ---
 
@@ -78,6 +78,6 @@ Notes in `_notes/000 Inbox`, `_notes/200 Private`, and `_notes/300 Templates` ar
 
 ## Content license
 
-Contents under [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/) — feel free to read and reference, please don't republish commercially.
+Contents under [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/). Feel free to read and reference, please don't republish commercially.
 
 Theme: [MIT License](http://opensource.org/licenses/MIT) © Jekyll Garden contributors.

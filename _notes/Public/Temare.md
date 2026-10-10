@@ -15,7 +15,7 @@ summary: "Completed-ish learning journeys."
 
 #### The Philosophy
 
-In the fast-paced world of technology, we're constantly pressured to maintain, scale, and productize every project we touch. But what if the real value isn't in the final product—it's in the learning journey itself?
+In the fast-paced world of technology, we're constantly pressured to maintain, scale, and productize every project we touch. But what if the real value isn't in the final product, but in the learning journey itself?
 
 Inspired by [Google's project cemetery](https://killedbygoogle.com/), this graveyard serves a fundamentally different purpose. While Google's graveyard mourns discontinued products that users once depended on, my graveyard celebrates learning projects that have reached their natural end. These aren't failures, they  completed educational purpose to me.
 
@@ -31,7 +31,7 @@ I have been brainstorming and continuous project maintenance can become counter-
 
 #### The Wisdom of Sunsetting Projects
 
-Not every project needs to become a product. Sometimes the greatest value lies in the journey itself—learning new technologies, understanding different paradigms, and discovering what works (and what doesn't).
+Not every project needs to become a product. Sometimes the greatest value lies in the journey itself: learning new technologies, understanding different paradigms, and discovering what works (and what doesn't).
 
 Knowing when to sunset a learning project is as important as starting it. These projects served their purpose: they taught us something valuable, and now they rest here as a testament to continuous learning and skill aqquistion.
 
@@ -63,7 +63,7 @@ Each project in this graveyard represents or should:
 
 ---
 
-*Remember: The goal isn't to build products || projects — it's to build your skillsets among other things. Each project here represents growth, curiosity satisfied, and wisdom earned through deliberate practice.*
+*Remember: The goal isn't to build products || projects; it's to build your skillsets among other things. Each project here represents growth, curiosity satisfied, and wisdom earned through deliberate practice.*
 
 #### Proposed Tech Stack
 
@@ -72,7 +72,7 @@ Vue 3: Reactive frontend framework with excellent TypeScript support and intuiti
 TypeScript: Type safety for better developer experience and fewer runtime errors
 Tailwind CSS: Utility-first CSS framework for rapid, consistent styling without maintenance overhead.
 
-This stack balances learning value with practical implementation—modern enough to teach current best practices, mature enough to avoid constant breaking changes.
+This stack balances learning value with practical implementation: modern enough to teach current best practices, mature enough to avoid constant breaking changes.
 
 ### Implementation Details
 #### Project Structure

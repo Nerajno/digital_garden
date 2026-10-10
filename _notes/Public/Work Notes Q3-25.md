@@ -71,8 +71,8 @@ summary: "Rebuilds, a holiday card app, TinyDesk."
 
 ### Footnote
 
-This quarter had the longest concept list across all of 2025 — 16 items, all unchecked. A few observations worth carrying into Q1-26:
+This quarter had the longest concept list across all of 2025: 16 items, all unchecked. A few observations worth carrying into Q1-26:
 
-- **Group related concepts.** `toReversed() vs reverse()`, `math.sign()`, and `useRouterQuery` are small, standalone topics that can be knocked out in a single session. Batch them. The larger concepts — **SSR, Vite internals, Nitro, and server vs client-side rendering** — form a single mental model and should be studied together rather than treated as separate checklist items.
+- **Group related concepts.** `toReversed() vs reverse()`, `math.sign()`, and `useRouterQuery` are small, standalone topics that can be knocked out in a single session. Batch them. The larger concepts (**SSR, Vite internals, Nitro, and server vs client-side rendering**) form a single mental model and should be studied together rather than treated as separate checklist items.
 - **`script setup` as a compiler** is a particularly useful concept to nail down since it underpins how Vue 3 SFCs actually work. Understanding it will make Composables and Compiler Directives click faster.
-- The Retrospective section was left blank. Even a few bullet points at quarter-end would make it easier to avoid repeating the same list in Q4 — which is exactly what happened.
+- The Retrospective section was left blank. Even a few bullet points at quarter-end would make it easier to avoid repeating the same list in Q4, which is exactly what happened.

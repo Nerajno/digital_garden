@@ -32,7 +32,7 @@ title: All notes
   <header class="notes-head">
     <p class="notes-meta">{{ notes.size }} notes · last tended <time datetime="{{ last_tended }}">{{ last_tended | date: '%-d %b %Y' }}</time></p>
     <h1 class="notes-title">{{ page.title }}</h1>
-    <p class="notes-intro">Notes from a junior front-end developer growing into a technical consultant. Start with the three below, then browse by type — or see how far along everything is.</p>
+    <p class="notes-intro">Notes from a junior front-end developer growing into a technical consultant. Start with the three below, then browse by type, or see how far along everything is.</p>
   </header>
 
   {%- if start_here.size > 0 %}

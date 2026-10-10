@@ -15,9 +15,9 @@ A composable is a function that uses Vue's Composition API to encapsulate and re
 ## Official Explanation
 
 > "A 'composable' is a function that leverages Vue's Composition API to encapsulate and reuse **stateful logic**."
-> — [Vue 3 Docs](https://vuejs.org/guide/reusability/composables)
+> Source: [Vue 3 Docs](https://vuejs.org/guide/reusability/composables)
 
-Composables follow the convention of prefixing the function name with `use` (e.g. `useMouse`, `useFetch`). They can call other composables, use `ref`, `computed`, lifecycle hooks, and watchers internally — and return reactive state or methods to the consuming component.
+Composables follow the convention of prefixing the function name with `use` (e.g. `useMouse`, `useFetch`). They can call other composables, use `ref`, `computed`, lifecycle hooks, and watchers internally, and return reactive state or methods to the consuming component.
 
 ## Personal Understanding
 
@@ -27,8 +27,8 @@ The `use` prefix is a signal: "this function manages some piece of reactive stat
 
 ## Applications
 
-- **`useRouterQuery`** — wraps `useRoute` to read/write query params reactively (from Q3-25 notes)
-- **`useFetch`** — encapsulates async data fetching with `ref` for data/loading/error state
+- **`useRouterQuery`**: wraps `useRoute` to read/write query params reactively (from Q3-25 notes)
+- **`useFetch`**: encapsulates async data fetching with `ref` for data/loading/error state
 - Anywhere you'd otherwise repeat `ref`, `watch`, or lifecycle hooks across two or more components
 
 ```js

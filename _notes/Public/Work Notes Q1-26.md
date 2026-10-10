@@ -60,7 +60,7 @@ summary: "Portfolio to the new standard; projects to Vue and vanilla JS."
 
 
 ## Learning Goals
-- Work through the Vue 3 + Build & Architecture clusters as a group — they share a lot of context.
+- Work through the Vue 3 + Build & Architecture clusters as a group; they share a lot of context.
 - Ship at least one project rather than carrying the same list into Q4-26.
 
 ## Resources
