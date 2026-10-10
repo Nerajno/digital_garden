@@ -1,7 +1,7 @@
 --- 
 layout: Stylesheet 
 --- 
-@import "fruity.css";
+@import url("{{ site.baseurl }}/assets/css/fruity.css");
 
 
 html,
