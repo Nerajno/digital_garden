@@ -1,4 +1,4 @@
-# Nerando's Digital Garden
+# Nerando's Learning Garden
 
 A living notebook for things I'm building, breaking, and figuring out as a developer. Working notes, concept breakdowns, and project logs — published in public as I go.
 
