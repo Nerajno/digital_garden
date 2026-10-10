@@ -655,37 +655,6 @@ p.meta-title { margin: 0; }
 .rolodex-page li + li { margin-top: 0; }
 .rolodex-page p { margin: 0; }
 
-.rolodex-stats {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    width: 100%;
-    margin: 0 0 1.5rem;
-}
-.rolodex-stats__item {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 0.9rem 1.1rem;
-}
-.rolodex-stats dt {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-}
-.rolodex-stats dd {
-    margin: 0.2rem 0 0;
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--ink);
-}
-.rolodex-stats time { display: inline; }
-
 .az__list { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 .rolodex-page .az__list li { display: flex; margin: 0; padding: 0; }
 .az__letter {
@@ -706,7 +675,6 @@ p.meta-title { margin: 0; }
     text-decoration: none;
 }
 .rolodex-page .az a.az__letter:hover { border-color: var(--accent); text-decoration: underline; }
-.az__letter--empty { color: var(--muted); font-weight: 400; }
 
 .term-card {
     display: flex;
@@ -831,20 +799,21 @@ p.meta-title { margin: 0; }
 .spindle__tabs { padding-bottom: 0.75rem; margin-bottom: 1.25rem; border-bottom: 2px solid var(--accent); }
 .spindle__tabs .az__letter { width: 2.75rem; height: 2.75rem; }
 .rolodex-page .az a.az__letter.is-current { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.spindle__layout { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 1.5rem; align-items: start; }
 .spindle__cards { display: grid; gap: 1rem; }
-.spindle__count { margin-bottom: 0.6rem !important; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
+.spindle__count { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin-bottom: 0.6rem !important; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
+.spindle__count [data-count]:empty { display: none; }
 .is-spindle:not(.is-list) .term-card { animation: spindle-deal 0.2s ease-out; }
 .is-spindle:not(.is-list) .term-card__mine p:last-child { font-size: 1.2rem; line-height: 1.55; }
 @keyframes spindle-deal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .term-card__flip { flex: 1 0 100%; }
 .term-card__flip .term-card__official { margin: 0.4rem 0 0.75rem; font-size: 0.9rem; color: var(--muted); }
-.spindle__side { display: grid; gap: 1rem; }
-.spindle__steps { display: grid; gap: 0.5rem; }
-.spindle__step { justify-content: space-between; border-radius: var(--radius-small); text-align: left; }
-.spindle__stats { grid-template-columns: 1fr; margin: 0; }
-.spindle__topic { display: grid; gap: 0.3rem; }
-.spindle__topic label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+.spindle__steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; margin-top: 1rem; }
+.spindle__steps[hidden] { display: none; }
+.spindle__step { justify-content: flex-start; border-radius: var(--radius-small); text-align: left; }
+.spindle__step[data-next] { justify-content: flex-end; text-align: right; }
+.is-list .spindle__steps { display: none; }
+.spindle__topic { display: flex; align-items: center; gap: 0.5rem; margin-left: auto; }
+.spindle__topic label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
 .spindle__topic select {
     min-height: 44px;
     padding: 0 0.75rem;
@@ -869,15 +838,17 @@ p.meta-title { margin: 0; }
     font-size: 0.9rem;
     text-decoration: none;
 }
-.spindle__grid a:hover { border-color: var(--accent); }
+.note-article .rolodex-page .spindle__grid a { color: var(--ink); text-decoration: none; }
+.note-article .rolodex-page .spindle__grid a:hover,
+.note-article .rolodex-page .spindle__grid a:focus-visible { border-color: var(--accent); color: var(--accent); text-decoration: underline; }
 .spindle__grid a.is-current { outline: 2px solid var(--accent); outline-offset: 1px; font-weight: 600; }
+/* Narrow: the card comes first; letter tabs follow it */
 @media screen and (max-width: 768px) {
-    .spindle__layout { grid-template-columns: minmax(0, 1fr); }
-}
-@media screen and (max-width: 600px) {
-    .rolodex-stats { gap: 0.5rem; }
-    .rolodex-stats__item { padding: 0.75rem; }
-    .rolodex-stats dd { font-size: 1.25rem; }
+    .is-spindle { display: flex; flex-direction: column; }
+    .is-spindle .spindle__tabs { order: 2; margin: 1.5rem 0 0; padding: 0.75rem 0 0; border-bottom: 0; border-top: 2px solid var(--accent); }
+    .is-spindle .spindle__grid { order: 3; }
+    .spindle__topic { flex: 1 1 100%; margin-left: 0; }
+    .spindle__topic select { flex: 1; min-width: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
     .is-spindle .term-card { animation: none !important; }

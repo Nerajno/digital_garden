@@ -17,4 +17,4 @@ This page is a living index of terms, concepts, and ideas I've encountered and a
 
 {% include rolodex-spindle.html %}
 
-<script src="{{ '/assets/js/spindle.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/spindle.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

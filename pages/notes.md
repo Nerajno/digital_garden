@@ -76,4 +76,4 @@ title: Welcome to the Garden
   </p>
 </div>
 
-<script src="{{ '/assets/js/notes-view.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/notes-view.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
