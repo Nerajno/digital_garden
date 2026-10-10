@@ -2,7 +2,7 @@
 layout: Post
 permalink: /notes
 notes_index: true
-title: Welcome to the Garden
+title: All notes
 ---
 
 {% comment %}

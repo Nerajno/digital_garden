@@ -195,6 +195,10 @@ main:focus { outline: none; }
     text-decoration: none;
 }
 .garden-nav__brand:hover { color: var(--ink); }
+/* Keeps "Nerando's Learning Garden" on one line beside the toggle and burger on phones. */
+@media (max-width: 420px) {
+    .garden-nav__brand { font-size: 0.95rem; }
+}
 .garden-nav__sprout { color: var(--accent); flex: none; }
 .garden-nav .navbar-menu { background: transparent; }
 .garden-nav .navbar-item {
@@ -279,14 +283,6 @@ html[data-theme="dark"] .theme-toggle__moon { display: none; }
     gap: 2.5rem;
     align-items: start;
     padding: 2.5rem 0 3rem;
-}
-.home-hero__eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
 }
 .home-hero__title {
     font-size: clamp(2.1rem, 4.6vw, 3.6rem);
