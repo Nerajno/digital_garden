@@ -605,6 +605,11 @@ p.meta-title { margin: 0; }
 /* Page previews open on keyboard focus as well as hover (WCAG 1.4.13). */
 .tooltip:focus-within .right { display: block; }
 
+/* Wide markdown tables scroll inside the column instead of the page (#53) */
+@media screen and (max-width: 768px) {
+    .note-article .content table { display: block; max-width: 100%; overflow-x: auto; }
+}
+
 /* 07. Footer --------------------------------------------------------------- */
 .garden-footer {
     border-top: 1px solid var(--line);
