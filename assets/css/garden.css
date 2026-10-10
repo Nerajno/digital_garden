@@ -497,18 +497,21 @@ html[data-theme="dark"] .theme-toggle__moon { display: none; }
 .note-article .content > h2,
 .note-article .content > h3 { color: var(--ink); scroll-margin-top: 1.5rem; }
 /* Code blocks (all pages): dark panel per the mockup, readable in both themes. fruity.css is a dark-background
-   theme driven by CSS variables, so re-point them here (all >= 5.4:1 on ink). */
+   theme driven by CSS variables; re-pointed here to the garden palette (all >= 7.6:1 on #17231C):
+   keywords/tags accent green, strings budding amber, functions/attributes seedling lime, comments muted. */
 .highlight {
     --color-border-light: #17231C;
     --color-text: #E6EBE2;
     --color-text-main: #E6EBE2;
-    --color-text-link: #8CB4F2;
-    --highlight-color-green: #8FB89A;
+    --color-text-link: #F5C98F;
+    --highlight-color-orange: #7FC4A0;
+    --highlight-color-green: #A9B5AC;
     --highlight-color-comment-bg: transparent;
-    --highlight-color-pink: #FF8FC0;
-    --highlight-color-red: #FF7B72;
-    --highlight-color-khaki: #D4C76A;
+    --highlight-color-pink: #D4E8A6;
+    --highlight-color-red: #FF9C94;
+    --highlight-color-khaki: #D4E8A6;
     --highlight-color-grey: #A9B5AC;
+    --highlight-color-whitespace: #A9B5AC;
 }
 pre.highlight {
     background: #17231C;
