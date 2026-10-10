@@ -265,10 +265,10 @@
     </main>
     {%- include Footer.html -%}
     <script>
-        /* Wide markdown tables scroll inside the column (garden.css 06); make only the ones that overflow keyboard-scrollable */
+        /* Wide tables (garden.css 06) and code blocks scroll inside the column; make only the ones that overflow keyboard-scrollable */
         (function () {
             function mark() {
-                document.querySelectorAll('.content table').forEach(function (t) {
+                document.querySelectorAll('.content table, .content pre').forEach(function (t) {
                     if (t.scrollWidth > t.clientWidth) { t.tabIndex = 0; } else { t.removeAttribute('tabindex'); }
                 });
             }
