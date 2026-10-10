@@ -489,6 +489,13 @@ html[data-theme="dark"] .theme-toggle__moon { display: none; }
 }
 .note-article { min-width: 0; }
 .note-article .content { color: var(--ink); line-height: 1.7; }
+/* Prose rhythm (#53): one line-height for paragraphs and list items; inline code in Plex Mono, a step smaller */
+.note-article .content p,
+.note-article .content li { line-height: 1.7; }
+.note-article .content code:not(pre code) { font-family: var(--font-mono); font-size: 0.88em; }
+/* The note's stage chip links to the stage view; hover shows the stage meaning */
+a.stage-chip--link { text-decoration: none; }
+a.stage-chip--link:hover { text-decoration: underline; text-underline-offset: 2px; }
 /* Quotes as a quiet card, not a coloured rule (#53) */
 .note-article .content blockquote {
     margin: 1.5rem 0;
@@ -539,6 +546,8 @@ pre.highlight {
 }
 
 .note-sidebar { display: grid; gap: 1rem; position: sticky; top: 1.5rem; }
+/* Card items sit a step below the card titles (#53) */
+.note-sidebar li { font-size: 0.8em; }
 .note-card {
     background: var(--surface);
     border: 1px solid var(--line);

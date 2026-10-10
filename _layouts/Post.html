@@ -155,7 +155,8 @@
                 <nav class="breadcrumb-trail" aria-label="Breadcrumb">
                     <ol>
                         <li><a href="{{ '/notes' | relative_url }}">Garden</a></li>
-                        <li>{{ note_kind }}</li>
+                        {%- assign note_type = site.data.note_types | where: "id", page.type | first %}
+                        <li>{% if note_type %}<a href="{{ '/notes' | relative_url }}#shelf-{{ note_type.id }}">{{ note_type.label }}</a>{% else %}{{ note_kind }}{% endif %}</li>
                         <li aria-current="page">{{ page.title }}</li>
                     </ol>
                 </nav>
@@ -164,7 +165,8 @@
                     {%- if valid_stage or page.date or page.tended -%}
                     <p class="note-meta">
                         {%- if valid_stage -%}
-                        <span class="stage-chip stage-chip--{{ page.stage }}">{{ page.stage | capitalize }}</span>
+                        {%- assign note_stage = site.data.stages | where: "id", page.stage | first -%}
+                        <a class="stage-chip stage-chip--{{ page.stage }} stage-chip--link" href="{{ '/notes?view=stage' | relative_url }}" title="{{ note_stage.meaning }}">{{ page.stage | capitalize }}<span class="is-sr-only">: {{ note_stage.meaning }} See all stages</span></a>
                         {%- endif -%}
                         {%- if page.date -%}
                         <span class="note-date">Planted <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-d %b %Y' }}</time></span>
