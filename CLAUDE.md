@@ -178,6 +178,9 @@ Everything in `_notes/Public/` and this repo is public and read by recruiters.
 notes. Rewrite as a generic example ("a reporting dashboard at work") that keeps the
 learning point. If unsure, flag it for the owner instead of publishing it.
 
+**No em-dashes in published copy** (notes, `_data/`, pages, README). Use a comma, colon,
+parentheses or a period, whichever fits the sentence. Code comments are exempt.
+
 ## Workflow
 
 - One ticket per branch (`feature/`, `fix/`, `docs/`, `chore/`…), from up-to-date `main`.

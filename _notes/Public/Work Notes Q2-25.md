@@ -25,7 +25,7 @@ summary: "Terms learned and still to study."
 
 Yeah no, I think I took on too much this quarter and I was tired. I completed it though [portfolio](https://developingdvlpr.com/).
 
-> **Published:** Work Notes Q2-25 was published as a post on 09-05-2025 — counts as the one blog post this quarter.
+> **Published:** Work Notes Q2-25 was published as a post on 09-05-2025, and counts as the one blog post this quarter.
 
 
 
@@ -41,6 +41,6 @@ Yeah no, I think I took on too much this quarter and I was tired. I completed it
 
 ### Footnote
 
-The four concepts left unchecked — **Conditional Rendering, Slots, Composables, and Async** — are all core Vue 3 building blocks that kept reappearing through Q3 and Q4. Rather than treating them as one-off research tasks, consider writing a short note for each using the format you already outlined: *official explanation → personal understanding → application*. That way they become reference material rather than recurring to-dos.
+The four concepts left unchecked (**Conditional Rendering, Slots, Composables, and Async**) are all core Vue 3 building blocks that kept reappearing through Q3 and Q4. Rather than treating them as one-off research tasks, consider writing a short note for each using the format you already outlined: *official explanation → personal understanding → application*. That way they become reference material rather than recurring to-dos.
 
-The Comprehension Status table is a good idea — the "Spaceholder" entries suggest it was set up but never revisited. In future quarters, fill these in as you go rather than at the end.
+The Comprehension Status table is a good idea, but the "Spaceholder" entries suggest it was set up but never revisited. In future quarters, fill these in as you go rather than at the end.

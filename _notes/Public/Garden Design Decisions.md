@@ -195,7 +195,7 @@ Every pull request now gets a Lighthouse run (mobile, median of three) in its CI
 
 - [Why I keep a digital garden](https://developingdvlpr.com/digital_garden)
 - [The Developer's Flywheel: Learn, Build, Teach](https://developingdvlpr.com/blog/the-developers-flywheel-learn-build-teach)
-- [Learnt — past projects](https://learnt.developingdvlpr.com)
+- [Learnt: past projects](https://learnt.developingdvlpr.com)
 - [Portfolio](https://developingdvlpr.com)
 
 > The garden doesn't need to be finished. It needs to show where each thing is.

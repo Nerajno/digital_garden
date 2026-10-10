@@ -51,9 +51,9 @@ type: work-notes
 
 ### Footnote
 
-Q4 carried over almost the same project list as Q3 (weather app, todo app, TinyDesk, Holiday card) with only one new concept added — **CSS Grid and subgrid**. A few things to consider going into Q1-26:
+Q4 carried over almost the same project list as Q3 (weather app, todo app, TinyDesk, Holiday card) with only one new concept added: **CSS Grid and subgrid**. A few things to consider going into Q1-26:
 
 - **Scope the project list.** Three quarters in a row with the same unchecked projects suggests the scope isn't matching available time. Pick *one* project per quarter to actually ship rather than listing the same four.
 - **TinyDesk** (api + frontend + db) is the most ambitious item and keeps getting deferred. If it's a priority, break it into a dedicated note with milestones. If it's not, drop it from the quarterly list until you're ready.
-- **CSS Grid + subgrid** is a quick win — it's well-documented and very applicable to layout work. A good candidate to close out first in Q1-26.
+- **CSS Grid + subgrid** is a quick win: it's well-documented and very applicable to layout work. A good candidate to close out first in Q1-26.
 - The blog post goal ("2-3 technical posts") also carried over from Q2 through Q4 without completion. Consider committing to just *one* post in Q1-26 instead.
