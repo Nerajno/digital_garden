@@ -31,7 +31,7 @@ A living notebook for things I'm building, breaking, and figuring out as a devel
 | CI/CD | Netlify builds and deploys; GitHub Actions runs a build check |
 | Runtime | Ruby 4.0.7 (`.ruby-version`) |
 | Local dev | Docker (`ruby:4.0.7-alpine`) |
-| Note-taking source | [Obsidian](https://obsidian.md/) |
+| Note-taking source | [Obsidian](https://obsidian.md/)  ?? |
 
 ### Key features
 
