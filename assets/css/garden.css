@@ -847,7 +847,7 @@ p.meta-title { margin: 0; }
     .is-spindle { display: flex; flex-direction: column; }
     .is-spindle .spindle__tabs { order: 2; margin: 1.5rem 0 0; padding: 0.75rem 0 0; border-bottom: 0; border-top: 2px solid var(--accent); }
     .is-spindle .spindle__grid { order: 3; }
-    .spindle__topic { flex: 1 1 100%; margin-left: 0; }
+    .spindle__topic { flex: 1 1 100%; min-width: 0; margin-left: 0; }
     .spindle__topic select { flex: 1; min-width: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
