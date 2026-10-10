@@ -1,21 +1,31 @@
 ---
-title: [Concept Name]
-feed: show
-date: DD-MM-YYYY
+title: "{{title}}"
+feed: hide
+date: {{date:YYYY-MM-DD}}
+tended: {{date:YYYY-MM-DD}}
+stage: seedling
+type: concept
+summary: "[One line for /notes: what this note gives the reader]"
 ---
 
-## Concept
+## My version
 
-[One sentence naming and framing what this is.]
+[How it clicked, in my own words. An analogy or a comparison to something I already know.]
 
-## Official Explanation
+## Official definition
 
-[The textbook or docs definition. Quote a source if useful.]
+[The textbook or docs explanation.] ([Source](https://))
 
-## Personal Understanding
+## Example I've used
 
-[How you actually think about it. Use analogies, comparisons to things you already know, or a mental model that clicks for you.]
+```js
+// [A small example from a public project, not from work]
+```
 
-## Applications
+## Where it shows up
 
-[Where and how you've used it or seen it used. Can be code snippets, project references, or patterns to watch for.]
+- [A pattern to watch for, or a place this is useful]
+
+## Related
+
+- [[The Rolodex]]
