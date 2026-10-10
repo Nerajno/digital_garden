@@ -10,3 +10,8 @@ _notes/200 Private/
 
 # graphify knowledge-graph output (local only)
 graphify-out/
+
+# local tool output (Playwright MCP, Node compile cache, Impeccable critiques)
+.playwright-mcp/
+node-compile-cache/
+.impeccable/
