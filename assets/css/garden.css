@@ -624,6 +624,20 @@ p.meta-title { margin: 0; }
     .note-article .content table { display: block; max-width: 100%; overflow-x: auto; }
 }
 
+/* Chrome edges line up with the content column (#53): brand and footer text start where page content starts.
+   Content containers pad 0.75rem; on wide screens the nav/footer match it, and the brand drops Bulma's item padding. */
+.garden-nav .garden-nav__brand { padding-left: 0; }
+.garden-nav .garden-nav__inner,
+.garden-footer .garden-footer__inner { padding-left: 0; padding-right: 0; }
+@media screen and (min-width: 1024px) {
+    .garden-nav .garden-nav__inner,
+    .garden-footer .garden-footer__inner { padding-left: 0.75rem; padding-right: 0.75rem; }
+}
+/* Homepage Rolodex teaser: on phones the link sits under its heading, not beside it */
+@media screen and (max-width: 600px) {
+    .rolodex-teaser__head { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+}
+
 /* 07. Footer --------------------------------------------------------------- */
 .garden-footer {
     border-top: 1px solid var(--line);
