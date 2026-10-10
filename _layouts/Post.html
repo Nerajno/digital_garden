@@ -262,6 +262,18 @@
     </section>
     </main>
     {%- include Footer.html -%}
+    <script>
+        /* Wide markdown tables scroll inside the column (garden.css 06); make only the ones that overflow keyboard-scrollable */
+        (function () {
+            function mark() {
+                document.querySelectorAll('.content table').forEach(function (t) {
+                    if (t.scrollWidth > t.clientWidth) { t.tabIndex = 0; } else { t.removeAttribute('tabindex'); }
+                });
+            }
+            mark();
+            window.addEventListener('resize', mark);
+        })();
+    </script>
     <script src="{{ site.baseurl | relative_url }}/assets/js/rolodex.js?v={{ site.time | date: '%s' }}" defer></script>
 </body>
 </html>
