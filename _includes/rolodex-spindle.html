@@ -2,7 +2,8 @@
   The Rolodex "spindle" (/note/Rolodex): one term card at a time, built from _data/terms.yml.
   Every card renders on the server; assets/js/spindle.js shows one at a time and keeps the
   current card in the URL hash. Without JS the [data-js-only] controls stay hidden and every
-  card shows as an A–Z list. Usage: {% include rolodex-spindle.html %}
+  card shows as an A–Z list. Only letters with terms get a tab; on narrow screens the tabs
+  move below the card (garden.css 08b). Usage: {% include rolodex-spindle.html %}
 {%- endcomment -%}
 {%- assign terms = site.data.terms | sort_natural: "term" -%}
 {%- assign alphabet = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,#" | split: "," -%}
@@ -26,6 +27,17 @@
   <div class="spindle__actions" data-js-only hidden>
     <button type="button" class="spindle__button spindle__button--primary" data-shuffle>Shuffle &amp; quiz me</button>
     <button type="button" class="spindle__button" data-list aria-pressed="false">See all as list</button>
+    <div class="spindle__topic" data-js-only hidden>
+      <label for="deal-topic">Deal from topic</label>
+      <select id="deal-topic" data-topic>
+        <option value="">All topics ({{ terms.size }})</option>
+        {%- for topic in topics %}
+        {%- assign topic_count = 0 -%}
+        {%- for t in terms -%}{%- if t.topics contains topic -%}{%- assign topic_count = topic_count | plus: 1 -%}{%- endif -%}{%- endfor %}
+        <option value="{{ topic | slugify }}">{{ topic }} ({{ topic_count }})</option>
+        {%- endfor %}
+      </select>
+    </div>
   </div>
 
   <nav class="az spindle__tabs" aria-label="Terms by letter">
@@ -35,48 +47,26 @@
       {%- for t in terms -%}{%- if term_letters[forloop.index0] == letter -%}{%- assign first = t -%}{%- break -%}{%- endif -%}{%- endfor -%}
       {%- if first %}
       <li><a class="az__letter" href="#{{ first.term | slugify }}" data-tab="{{ letter }}">{{ letter }}</a></li>
-      {%- elsif letter != "#" %}
-      <li><span class="az__letter az__letter--empty" aria-disabled="true">{{ letter }}</span></li>
       {%- endif %}
       {%- endfor %}
     </ul>
   </nav>
 
-  <div class="spindle__layout">
-    <section class="spindle__deck" aria-label="Term cards">
-      <p class="spindle__count" data-count data-js-only hidden></p>
-      <p class="is-sr-only" aria-live="polite" data-live></p>
-      <div class="spindle__cards">
-        {%- for t in terms %}
-        {%- assign t_letter = term_letters[forloop.index0] %}
-        {% include term-card.html term=t letter=t_letter %}
-        {%- endfor %}
-      </div>
-    </section>
-
-    <aside class="spindle__side" aria-label="Deck">
-      <div class="spindle__steps" data-js-only hidden>
-        <button type="button" class="spindle__button spindle__step" data-prev><span aria-hidden="true">←</span> <span data-name></span></button>
-        <button type="button" class="spindle__button spindle__step" data-next><span data-name></span> <span aria-hidden="true">→</span></button>
-      </div>
-      <dl class="rolodex-stats spindle__stats">
-        <div class="rolodex-stats__item"><dt>Terms</dt><dd>{{ terms.size }}</dd></div>
-        <div class="rolodex-stats__item"><dt>Topics</dt><dd>{{ topics.size }}</dd></div>
-        <div class="rolodex-stats__item"><dt>Evergreen</dt><dd>{{ evergreen.size }}</dd></div>
-      </dl>
-      <div class="spindle__topic" data-js-only hidden>
-        <label for="deal-topic">Deal from topic</label>
-        <select id="deal-topic" data-topic>
-          <option value="">All topics ({{ terms.size }})</option>
-          {%- for topic in topics %}
-          {%- assign topic_count = 0 -%}
-          {%- for t in terms -%}{%- if t.topics contains topic -%}{%- assign topic_count = topic_count | plus: 1 -%}{%- endif -%}{%- endfor %}
-          <option value="{{ topic | slugify }}">{{ topic }} ({{ topic_count }})</option>
-          {%- endfor %}
-        </select>
-      </div>
-    </aside>
-  </div>
+  <section class="spindle__deck" aria-labelledby="spindle-deck-title">
+    <h2 class="is-sr-only" id="spindle-deck-title">Term cards</h2>
+    <p class="spindle__count"><span data-count></span><span>{{ terms.size }} terms · {{ topics.size }} topics · {{ evergreen.size }} evergreen</span></p>
+    <p class="is-sr-only" aria-live="polite" data-live></p>
+    <div class="spindle__cards">
+      {%- for t in terms %}
+      {%- assign t_letter = term_letters[forloop.index0] %}
+      {% include term-card.html term=t letter=t_letter %}
+      {%- endfor %}
+    </div>
+    <div class="spindle__steps" data-js-only hidden>
+      <button type="button" class="spindle__button spindle__step" data-prev><span aria-hidden="true">←</span> <span data-name></span></button>
+      <button type="button" class="spindle__button spindle__step" data-next><span data-name></span> <span aria-hidden="true">→</span></button>
+    </div>
+  </section>
 
   <section class="spindle__grid" aria-labelledby="spindle-grid-title">
     <h2 id="spindle-grid-title">On the spindle</h2>

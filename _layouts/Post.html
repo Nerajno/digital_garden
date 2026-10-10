@@ -74,11 +74,11 @@
     <link rel="canonical" href="{{site.url}}{{page.url}}" />
     {%- comment -%} Inline sprout icon (same mark as the nav brand); the old favicon.png and profile.png files no longer exist. {%- endcomment -%}
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2324573F'/%3E%3Cpath d='M12 20v-8m0 0c0-3.5 2.6-6 7-6 0 4.4-2.6 6-7 6Zm0 0c0-2.6-2.2-4.8-6-4.8 0 3.5 2.2 4.8 6 4.8Z' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-    <link href="{{ site.baseurl }}/assets/css/style.css" rel="stylesheet" media="all" class="default" />
-    <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet" media="all" class="default" />
-    <link href="{{ site.baseurl }}/assets/css/Util.css" rel="stylesheet" media="all" class="default" />
-    <link href="{{ site.baseurl }}/assets/css/rolodex.css" rel="stylesheet" media="all" />
-    <link href="{{ site.baseurl }}/assets/css/garden.css" rel="stylesheet" media="all" />
+    <link href="{{ site.baseurl }}/assets/css/style.css?v={{ site.time | date: '%s' }}" rel="stylesheet" media="all" class="default" />
+    <link href="{{ site.baseurl }}/assets/css/main.css?v={{ site.time | date: '%s' }}" rel="stylesheet" media="all" class="default" />
+    <link href="{{ site.baseurl }}/assets/css/Util.css?v={{ site.time | date: '%s' }}" rel="stylesheet" media="all" class="default" />
+    <link href="{{ site.baseurl }}/assets/css/rolodex.css?v={{ site.time | date: '%s' }}" rel="stylesheet" media="all" />
+    <link href="{{ site.baseurl }}/assets/css/garden.css?v={{ site.time | date: '%s' }}" rel="stylesheet" media="all" />
 
     <!--[if IE]>
         <link href="/assets/css/ie-target.css" rel="stylesheet" type="text/css"/>
@@ -262,6 +262,6 @@
     </section>
     </main>
     {%- include Footer.html -%}
-    <script src="{{ site.baseurl | relative_url }}/assets/js/rolodex.js" defer></script>
+    <script src="{{ site.baseurl | relative_url }}/assets/js/rolodex.js?v={{ site.time | date: '%s' }}" defer></script>
 </body>
 </html>
