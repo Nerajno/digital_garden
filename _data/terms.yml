@@ -40,6 +40,25 @@
   definition: >-
     A build-time dependency is only required during compilation or bundling and is not included in the final output. A runtime dependency ships with the app and must be present when it runs.
 
+- term: Code Smell
+  topics: [General Dev]
+  stage: seedling
+  added: 2026-10-23
+  my_version: >-
+    Code that works but feels off when one reads it: a function that keeps growing, the same logic copied in three places, a component that takes ten props. It's not a bug yet, it's a hint that the next change is going to hurt. When I notice one, I ask whether a small refactor now saves me later ( preventative coding).
+  definition: >-
+    A surface-level characteristic in source code that often indicates a deeper design problem. Smells are not bugs and don't stop the program from running, but they make code harder to change and are common triggers for refactoring. Classic examples include long methods, duplicated code, large classes and long parameter lists.
+  example_lang: js
+  example: |-
+    // Smell: long parameter list, easy to pass args in the wrong order
+    function createUser(name, email, age, role, isActive, teamId) { /* ... */ }
+
+    // Refactor: one options object, named at the call site
+    function createUser({ name, email, age, role, isActive, teamId }) { /* ... */ }
+  docs:
+    url: https://martinfowler.com/bliki/CodeSmell.html
+    label: "Martin Fowler: CodeSmell"
+
 - term: Composable
   topics: [Vue 3]
   stage: budding
