@@ -147,11 +147,52 @@ legend; `plot` and `empty` are the /notes-only lines). `assets/js/notes-view.js`
 "Start here" row and the stage view, not on the shelves, and empty shelves are hidden. The page
 renders its own meta line and `<h1>` (the layout skips them when `notes_index` is set).
 
+## Adding content
+
+**New note:** use a template from `_notes/300 Templates/` (excluded from the build), one per
+`type`: `Concept.md`, `Project.md`, `Work Notes.md`, `Index.md`. In Obsidian, turn on the core
+**Templates** plugin, set its folder to `300 Templates` and its date format to `YYYY-MM-DD`; then
+create the note in `_notes/Public/` and run *Insert template*. `{{title}}` and
+`{{date:YYYY-MM-DD}}` are filled in on insert (the templates folder is never Liquid-parsed). A
+`meta` note is rare: copy any template and change `type`.
+
+Every template starts at `feed: hide` and `stage: seedling`, so a rough note can be committed
+without showing up. Before flipping it to `feed: show`:
+
+- [ ] `summary` is one honest line (it's what /notes shows)
+- [ ] `stage` matches the note, and `tended` is today
+- [ ] at least one `[[wikilink]]` to another note
+- [ ] no employer systems, clients, colleagues, ticket numbers or internal code
+- [ ] any `{{` in code is wrapped in `{% raw %}…{% endraw %}`
+- [ ] no em-dashes; no bracketed `[placeholders]` left
+- [ ] build check is clean and the deploy preview shows it on the right shelf and plot
+
+**New Rolodex term** (small enough for a card, no note needed): append to `_data/terms.yml`
+(field list at the top of that file). Minimum entry:
+
+```yaml
+- term: Term
+  topics: [Vue 3]
+  stage: seedling
+  added: YYYY-MM-DD
+  my_version: >-
+    How it clicked, in my own words.
+  definition: >-
+    The official explanation.
+  docs: { url: "https://…", label: "Docs name" }
+```
+
+When a term outgrows its card, write a Concept note and set the term's `note:` to its URL.
+
+**Featured notes:** `start_here` (1–3) plus `start_here_label` / `start_here_blurb` put a note
+in the /notes "Start here" row and take it off its shelf. Keep exactly three.
+
 ## Repo map
 
 ```
 _notes/Public/    published notes (from Obsidian)
-_notes/000 Inbox, 200 Private, 300 Templates   excluded from the build — never publish
+_notes/000 Inbox, 200 Private   excluded from the build — never publish
+_notes/300 Templates   note templates (Concept, Project, Work Notes, Index), excluded from the build
 _posts/           long-form posts (/post/:title)
 _data/            now.yml (homepage), rolodex.yml (Highlights), terms.yml (Rolodex page),
                   stages.yml (stage meanings), note_types.yml (/notes shelves)
