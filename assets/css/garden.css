@@ -901,7 +901,7 @@ p.meta-title { margin: 0; }
     max-width: 70rem;
     margin: 0 auto;
 }
-.notes-page ul, .notes-page ol { list-style: none; margin: 0; padding: 0; }
+.notes-page ul, .notes-page ol, .notes-page ol:not([type]) { list-style: none; margin: 0; padding: 0; }
 .notes-page li + li { margin-top: 0; }
 .notes-page [hidden] { display: none !important; }
 .notes-page[data-js-view="type"] [data-view="stage"],
